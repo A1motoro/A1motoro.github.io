@@ -225,189 +225,7 @@ Thanks for reading! Feel free to leave comments or reach out to me.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Blog Posts - BLOGIIIIII</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Add styles here similar to above -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            line-height: 1.6;
-            color: #f8f8f2;
-            background: #272822;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: rgba(39, 40, 34, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #49483e;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #a6e22e;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #f8f8f2;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #66d9ef;
-        }
-
-        .main-content {
-            padding: 120px 0 80px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #f8f8f2;
-        }
-
-        .posts-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .post-item {
-            background: #3e3d32;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #49483e;
-        }
-
-        .post-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: #a6e22e;
-        }
-
-        .post-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #f8f8f2;
-        }
-
-        .post-meta {
-            color: #a6e22e;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .post-excerpt {
-            color: #e6db74;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .read-more {
-            color: #66d9ef;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .read-more:hover {
-            color: #f92672;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: #66d9ef;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: #a6e22e;
-        }
-
-        .no-posts {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: #3e3d32;
-            border-radius: 15px;
-            border: 1px solid #49483e;
-        }
-
-        .no-posts h3 {
-            color: #f8f8f2;
-            margin-bottom: 1rem;
-        }
-
-        .no-posts p {
-            color: #e6db74;
-            margin-bottom: 2rem;
-        }
-
-        .create-post {
-            display: inline-block;
-            background: #a6e22e;
-            color: #272822;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .create-post:hover {
-            background: #66d9ef;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .posts-list {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link href="../css/monokai-theme.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -415,10 +233,16 @@ Thanks for reading! Feel free to leave comments or reach out to me.
             <a href="../index.html" class="logo">BLOGIIIIII</a>
             <ul class="nav-links">
                 <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#featured">Featured</a></li>
                 <li><a href="../index.html#blog">Blog</a></li>
                 <li><a href="../index.html#about">About</a></li>
                 <li><a href="../index.html#contact">Contact</a></li>
             </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
     <section class="main-content">
@@ -450,6 +274,48 @@ Thanks for reading! Feel free to leave comments or reach out to me.
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BLOGIIIIII. All rights reserved.</p>
+            <p>Made with ❤️ and lots of coffee</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(39, 40, 34, 0.98)';
+            } else {
+                header.style.background = 'rgba(39, 40, 34, 0.95)';
+            }
+        });
+    </script>
 </body>
 </html>
 """
