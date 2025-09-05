@@ -298,6 +298,156 @@
             }
         }
         
+        /* Hero Section Animations */
+        @keyframes floatCode {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1); 
+                opacity: 0.1;
+            }
+            50% { 
+                transform: translateY(-20px) rotate(5deg) scale(1.1); 
+                opacity: 0.3;
+            }
+        }
+        
+        @keyframes heroIconPulse {
+            0%, 100% { 
+                transform: scale(1); 
+            }
+            50% { 
+                transform: scale(1.1); 
+            }
+        }
+        
+        @keyframes heroIconRotate {
+            0% { 
+                transform: rotate(0deg); 
+            }
+            100% { 
+                transform: rotate(360deg); 
+            }
+        }
+        
+        @keyframes heroTitleEntrance {
+            0% { 
+                transform: translateY(50px); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes heroSubtitleGlow {
+            0% { 
+                text-shadow: 0 0 10px rgba(248, 248, 242, 0.5); 
+            }
+            100% { 
+                text-shadow: 0 0 20px rgba(248, 248, 242, 0.8), 0 0 30px rgba(166, 226, 46, 0.3); 
+            }
+        }
+        
+        @keyframes heroMainTitleEntrance {
+            0% { 
+                transform: translateY(30px) scale(0.8); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translateY(0) scale(1); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes heroSubtitleEntrance {
+            0% { 
+                transform: translateY(20px); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes heroCTAEntrance {
+            0% { 
+                transform: translateY(30px); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes ctaButtonPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 5px 20px rgba(166, 226, 46, 0.3); 
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 8px 25px rgba(166, 226, 46, 0.5); 
+            }
+        }
+        
+        @keyframes scrollIndicatorBounce {
+            0%, 100% { 
+                transform: translateX(-50%) translateY(0); 
+            }
+            50% { 
+                transform: translateX(-50%) translateY(-10px); 
+            }
+        }
+        
+        @keyframes scrollArrowPulse {
+            0%, 100% { 
+                opacity: 0.5; 
+                transform: rotate(45deg) scale(1); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: rotate(45deg) scale(1.1); 
+            }
+        }
+        
+        /* Hero CTA Button Hover Effects */
+        .cta-button.primary:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 30px rgba(166, 226, 46, 0.6) !important;
+            background: linear-gradient(45deg, #66d9ef, #a6e22e) !important;
+        }
+        
+        .cta-button.secondary:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 30px rgba(102, 217, 239, 0.4) !important;
+            background: rgba(102, 217, 239, 0.1) !important;
+            border-color: #a6e22e !important;
+            color: #a6e22e !important;
+        }
+        
+        /* Hero Section Responsive Design */
+        @media (max-width: 768px) {
+            .hero-cta-container {
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+            
+            .cta-button {
+                width: 200px !important;
+                text-align: center !important;
+            }
+            
+            #hero-blogii {
+                font-size: 2.5em !important;
+            }
+            
+            .hero-icon i {
+                font-size: 40px !important;
+            }
+        }
+        
         /* Content sections transparency - more background visible */
         .featured-posts, .main-content, .about, footer {
             background: rgba(39, 40, 34, 0.6) !important;
@@ -390,7 +540,7 @@
 </head>
 <body>
     <!-- Crazy Startup Animation -->
-    <div id="loading-screen" style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background: linear-gradient(135deg, #272822 0%, #1e1f1c 100%); display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; z-index: 9999 !important; overflow: hidden !important; visibility: visible !important; opacity: 1 !important; margin: 0 !important; padding: 0 !important; border: none !important;">
+    <div id="loading-screen" style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background: linear-gradient(135deg, #272822 0%, #1e1f1c 100%); display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; z-index: 99999 !important; overflow: hidden !important; visibility: visible !important; opacity: 1 !important; margin: 0 !important; padding: 0 !important; border: none !important;">
         <!-- Matrix Rain Effect -->
         <div id="matrix-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 1; visibility: visible;">
             <!-- Initial matrix characters for immediate visibility -->
@@ -402,11 +552,11 @@
         
         <!-- Main Logo with Crazy Animation -->
         <div style="position: relative; z-index: 2; text-align: center;">
-            <div id="crazy-logo" style="width: 120px; height: 120px; background: linear-gradient(45deg, #a6e22e, #66d9ef); border-radius: 20px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; animation: crazyStartup 1s ease-out, crazyGlow 2s ease-in-out infinite, crazyShake 0.5s ease-in-out 1.5s; will-change: transform, opacity;">
-                <i class="fas fa-code" style="font-size: 50px; color: #f8f8f2; animation: crazyPulse 1s ease-in-out infinite; opacity: 1; visibility: visible; text-shadow: 0 0 20px #a6e22e;"></i>
+            <div id="crazy-logo" style="width: 120px; height: 120px; background: linear-gradient(45deg, #a6e22e, #66d9ef); border-radius: 20px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; animation: crazyStartup 1s ease-out, crazyGlow 2s ease-in-out infinite, crazyShake 0.5s ease-in-out 1.5s; will-change: transform, opacity; z-index: 10; position: relative;">
+                <i class="fas fa-code" style="font-size: 50px; color: #f8f8f2; animation: crazyPulse 1s ease-in-out infinite; opacity: 1 !important; visibility: visible !important; text-shadow: 0 0 20px #a6e22e; z-index: 11; position: relative;"></i>
             </div>
             
-            <h2 id="crazy-title" style="color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 0 0 20px currentColor;">
+            <h2 id="crazy-title" style="color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 0 0 20px currentColor; z-index: 10; position: relative; opacity: 1 !important; visibility: visible !important;">
                 <span class="wave-letter" style="display: inline-block; animation: letterWave1 0.3s ease-out 0.1s;">B</span>
                 <span class="wave-letter" style="display: inline-block; animation: letterWave2 0.3s ease-out 0.2s;">L</span>
                 <span class="wave-letter" style="display: inline-block; animation: letterWave3 0.3s ease-out 0.3s;">O</span>
@@ -482,11 +632,55 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero" style="transform: translateY(-100vh); opacity: 0; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 0; padding: 0;">
-        <div class="container" style="text-align: center; z-index: 2;">
-            <h1 id="hero-title">Welcome to <span id="hero-blogii" class="gradient-text">BLOGIIIIII</span></h1>
-            <p>Sharing thoughts, experiences, and insights on technology, life, and everything in between</p>
-            <a href="#featured" class="cta-button">Read Featured Post</a>
+    <section id="home" class="hero" style="transform: translateY(-100vh); opacity: 0; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 0; padding: 0; overflow: hidden;">
+        <!-- Animated Background Pattern -->
+        <div class="hero-bg-pattern" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.1;">
+            <div class="floating-code" style="position: absolute; top: 10%; left: 10%; font-family: 'Courier New', monospace; color: #a6e22e; font-size: 24px; animation: floatCode 6s ease-in-out infinite;">&lt;/&gt;</div>
+            <div class="floating-code" style="position: absolute; top: 20%; right: 15%; font-family: 'Courier New', monospace; color: #66d9ef; font-size: 20px; animation: floatCode 8s ease-in-out infinite 2s;">{ }</div>
+            <div class="floating-code" style="position: absolute; top: 60%; left: 20%; font-family: 'Courier New', monospace; color: #f8f8f2; font-size: 18px; animation: floatCode 7s ease-in-out infinite 4s;">#</div>
+            <div class="floating-code" style="position: absolute; top: 70%; right: 25%; font-family: 'Courier New', monospace; color: #a6e22e; font-size: 22px; animation: floatCode 9s ease-in-out infinite 1s;">&lt;div&gt;</div>
+            <div class="floating-code" style="position: absolute; top: 40%; left: 50%; font-family: 'Courier New', monospace; color: #66d9ef; font-size: 16px; animation: floatCode 5s ease-in-out infinite 3s;">console.log</div>
+        </div>
+        
+        <!-- Gradient Overlay -->
+        <div class="hero-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(39, 40, 34, 0.8) 0%, rgba(30, 31, 28, 0.9) 100%); z-index: 2;"></div>
+        
+        <!-- Main Content -->
+        <div class="container" style="text-align: center; z-index: 3; position: relative;">
+            <!-- Animated Icon -->
+            <div class="hero-icon" style="margin-bottom: 30px; animation: heroIconPulse 2s ease-in-out infinite;">
+                <i class="fas fa-code" style="font-size: 60px; color: #a6e22e; text-shadow: 0 0 30px #a6e22e; animation: heroIconRotate 4s linear infinite;"></i>
+            </div>
+            
+            <!-- Main Title with Enhanced Animation -->
+            <h1 id="hero-title" style="margin-bottom: 20px; animation: heroTitleEntrance 1.5s ease-out 0.5s both;">
+                <span style="display: block; font-size: 1.2em; color: #f8f8f2; margin-bottom: 10px; animation: heroSubtitleGlow 3s ease-in-out infinite alternate;">Welcome to</span>
+                <span id="hero-blogii" class="gradient-text" style="font-size: 3.5em; display: block; animation: heroMainTitleEntrance 1.8s ease-out 1s both;">BLOGIIIIII</span>
+            </h1>
+            
+            <!-- Enhanced Subtitle -->
+            <p style="font-size: 1.3em; color: #66d9ef; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; animation: heroSubtitleEntrance 2s ease-out 1.5s both; text-shadow: 0 0 20px rgba(102, 217, 239, 0.5);">
+                Sharing thoughts, experiences, and insights on 
+                <span style="color: #a6e22e; font-weight: bold;">technology</span>, 
+                <span style="color: #66d9ef; font-weight: bold;">life</span>, and 
+                <span style="color: #f8f8f2; font-weight: bold;">everything in between</span>
+            </p>
+            
+            <!-- Enhanced CTA Buttons -->
+            <div class="hero-cta-container" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: heroCTAEntrance 2.2s ease-out 2s both;">
+                <a href="#featured" class="cta-button primary" style="background: linear-gradient(45deg, #a6e22e, #66d9ef); color: #272822; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(166, 226, 46, 0.3); animation: ctaButtonPulse 2s ease-in-out infinite;">
+                    <i class="fas fa-star" style="margin-right: 8px;"></i>Read Featured Post
+                </a>
+                <a href="#blog" class="cta-button secondary" style="background: transparent; color: #f8f8f2; padding: 15px 30px; border: 2px solid #66d9ef; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(102, 217, 239, 0.2);">
+                    <i class="fas fa-blog" style="margin-right: 8px;"></i>View All Posts
+                </a>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); animation: scrollIndicatorBounce 2s ease-in-out infinite 3s;">
+                <div style="width: 2px; height: 40px; background: linear-gradient(to bottom, #a6e22e, #66d9ef); margin: 0 auto; border-radius: 2px;"></div>
+                <div style="width: 20px; height: 20px; border: 2px solid #66d9ef; border-top: none; border-left: none; transform: rotate(45deg); margin: 10px auto 0; animation: scrollArrowPulse 1.5s ease-in-out infinite;"></div>
+            </div>
         </div>
     </section>
 
@@ -602,10 +796,10 @@
     <script>
         // IMMEDIATE viewport positioning - must be first
         (function() {
-            // Force immediate scroll to top
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
+            // Force immediate scroll slightly up from top
+            window.scrollTo(0, -20);
+            document.documentElement.scrollTop = -20;
+            document.body.scrollTop = -20;
             
             // Ensure body doesn't have any margin/padding that could offset content
             document.body.style.margin = '0';
@@ -630,15 +824,15 @@
         
         // Simple scroll reset function
         function resetScrollToTop() {
-            window.scrollTo(0, 0);
+            window.scrollTo(0, -20); // Slightly up from top
         }
         
         // Ensure viewport is centered on loading screen immediately
         function centerViewportOnLoadingScreen() {
-            // Reset scroll to top immediately
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
+            // Reset scroll slightly up from top
+            window.scrollTo(0, -20);
+            document.documentElement.scrollTop = -20;
+            document.body.scrollTop = -20;
             
             // Ensure loading screen is visible and centered
             const loadingScreen = document.getElementById('loading-screen');
@@ -657,7 +851,8 @@
         // Smooth scroll to top function
         function smoothScrollToTop() {
             const startPosition = window.pageYOffset;
-            const distance = -startPosition; // Distance to scroll up
+            const targetPosition = -20; // Slightly up from top
+            const distance = targetPosition - startPosition;
             const duration = 600; // 600ms for smooth scroll
             let start = null;
             
@@ -785,6 +980,37 @@
         // Center viewport on loading screen immediately
         centerViewportOnLoadingScreen();
         
+        // Immediately ensure starting scene elements are visible
+        setTimeout(() => {
+            const logo = document.getElementById('crazy-logo');
+            const title = document.getElementById('crazy-title');
+            const codeIcon = document.querySelector('.fas.fa-code');
+            
+            if (logo) {
+                logo.style.opacity = '1';
+                logo.style.visibility = 'visible';
+                logo.style.display = 'flex';
+                logo.style.zIndex = '10';
+                logo.style.position = 'relative';
+            }
+            
+            if (title) {
+                title.style.opacity = '1';
+                title.style.visibility = 'visible';
+                title.style.display = 'block';
+                title.style.zIndex = '10';
+                title.style.position = 'relative';
+            }
+            
+            if (codeIcon) {
+                codeIcon.style.opacity = '1';
+                codeIcon.style.visibility = 'visible';
+                codeIcon.style.display = 'inline-block';
+                codeIcon.style.zIndex = '11';
+                codeIcon.style.position = 'relative';
+            }
+        }, 100);
+        
         // Debug: Check if animations are working
         console.log('🚀 Starting crazy startup animation...');
         
@@ -810,18 +1036,27 @@
             if (logo) {
                 logo.style.opacity = '1';
                 logo.style.visibility = 'visible';
+                logo.style.display = 'flex';
+                logo.style.zIndex = '10';
+                logo.style.position = 'relative';
                 console.log('✅ Logo is ready');
             }
             
             if (title) {
                 title.style.opacity = '1';
                 title.style.visibility = 'visible';
+                title.style.display = 'block';
+                title.style.zIndex = '10';
+                title.style.position = 'relative';
                 console.log('✅ Title is ready');
             }
             
             if (codeIcon) {
                 codeIcon.style.opacity = '1';
                 codeIcon.style.visibility = 'visible';
+                codeIcon.style.display = 'inline-block';
+                codeIcon.style.zIndex = '11';
+                codeIcon.style.position = 'relative';
                 console.log('✅ Code icon is ready');
             }
         }
