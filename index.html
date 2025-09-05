@@ -123,6 +123,69 @@
             transform: translateY(-2px);
         }
 
+        /* Featured Posts Section */
+        .featured-posts {
+            background: #3e3d32;
+            padding: 80px 0;
+            border-bottom: 1px solid #49483e;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-card.main-featured {
+            background: linear-gradient(135deg, #a6e22e, #66d9ef);
+            color: #272822;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .featured-card.main-featured:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .featured-card .blog-image {
+            background: rgba(39, 40, 34, 0.1);
+            height: 250px;
+        }
+
+        .featured-card .blog-title {
+            color: #272822;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-card .blog-meta {
+            color: #272822;
+            opacity: 0.8;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-card .blog-excerpt {
+            color: #272822;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .featured-card .read-more {
+            color: #272822;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .featured-card .read-more:hover {
+            color: #f92672;
+        }
+
         /* Main Content */
         .main-content {
             background: #272822;
@@ -134,6 +197,30 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             color: #f8f8f2;
+        }
+
+        .view-all-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .view-all-button {
+            display: inline-block;
+            background: rgba(166, 226, 46, 0.1);
+            color: #a6e22e;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid #a6e22e;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .view-all-button:hover {
+            background: rgba(166, 226, 46, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(166, 226, 46, 0.3);
         }
 
         /* Blog Posts Grid */
@@ -298,6 +385,18 @@
             .blog-grid {
                 grid-template-columns: 1fr;
             }
+
+            .featured-card .blog-title {
+                font-size: 1.5rem;
+            }
+
+            .featured-card .blog-excerpt {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
         }
 
         /* Animation */
@@ -332,6 +431,7 @@
             <a href="#" class="logo">BLOGIIIIII</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#featured">Featured</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -349,14 +449,34 @@
         <div class="container">
             <h1>Welcome to BLOGIIIIII</h1>
             <p>Sharing thoughts, experiences, and insights on technology, life, and everything in between</p>
-            <a href="#blog" class="cta-button">Read Latest Posts</a>
+            <a href="#featured" class="cta-button">Read Featured Post</a>
         </div>
     </section>
 
-    <!-- Main Content -->
+    <!-- Featured Posts Section -->
+    <section id="featured" class="featured-posts">
+        <div class="container">
+            <h2 class="section-title">Featured Posts</h2>
+            <div class="featured-grid">
+                <article class="featured-card main-featured">
+                    <div class="blog-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">My First Blog Post</h3>
+                        <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
+                        <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you. In this post, I'll be discussing my journey into web development and the technologies that have shaped my career.</p>
+                        <a href="posts/example-post.html" class="read-more">Read Full Post →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Posts Section -->
     <section id="blog" class="main-content">
         <div class="container">
-            <h2 class="section-title">Blog Posts</h2>
+            <h2 class="section-title">Recent Posts</h2>
             <div class="blog-grid">
 
             <article class="blog-card">
@@ -372,145 +492,41 @@
             </article>
             
 </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on {date} • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="#post-example-post" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-        </div>
                     <div class="blog-content">
-                        <h3 class="blog-title">View All Posts</h3>
-                        <div class="blog-meta">Browse through all my blog posts</div>
-                        <p class="blog-excerpt">Click below to explore all the posts I've written. Each post is written in Markdown and covers topics about technology, programming, and life experiences.</p>
-                        <a href="posts/" class="read-more">Browse Posts →</a>
+                        <h3 class="blog-title">Getting Started with Web Development</h3>
+                        <div class="blog-meta">Published on September 03, 2025 • 8 min read</div>
+                        <p class="blog-excerpt">A comprehensive guide for beginners who want to start their journey in web development. Covering HTML, CSS, and JavaScript fundamentals.</p>
+                        <a href="posts/" class="read-more">Read More →</a>
                     </div>
                 </article>
 
                 <article class="blog-card">
                     <div class="blog-image">
-                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-lightbulb"></i>
                     </div>
                     <div class="blog-content">
-                        <h3 class="blog-title">Coming Soon</h3>
-                        <div class="blog-meta">New posts are being written</div>
-                        <p class="blog-excerpt">I'm working on new content! Check back soon for fresh posts about technology, development, and personal insights.</p>
-                        <a href="#about" class="read-more">Learn More →</a>
+                        <h3 class="blog-title">Tips for Better Code Organization</h3>
+                        <div class="blog-meta">Published on September 01, 2025 • 6 min read</div>
+                        <p class="blog-excerpt">Learn how to structure your code better and make it more maintainable. These practices will save you time and headaches in the long run.</p>
+                        <a href="posts/" class="read-more">Read More →</a>
                     </div>
                 </article>
 
                 <article class="blog-card">
                     <div class="blog-image">
-                        <i class="fas fa-rss"></i>
+                        <i class="fas fa-heart"></i>
                     </div>
                     <div class="blog-content">
-                        <h3 class="blog-title">Stay Updated</h3>
-                        <div class="blog-meta">Follow for new content</div>
-                        <p class="blog-excerpt">Want to be notified when I publish new posts? Check out my social media links below or bookmark this page!</p>
-                        <a href="#contact" class="read-more">Follow Me →</a>
+                        <h3 class="blog-title">Why I Love Programming</h3>
+                        <div class="blog-meta">Published on August 28, 2025 • 4 min read</div>
+                        <p class="blog-excerpt">A personal reflection on what makes programming such a rewarding career and hobby. Sharing the joy of creating something from nothing.</p>
+                        <a href="posts/" class="read-more">Read More →</a>
                     </div>
                 </article>
+            </div>
+            
+            <div class="view-all-section">
+                <a href="posts/" class="view-all-button">View All Posts</a>
             </div>
         </div>
     </section>
