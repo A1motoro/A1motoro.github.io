@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>BLOGIIIIII - Developer & Writer</title>
     <meta name="description" content="A personal blog sharing thoughts on technology, development, and life experiences with a modern VSCode Monokai theme.">
     <meta name="keywords" content="blog, developer, technology, programming, personal">
@@ -224,64 +224,9 @@
             }
         }
         
-        @keyframes heroPullDown {
-            0% { 
-                transform: translateY(-100vh);
-                opacity: 0;
-                height: 100vh;
-            }
-            50% { 
-                transform: translateY(-50vh);
-                opacity: 0.5;
-                height: 100vh;
-            }
-            100% { 
-                transform: translateY(0);
-                opacity: 1;
-                height: 100vh;
-            }
-        }
         
-        @keyframes headerPullDown {
-            0% { 
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-            50% { 
-                transform: translateY(-50px);
-                opacity: 0.7;
-            }
-            100% { 
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
         
-        @keyframes heroShorten {
-            0% { 
-                height: 100vh;
-                transform: translateY(0);
-            }
-            100% { 
-                height: 60vh;
-                transform: translateY(0);
-            }
-        }
         
-        @keyframes contentSlideUp {
-            0% { 
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            50% { 
-                transform: translateY(50vh);
-                opacity: 0.5;
-            }
-            100% { 
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
         
         @keyframes float {
             0%, 100% { 
@@ -347,6 +292,7 @@
                 text-shadow: 0 0 20px rgba(248, 248, 242, 0.8), 0 0 30px rgba(166, 226, 46, 0.3); 
             }
         }
+        
         
         @keyframes heroMainTitleEntrance {
             0% { 
@@ -435,20 +381,151 @@
             }
         }
         
-        @keyframes crazyWave {
-            0%, 100% { 
-                transform: translateY(0px) scale(1); 
-            }
-            25% { 
-                transform: translateY(-15px) scale(1.1); 
-            }
-            50% { 
-                transform: translateY(-5px) scale(0.9); 
-            }
-            75% { 
-                transform: translateY(-20px) scale(1.05); 
-            }
-        }
+                 @keyframes crazyWave {
+             0%, 100% { 
+                 transform: translateY(0px) scale(1); 
+             }
+             25% { 
+                 transform: translateY(-15px) scale(1.1); 
+             }
+             50% { 
+                 transform: translateY(-5px) scale(0.9); 
+             }
+             75% { 
+                 transform: translateY(-20px) scale(1.05); 
+             }
+         }
+         
+         @keyframes letterPop {
+             0% { 
+                 transform: scale(0) rotate(180deg); 
+                 opacity: 0;
+                 text-shadow: 0 0 0px currentColor;
+             }
+             50% { 
+                 transform: scale(1.3) rotate(0deg); 
+                 opacity: 1;
+                 text-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
+             }
+             100% { 
+                 transform: scale(1) rotate(0deg); 
+                 opacity: 1;
+                 text-shadow: 0 0 20px currentColor;
+             }
+         }
+         
+         /* New Hero Text Animations */
+         @keyframes textGlowPulse {
+             0%, 100% { 
+                 text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4);
+             }
+             50% { 
+                 text-shadow: 0 0 30px rgba(166, 226, 46, 1), 0 0 60px rgba(102, 217, 239, 0.8), 0 0 90px rgba(166, 226, 46, 0.6);
+             }
+         }
+         
+         @keyframes textFloat {
+             0%, 100% { 
+                 transform: translateY(0px); 
+             }
+             50% { 
+                 transform: translateY(-10px); 
+             }
+         }
+         
+         @keyframes textShake {
+             0%, 100% { 
+                 transform: translateX(0px); 
+             }
+             25% { 
+                 transform: translateX(-2px); 
+             }
+             75% { 
+                 transform: translateX(2px); 
+             }
+         }
+         
+         @keyframes textRotate {
+             0% { 
+                 transform: rotate(0deg); 
+             }
+             25% { 
+                 transform: rotate(1deg); 
+             }
+             75% { 
+                 transform: rotate(-1deg); 
+             }
+             100% { 
+                 transform: rotate(0deg); 
+             }
+         }
+         
+         @keyframes textScale {
+             0%, 100% { 
+                 transform: scale(1); 
+             }
+             50% { 
+                 transform: scale(1.05); 
+             }
+         }
+         
+         @keyframes textFadeInOut {
+             0%, 100% { 
+                 opacity: 1; 
+             }
+             50% { 
+                 opacity: 0.7; 
+             }
+         }
+         
+         /* Hero Background Animations */
+         @keyframes backgroundShift {
+             0% { 
+                 background-position: 0% 50%; 
+             }
+             50% { 
+                 background-position: 100% 50%; 
+             }
+             100% { 
+                 background-position: 0% 50%; 
+             }
+         }
+         
+         @keyframes particleFloat {
+             0%, 100% { 
+                 transform: translateY(0px) translateX(0px) rotate(0deg); 
+                 opacity: 0.7;
+             }
+             25% { 
+                 transform: translateY(-20px) translateX(10px) rotate(90deg); 
+                 opacity: 1;
+             }
+             50% { 
+                 transform: translateY(-40px) translateX(-5px) rotate(180deg); 
+                 opacity: 0.8;
+             }
+             75% { 
+                 transform: translateY(-20px) translateX(-10px) rotate(270deg); 
+                 opacity: 0.9;
+             }
+         }
+         
+         @keyframes codeRain {
+             0% { 
+                 transform: translateY(-100vh); 
+                 opacity: 0;
+             }
+             10% { 
+                 opacity: 1;
+             }
+             90% { 
+                 opacity: 1;
+             }
+             100% { 
+                 transform: translateY(100vh); 
+                 opacity: 0;
+             }
+         }
         
         /* Hero CTA Button Hover Effects */
         .cta-button.primary:hover {
@@ -492,26 +569,49 @@
             backdrop-filter: blur(1px);
         }
         
-        /* Force proper viewport positioning */
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow-x: hidden !important;
-        }
+                 /* Force proper viewport positioning */
+         html, body {
+             margin: 0 !important;
+             padding: 0 !important;
+             overflow-x: hidden !important;
+             overflow-y: auto !important;
+             height: 100% !important;
+             width: 100% !important;
+         }
+         
+         /* Hide scrollbars completely */
+         ::-webkit-scrollbar {
+             display: none !important;
+         }
+         
+         /* Hide scrollbar for Firefox */
+         html {
+             scrollbar-width: none !important;
+         }
+         
+         /* Ensure hero section starts at top */
+         .hero {
+             position: relative !important;
+             top: 0 !important;
+             left: 0 !important;
+             width: 100% !important;
+             margin: 0 !important;
+             padding: 0 !important;
+             transform: none !important;
+             zoom: 1 !important;
+         }
+         
+         /* Prevent any zoom or scale effects */
+         * {
+             transform-origin: center center !important;
+         }
+         
+         /* Ensure no zoom on click or interaction */
+         html, body, .hero, .container {
+             zoom: 1 !important;
+             transform: scale(1) !important;
+         }
         
-        /* Prevent scrolling during loading */
-        body.loading {
-            overflow: hidden !important;
-            height: 100vh !important;
-            width: 100vw !important;
-        }
-        
-        /* Enable scrolling after loading */
-        body.loaded {
-            overflow: auto !important;
-            height: auto !important;
-            width: 100% !important;
-        }
         
         /* Force loading screen positioning */
         #loading-screen {
@@ -540,14 +640,6 @@
             box-sizing: border-box;
         }
         
-        /* Fast scroll optimization */
-        html {
-            scroll-behavior: auto !important;
-        }
-        
-        body {
-            scroll-behavior: auto !important;
-        }
         
         /* Normal blog card hover animations */
         .blog-card, .featured-card {
@@ -600,66 +692,68 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero" style="height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 0; padding: 0; overflow: hidden; animation: heroCrazyEntrance 2s ease-out;">
+    <section id="home" class="hero" style="height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 0; padding: 0; top: 0; left: 0; width: 100%; background: linear-gradient(135deg, #1a1b1c 0%, #2d2e2f 25%, #1a1b1c 50%, #2d2e2f 75%, #1a1b1c 100%); background-size: 400% 400%; animation: backgroundShift 8s ease-in-out infinite;">
         <!-- Animated Background Pattern -->
-        <div class="hero-bg-pattern" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.1;">
-            <div class="floating-code" style="position: absolute; top: 10%; left: 10%; font-family: 'Courier New', monospace; color: #a6e22e; font-size: 24px; animation: floatCode 6s ease-in-out infinite;">&lt;/&gt;</div>
-            <div class="floating-code" style="position: absolute; top: 20%; right: 15%; font-family: 'Courier New', monospace; color: #66d9ef; font-size: 20px; animation: floatCode 8s ease-in-out infinite 2s;">{ }</div>
-            <div class="floating-code" style="position: absolute; top: 60%; left: 20%; font-family: 'Courier New', monospace; color: #f8f8f2; font-size: 18px; animation: floatCode 7s ease-in-out infinite 4s;">#</div>
-            <div class="floating-code" style="position: absolute; top: 70%; right: 25%; font-family: 'Courier New', monospace; color: #a6e22e; font-size: 22px; animation: floatCode 9s ease-in-out infinite 1s;">&lt;div&gt;</div>
-            <div class="floating-code" style="position: absolute; top: 40%; left: 50%; font-family: 'Courier New', monospace; color: #66d9ef; font-size: 16px; animation: floatCode 5s ease-in-out infinite 3s;">console.log</div>
+        <div class="hero-bg-pattern" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; overflow: hidden; background: radial-gradient(circle at 20% 80%, rgba(166, 226, 46, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(102, 217, 239, 0.1) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(249, 38, 114, 0.05) 0%, transparent 50%);">
+            <!-- Floating Code Elements -->
+            <div class="floating-code" style="position: absolute; top: 10%; left: 10%; font-size: 24px; color: rgba(166, 226, 46, 0.4); font-family: 'Courier New', monospace; animation: particleFloat 6s ease-in-out infinite;">&lt;/&gt;</div>
+            <div class="floating-code" style="position: absolute; top: 20%; right: 15%; font-size: 20px; color: rgba(102, 217, 239, 0.4); font-family: 'Courier New', monospace; animation: particleFloat 8s ease-in-out infinite 1s;">{ }</div>
+            <div class="floating-code" style="position: absolute; top: 60%; left: 20%; font-size: 18px; color: rgba(249, 38, 114, 0.4); font-family: 'Courier New', monospace; animation: particleFloat 7s ease-in-out infinite 2s;">function()</div>
+            <div class="floating-code" style="position: absolute; top: 80%; right: 25%; font-size: 22px; color: rgba(166, 226, 46, 0.4); font-family: 'Courier New', monospace; animation: particleFloat 9s ease-in-out infinite 0.5s;">console.log</div>
+            <div class="floating-code" style="position: absolute; top: 40%; left: 70%; font-size: 16px; color: rgba(102, 217, 239, 0.4); font-family: 'Courier New', monospace; animation: particleFloat 5s ease-in-out infinite 1.5s;">const</div>
+            <div class="floating-code" style="position: absolute; top: 30%; left: 50%; font-size: 14px; color: rgba(249, 38, 114, 0.3); font-family: 'Courier New', monospace; animation: particleFloat 10s ease-in-out infinite 3s;">import</div>
+            <div class="floating-code" style="position: absolute; top: 70%; left: 60%; font-size: 20px; color: rgba(166, 226, 46, 0.3); font-family: 'Courier New', monospace; animation: particleFloat 6s ease-in-out infinite 2.5s;">return</div>
+            <div class="floating-code" style="position: absolute; top: 15%; left: 80%; font-size: 18px; color: rgba(102, 217, 239, 0.3); font-family: 'Courier New', monospace; animation: particleFloat 8s ease-in-out infinite 4s;">async</div>
+        </div>
+        
+        <!-- Code Rain Effect -->
+        <div class="code-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;">
+            <div style="position: absolute; top: -50px; left: 10%; font-size: 12px; color: rgba(166, 226, 46, 0.6); font-family: 'Courier New', monospace; animation: codeRain 3s linear infinite;">01010101</div>
+            <div style="position: absolute; top: -50px; left: 30%; font-size: 12px; color: rgba(102, 217, 239, 0.6); font-family: 'Courier New', monospace; animation: codeRain 4s linear infinite 1s;">{ }</div>
+            <div style="position: absolute; top: -50px; left: 50%; font-size: 12px; color: rgba(249, 38, 114, 0.6); font-family: 'Courier New', monospace; animation: codeRain 3.5s linear infinite 2s;">&lt;/&gt;</div>
+            <div style="position: absolute; top: -50px; left: 70%; font-size: 12px; color: rgba(166, 226, 46, 0.6); font-family: 'Courier New', monospace; animation: codeRain 4.5s linear infinite 0.5s;">function</div>
+            <div style="position: absolute; top: -50px; left: 90%; font-size: 12px; color: rgba(102, 217, 239, 0.6); font-family: 'Courier New', monospace; animation: codeRain 3.2s linear infinite 1.5s;">const</div>
         </div>
         
         <!-- Gradient Overlay -->
-        <div class="hero-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(39, 40, 34, 0.8) 0%, rgba(30, 31, 28, 0.9) 100%); z-index: 2;"></div>
+        <div class="hero-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(39, 40, 34, 0.7) 0%, rgba(30, 31, 28, 0.8) 50%, rgba(39, 40, 34, 0.7) 100%); z-index: 2;"></div>
         
         <!-- Main Content -->
         <div class="container" style="text-align: center; z-index: 3; position: relative;">
-            <!-- Crazy Animated Icon -->
-            <div class="hero-icon" style="margin-bottom: 30px; animation: heroIconPulse 2s ease-in-out infinite, heroIconCrazy 3s ease-in-out infinite;">
-                <i class="fas fa-code" style="font-size: 60px; color: #a6e22e; text-shadow: 0 0 30px #a6e22e; animation: heroIconRotate 4s linear infinite, heroIconGlow 2s ease-in-out infinite alternate;"></i>
-                </div>
+            <!-- Animated Icon -->
+            <div class="hero-icon" style="margin-bottom: 30px; animation: textFloat 3s ease-in-out infinite;">
+                <i class="fas fa-code" style="font-size: 60px; color: #a6e22e; text-shadow: 0 0 30px #a6e22e; animation: textGlowPulse 2s ease-in-out infinite, textRotate 4s ease-in-out infinite;"></i>
+            </div>
             
-            <!-- Main Title with Enhanced Animation -->
-            <h1 id="hero-title" style="margin-bottom: 20px; animation: heroTitleEntrance 1.5s ease-out 0.5s both;">
-                <span style="display: block; font-size: 1.2em; color: #f8f8f2; margin-bottom: 10px; animation: heroSubtitleGlow 3s ease-in-out infinite alternate;">Welcome to</span>
-                <span id="hero-blogii" class="gradient-text" style="font-size: 3.5em; display: block; animation: heroMainTitleEntrance 1.8s ease-out 1s both;">
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.1s;">B</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.2s;">L</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.3s;">O</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.4s;">G</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.5s;">I</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.6s;">I</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.7s;">I</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.8s;">I</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.9s;">I</span>
-                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 1.0s;">I</span>
-                </span>
+            <!-- Animated Main Title -->
+            <h1 id="hero-title" style="margin-bottom: 20px; animation: textFloat 4s ease-in-out infinite;">
+                <span style="display: block; font-size: 1.2em; color: #f8f8f2; margin-bottom: 10px; animation: textShake 3s ease-in-out infinite, textFadeInOut 2s ease-in-out infinite;">Welcome to</span>
+                <span id="hero-blogii" class="gradient-text" style="font-size: 3.5em; display: block; letter-spacing: -0.1em; animation: textGlowPulse 2s ease-in-out infinite, textScale 3s ease-in-out infinite;">BLOGIIIIII</span>
             </h1>
             
-            <!-- Enhanced Subtitle -->
-            <p style="font-size: 1.3em; color: #66d9ef; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; animation: heroSubtitleEntrance 2s ease-out 1.5s both; text-shadow: 0 0 20px rgba(102, 217, 239, 0.5);">
+            <!-- Animated Subtitle -->
+            <p style="font-size: 1.3em; color: #66d9ef; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; text-shadow: 0 0 20px rgba(102, 217, 239, 0.5); animation: textFloat 5s ease-in-out infinite;">
                 Sharing thoughts, experiences, and insights on 
-                <span style="color: #a6e22e; font-weight: bold;">technology</span>, 
-                <span style="color: #66d9ef; font-weight: bold;">life</span>, and 
-                <span style="color: #f8f8f2; font-weight: bold;">everything in between</span>
+                <span style="color: #a6e22e; font-weight: bold; animation: textShake 2s ease-in-out infinite, textGlowPulse 1.5s ease-in-out infinite;">technology</span>, 
+                <span style="color: #66d9ef; font-weight: bold; animation: textFloat 3s ease-in-out infinite 0.5s, textFadeInOut 2s ease-in-out infinite;">life</span>, and 
+                <span style="color: #f8f8f2; font-weight: bold; animation: textScale 2.5s ease-in-out infinite 1s, textRotate 4s ease-in-out infinite;">everything in between</span>
             </p>
             
-            <!-- Enhanced CTA Buttons -->
-            <div class="hero-cta-container" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: heroCTAEntrance 2.2s ease-out 2s both;">
-                <a href="#featured" class="cta-button primary" style="background: linear-gradient(45deg, #a6e22e, #66d9ef); color: #272822; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(166, 226, 46, 0.3); animation: ctaButtonPulse 2s ease-in-out infinite;">
-                    <i class="fas fa-star" style="margin-right: 8px;"></i>Read Featured Post
+            <!-- Animated CTA Buttons -->
+            <div class="hero-cta-container" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: textFloat 6s ease-in-out infinite;">
+                <a href="#featured" class="cta-button primary" style="background: linear-gradient(45deg, #a6e22e, #66d9ef); color: #272822; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(166, 226, 46, 0.3); animation: textScale 2s ease-in-out infinite, textGlowPulse 3s ease-in-out infinite;">
+                    <i class="fas fa-star" style="margin-right: 8px; animation: textRotate 2s ease-in-out infinite;"></i>Read Featured Post
                 </a>
-                <a href="#blog" class="cta-button secondary" style="background: transparent; color: #f8f8f2; padding: 15px 30px; border: 2px solid #66d9ef; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(102, 217, 239, 0.2);">
-                    <i class="fas fa-blog" style="margin-right: 8px;"></i>View All Posts
+                <a href="#blog" class="cta-button secondary" style="background: transparent; color: #f8f8f2; padding: 15px 30px; border: 2px solid #66d9ef; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(102, 217, 239, 0.2); animation: textFloat 2.5s ease-in-out infinite 0.5s, textFadeInOut 2s ease-in-out infinite;">
+                    <i class="fas fa-blog" style="margin-right: 8px; animation: textShake 1.5s ease-in-out infinite;"></i>View All Posts
                 </a>
-</div>
+            </div>
             
         </div>
     </section>
 
     <!-- Featured Posts Section -->
-    <section id="featured" class="featured-posts" style="transform: translateY(100vh); opacity: 0;">
+    <section id="featured" class="featured-posts">
         <div class="container">
             <h2 class="section-title">Featured Posts</h2>
             <div class="featured-grid">
@@ -679,7 +773,7 @@
     </section>
 
     <!-- Recent Posts Section -->
-    <section id="blog" class="main-content" style="transform: translateY(100vh); opacity: 0;">
+    <section id="blog" class="main-content">
         <div class="container">
             <h2 class="section-title">Recent Posts</h2>
             <div class="blog-grid">
@@ -737,7 +831,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about" style="transform: translateY(100vh); opacity: 0;">
+    <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
@@ -760,7 +854,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" style="transform: translateY(100vh); opacity: 0;">
+    <footer id="contact">
         <div class="container">
             <p>&copy; 2024 BLOGIIIIII. All rights reserved.</p>
             <p>Made with ❤️ and lots of coffee</p>
@@ -768,358 +862,37 @@
     </footer>
 
     <script>
-        // Simple page initialization
-        (function() {
-            // Force immediate scroll slightly up from top
-            window.scrollTo(0, -20);
-            document.documentElement.scrollTop = -20;
-            document.body.scrollTop = -20;
-            
-            // Ensure body doesn't have any margin/padding that could offset content
-            document.body.style.margin = '0';
-            document.body.style.padding = '0';
-            document.documentElement.style.margin = '0';
-            document.documentElement.style.padding = '0';
-        })();
+                 // Simple page initialization
+         (function() {
+             // Ensure body doesn't have any margin/padding that could offset content
+             document.body.style.margin = '0';
+             document.body.style.padding = '0';
+             document.documentElement.style.margin = '0';
+             document.documentElement.style.padding = '0';
+             
+             // Prevent zoom and ensure fixed viewport
+             document.documentElement.style.zoom = '1';
+             document.body.style.zoom = '1';
+             document.documentElement.style.transform = 'scale(1)';
+             document.body.style.transform = 'scale(1)';
+         })();
         
-        // Simple scroll reset function
-        function resetScrollToTop() {
-            window.scrollTo(0, -20); // Slightly up from top
-        }
         
-        // Ensure viewport is centered on loading screen immediately
-        function centerViewportOnLoadingScreen() {
-            // Reset scroll slightly up from top
-            window.scrollTo(0, -20);
-            document.documentElement.scrollTop = -20;
-            document.body.scrollTop = -20;
-            
-            // Ensure loading screen is visible and centered
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                loadingScreen.style.position = 'fixed';
-                loadingScreen.style.top = '0';
-                loadingScreen.style.left = '0';
-                loadingScreen.style.width = '100%';
-                loadingScreen.style.height = '100%';
-                loadingScreen.style.display = 'flex';
-                loadingScreen.style.justifyContent = 'center';
-                loadingScreen.style.alignItems = 'center';
-            }
-        }
-        
-        // Smooth scroll to top function
-        function smoothScrollToTop() {
-            const startPosition = window.pageYOffset;
-            const targetPosition = -20; // Slightly up from top
-            const distance = targetPosition - startPosition;
-            const duration = 600; // 600ms for smooth scroll
-            let start = null;
-            
-            function smoothScroll(timestamp) {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
-                const progressPercent = Math.min(progress / duration, 1);
-                
-                // Easing function for smooth deceleration
-                const ease = 1 - Math.pow(1 - progressPercent, 3);
-                
-                window.scrollTo(0, startPosition + distance * ease);
-                
-                if (progress < duration) {
-                    requestAnimationFrame(smoothScroll);
-                }
-            }
-            
-            requestAnimationFrame(smoothScroll);
-        }
-        
-        // Crazy Startup Animation
-        let loadingHidden = false;
-        
-        function hideLoadingScreen() {
-            if (loadingHidden) return;
-            loadingHidden = true;
-            
-            // Remove loading class and add loaded class to enable scrolling
-            document.body.classList.remove('loading');
-            document.body.classList.add('loaded');
-            
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    resetScrollToTop();
-                }, 800);
-            }
-        }
-        
-        function showMainContent() {
-            // Remove loading class and add loaded class to enable scrolling
-            document.body.classList.remove('loading');
-            document.body.classList.add('loaded');
-            
-            // Hide loading screen immediately
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                loadingScreen.style.display = 'none';
-            }
-            
-            // Show all content sections immediately
-            const sections = ['home', 'featured', 'blog', 'about', 'contact'];
-            sections.forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.style.transform = 'translateY(0)';
-                    section.style.opacity = '1';
-                    section.style.animation = 'none';
-                }
-            });
-            
-            // Show header
-            const header = document.getElementById('main-header');
-            if (header) {
-                header.style.transform = 'translateY(0)';
-                header.style.opacity = '1';
-                header.style.animation = 'none';
-            }
-            
-            // Reset hero section to normal height
-            const heroSection = document.getElementById('home');
-            if (heroSection) {
-                heroSection.style.height = '60vh';
-                heroSection.style.transform = 'translateY(0)';
-                heroSection.style.opacity = '1';
-            }
-        }
 
 
-        // Simple page load - no crazy startup needed
-        console.log('🚀 Page loaded with crazy hero section!');
+                 // Simple page load - no crazy startup needed
+         console.log('🚀 Page loaded with crazy hero section!');
+         
         
-        // Falling animation function
-        function startFallingAnimation() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const crazyLogo = document.getElementById('crazy-logo');
-            const crazyTitle = document.getElementById('crazy-title');
-            const loadingText = document.getElementById('loading-text');
-            const progressContainer = document.getElementById('progress-container');
-            const heroSection = document.getElementById('home');
-            const header = document.getElementById('main-header');
-            
-            // Create falling letters effect
-            createFallingLetters();
-            
-            // Start canvas fall animation
-            if (loadingScreen) {
-                loadingScreen.style.animation = 'canvasFall 0.8s ease-out forwards';
-            }
-            
-            // Start individual element fall animations
-            if (crazyLogo) {
-                crazyLogo.style.animation = 'elementFall 0.8s ease-out forwards';
-            }
-            
-            // Title stays in place - no floating animation
-            
-            if (loadingText) {
-                loadingText.style.animation = 'elementFall 0.8s ease-out forwards';
-            }
-            
-            if (progressContainer) {
-                progressContainer.style.animation = 'elementFall 0.8s ease-out forwards';
-            }
-            
-            // Start additional falling elements
-            const additionalElements = [
-                'floating-icon-1', 'floating-icon-2', 'floating-icon-3', 'floating-icon-4', 'floating-icon-5',
-                'floating-shape-1', 'floating-shape-2', 'floating-shape-3', 'floating-shape-4',
-                'floating-text-1', 'floating-text-2', 'floating-text-3'
-            ];
-            
-            additionalElements.forEach((elementId, index) => {
-                const element = document.getElementById(elementId);
-                if (element) {
-                    // Stagger the fall animations slightly
-                    setTimeout(() => {
-                        element.style.animation = 'elementFall 0.8s ease-out forwards';
-                    }, index * 20); // 20ms stagger between elements
-                }
-            });
-            
-            // Start pull-down effect for hero section (synchronized with canvas fall)
-            if (heroSection) {
-                heroSection.style.animation = 'heroPullDown 0.8s ease-out forwards';
-                
-                // Add smooth scroll to top when hero section starts pulling down
-                setTimeout(() => {
-                    smoothScrollToTop();
-                }, 400); // Start scrolling halfway through the pull-down animation
-            }
-            
-            // Start pull-down effect for header
-            if (header) {
-                setTimeout(() => {
-                    header.style.animation = 'headerPullDown 1.2s ease-out forwards';
-                }, 300); // Slight delay after hero
-            }
-            
-            // Hide loading screen after fall animation
-            setTimeout(() => {
-                hideLoadingScreen();
-                // Start the hero transition sequence
-                startHeroTransitionSequence();
-            }, 800);
-        }
         
-        // Create falling letters effect
-        function createFallingLetters() {
-            const matrixContainer = document.getElementById('matrix-rain');
-            if (!matrixContainer) return;
-            
-            const letters = 'BLOGIIIIII';
-            const colors = ['#a6e22e', '#66d9ef', '#f8f8f2'];
-            
-            // Create falling letters for each character
-            for (let i = 0; i < letters.length; i++) {
-                setTimeout(() => {
-                    const letter = document.createElement('div');
-                    letter.textContent = letters[i];
-                    letter.style.position = 'absolute';
-                    letter.style.left = (50 + (i - letters.length/2) * 25) + '%';
-                    letter.style.top = '50%';
-                    letter.style.color = colors[i % colors.length];
-                    letter.style.fontSize = '3rem';
-                    letter.style.fontFamily = 'Courier New, monospace';
-                    letter.style.fontWeight = 'bold';
-                    letter.style.zIndex = '10000';
-                    letter.style.animation = 'letterFall 0.8s ease-out forwards';
-                    
-                    matrixContainer.appendChild(letter);
-                    
-                    // Remove letter after animation
-                    setTimeout(() => {
-                        if (letter.parentNode) {
-                            letter.parentNode.removeChild(letter);
-                        }
-                    }, 800);
-                }, i * 20); // Much faster stagger
-            }
-        }
-        
-        // Hero transition sequence: fill viewport → wait 2s → shorten → content slide up
-        function startHeroTransitionSequence() {
-            const heroSection = document.getElementById('home');
-            const featuredSection = document.getElementById('featured');
-            const aboutSection = document.getElementById('about');
-            const blogSection = document.getElementById('blog');
-            const contactSection = document.getElementById('contact');
-            const footer = document.querySelector('footer');
-            
-            // Ensure hero section is at full viewport height
-            if (heroSection) {
-                heroSection.style.height = '100vh';
-                heroSection.style.animation = 'none';
-                heroSection.style.transform = 'translateY(0)';
-                heroSection.style.opacity = '1';
-            }
-            
-            // Wait 2 seconds, then start the transition
-            setTimeout(() => {
-                // Shorten hero section
-                if (heroSection) {
-                    heroSection.style.animation = 'heroShorten 0.6s ease-out forwards';
-                    
-                    // Add smooth scroll to top when hero section starts shortening
-                    setTimeout(() => {
-                        smoothScrollToTop();
-                    }, 200); // Start scrolling when hero shortening is 1/3 complete
-                }
-                
-                // Start content slide up after hero starts shortening
-                setTimeout(() => {
-                    // Animate featured section
-                    if (featuredSection) {
-                        featuredSection.style.animation = 'contentSlideUp 0.8s ease-out forwards';
-                    }
-                    
-                    // Animate about section with slight delay
-                    setTimeout(() => {
-                        if (aboutSection) {
-                            aboutSection.style.animation = 'contentSlideUp 0.8s ease-out forwards';
-                        }
-                    }, 100);
-                    
-                    // Animate blog section with more delay
-                    setTimeout(() => {
-                        if (blogSection) {
-                            blogSection.style.animation = 'contentSlideUp 0.8s ease-out forwards';
-                        }
-                    }, 200);
-                    
-                    // Animate contact section
-                    setTimeout(() => {
-                        if (contactSection) {
-                            contactSection.style.animation = 'contentSlideUp 0.8s ease-out forwards';
-                        }
-                    }, 300);
-                    
-                    // Animate footer last
-                    setTimeout(() => {
-                        if (footer) {
-                            footer.style.animation = 'contentSlideUp 0.8s ease-out forwards';
-                        }
-                    }, 400);
-                }, 200); // Start content animation 200ms after hero starts shortening
-            }, 2000); // Wait 2 seconds
-        }
 
-        // Reset scroll to top when DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Only reset scroll if not coming from a post
-            if (!isComingFromPost()) {
-                resetScrollToTop();
-            }
-        });
+                 // Check if coming from a blog post
+         function isComingFromPost() {
+             return document.referrer.includes('posts/') || 
+                    sessionStorage.getItem('fromPost') === 'true' ||
+                    window.location.hash === '#home';
+         }
         
-        // Check if coming from a blog post
-        function isComingFromPost() {
-            return document.referrer.includes('posts/') || 
-                   sessionStorage.getItem('fromPost') === 'true' ||
-                   window.location.hash === '#home';
-        }
-        
-        // Show startup animation for minimum 3 seconds (skip if coming from post)
-        window.addEventListener('load', function() {
-            // Skip starting scene if coming from a blog post
-            if (isComingFromPost()) {
-                // Hide loading screen immediately
-                hideLoadingScreen();
-                // Show main content immediately
-                showMainContent();
-                // Clear the fromPost flag
-                sessionStorage.removeItem('fromPost');
-            } else {
-                // Start the falling animation after 3 seconds
-                setTimeout(() => {
-                    startFallingAnimation();
-                }, 3000);
-            }
-        });
-
-        // Fallback: Hide loading screen after 4 seconds regardless
-        setTimeout(() => {
-            hideLoadingScreen();
-            // Ensure scrolling is enabled as fallback
-            document.body.classList.remove('loading');
-            document.body.classList.add('loaded');
-        }, 4000);
-
-        // Immediate fallback for very fast loads
-        if (document.readyState === 'complete') {
-            setTimeout(hideLoadingScreen, 2000);
-        }
 
         // Mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
