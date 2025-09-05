@@ -42,7 +42,7 @@ if errorlevel 1 (
     echo Changes committed successfully
 )
 
-"C:\Program Files\Git\bin\git.exe" push origin master
+"C:\Program Files\Git\bin\git.exe" push origin main
 if errorlevel 1 (
     echo ERROR: Failed to push to GitHub
     echo Please check your internet connection and GitHub repository settings

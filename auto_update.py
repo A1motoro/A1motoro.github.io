@@ -8,7 +8,6 @@ import os
 import subprocess
 import sys
 from datetime import datetime
-
 def run_command(command, description):
     """Run a command and return success status"""
     print(f"Running: {description}")
@@ -59,7 +58,7 @@ def main():
         print("Changes committed successfully")
     
     # Push to GitHub
-    if not run_command('"C:\\Program Files\\Git\\bin\\git.exe" push origin master', "Push to GitHub"):
+    if not run_command('"C:\\Program Files\\Git\\bin\\git.exe" push origin main', "Push to GitHub"):
         print("ERROR: Failed to push to GitHub")
         print("Please check your internet connection and GitHub repository settings")
         return False
