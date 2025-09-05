@@ -15,6 +15,8 @@ class BlogUpdater:
         self.posts_dir = "posts"
         self.templates_dir = "templates"
         self.main_html = "index.html"
+        self.posts_index = os.path.join(self.posts_dir, "index.html")
+        self.post_template = os.path.join(self.templates_dir, "post_template.html")
         self.posts_data = []
         
         # Create directories if they don't exist
@@ -65,13 +67,17 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
+        # Replace {date} placeholder with current date
+        current_date = datetime.now().strftime("%B %d, %Y")
+        content = content.replace('{date}', current_date)
+        
         # Extract title (first # heading)
         title_match = re.search(r'^# (.+)$', content, re.MULTILINE)
         title = title_match.group(1) if title_match else "Untitled Post"
         
         # Extract metadata from frontmatter or content
         date_match = re.search(r'\*\*Published:\*\* (.+)', content)
-        published_date = date_match.group(1) if date_match else datetime.now().strftime("%B %d, %Y")
+        published_date = date_match.group(1) if date_match else current_date
         
         category_match = re.search(r'\*\*Category:\*\* (.+)', content)
         category = category_match.group(1) if category_match else "General"
@@ -158,12 +164,35 @@ Thanks for reading! Feel free to leave comments or reach out to me.
                     <h3 class="blog-title">{post['title']}</h3>
                     <div class="blog-meta">Published on {post['date']} • {post['read_time']} read</div>
                     <p class="blog-excerpt">{post['excerpt']}</p>
-                    <a href="#post-{post['slug']}" class="read-more">Read More →</a>
+                    <a href="posts/{post['slug']}.html" class="read-more">Read More →</a>
                 </div>
             </article>
             """
         
         return cards_html
+    
+    def generate_post_html(self, post):
+        """Generate HTML for individual post using template"""
+        if not os.path.exists(self.post_template):
+            print(f"Template not found: {self.post_template}")
+            return
+        
+        with open(self.post_template, 'r', encoding='utf-8') as f:
+            template = f.read()
+        
+        html = template.format(
+            title=post['title'],
+            date=post['date'],
+            category=post['category'],
+            read_time=post['read_time'],
+            content=post['content']
+        )
+        
+        output_path = os.path.join(self.posts_dir, f"{post['slug']}.html")
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+        
+        print(f"Generated: {output_path}")
     
     def update_main_html(self, posts):
         """Update the main HTML file with new blog posts"""
@@ -173,16 +202,261 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         # Generate new blog cards
         new_cards = self.generate_blog_cards(posts)
         
-        # Replace the blog grid section
-        pattern = r'(<div class="blog-grid">).*?(</div>)'
-        replacement = f'\\1\n{new_cards}\n        \\2'
+        # Replace the blog grid section completely
+        # Find the start and end of the blog-grid div
+        pattern = r'(<div class="blog-grid">[\s\S]*?</div>)'
+        replacement = f'<div class="blog-grid">\n{new_cards}\n</div>'
         updated_html = re.sub(pattern, replacement, html_content, flags=re.DOTALL)
         
-        # Write updated HTML
+        # If no match, perhaps append it, but assuming it exists
         with open(self.main_html, 'w', encoding='utf-8') as f:
             f.write(updated_html)
         
         print(f"Updated {self.main_html} with {len(posts)} posts")
+    
+    def update_posts_index(self, posts):
+        """Generate or update posts/index.html with list of all posts"""
+        # Basic template for posts/index.html
+        # You can make this more sophisticated
+        html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blog Posts - BLOGIIIIII</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Add styles here similar to above -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            line-height: 1.6;
+            color: #f8f8f2;
+            background: #272822;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(39, 40, 34, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #49483e;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #a6e22e;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #f8f8f2;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #66d9ef;
+        }
+
+        .main-content {
+            padding: 120px 0 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #f8f8f2;
+        }
+
+        .posts-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .post-item {
+            background: #3e3d32;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #49483e;
+        }
+
+        .post-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #a6e22e;
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #f8f8f2;
+        }
+
+        .post-meta {
+            color: #a6e22e;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-excerpt {
+            color: #e6db74;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            color: #66d9ef;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #f92672;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #66d9ef;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #a6e22e;
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #3e3d32;
+            border-radius: 15px;
+            border: 1px solid #49483e;
+        }
+
+        .no-posts h3 {
+            color: #f8f8f2;
+            margin-bottom: 1rem;
+        }
+
+        .no-posts p {
+            color: #e6db74;
+            margin-bottom: 2rem;
+        }
+
+        .create-post {
+            display: inline-block;
+            background: #a6e22e;
+            color: #272822;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .create-post:hover {
+            background: #66d9ef;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .posts-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" class="logo">BLOGIIIIII</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#blog">Blog</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="main-content">
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+            <h2 class="section-title">All Blog Posts</h2>
+            <div class="posts-list">
+"""
+        if not posts:
+            html += """
+                <div class="no-posts">
+                    <h3>No Posts Yet</h3>
+                    <p>You haven't written any blog posts yet. Start creating content to see your posts here!</p>
+                    <a href="#" class="create-post">Create Your First Post</a>
+                </div>
+"""
+        else:
+            for post in posts:
+                html += f"""
+                <div class="post-item">
+                    <h3 class="post-title">{post['title']}</h3>
+                    <div class="post-meta">Published: {post['date']} • Category: {post['category']} • {post['read_time']} read</div>
+                    <p class="post-excerpt">{post['excerpt']}</p>
+                    <a href="{post['slug']}.html" class="read-more">Read Full Post →</a>
+                </div>
+"""
+        
+        html += """
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+"""
+        with open(self.posts_index, 'w', encoding='utf-8') as f:
+            f.write(html)
+        
+        print(f"Updated {self.posts_index}")
     
     def create_github_upload_script(self):
         """Create a script to upload to GitHub"""
@@ -213,7 +487,7 @@ pause
         print("=" * 40)
         
         # Create example post if no posts exist
-        if not os.path.exists(self.posts_dir) or not os.listdir(self.posts_dir):
+        if not os.path.exists(self.posts_dir) or not [f for f in os.listdir(self.posts_dir) if f.endswith('.md')]:
             print("No posts found. Creating example post...")
             self.create_post_template()
         
@@ -224,8 +498,15 @@ pause
             print("No posts to process!")
             return
         
+        # Generate individual post HTMLs
+        for post in posts:
+            self.generate_post_html(post)
+        
         # Update main HTML
         self.update_main_html(posts)
+        
+        # Update posts index
+        self.update_posts_index(posts)
         
         # Create upload script
         self.create_github_upload_script()
@@ -233,7 +514,7 @@ pause
         print("\nBlog update complete!")
         print(f"Processed {len(posts)} posts")
         print("\nNext steps:")
-        print("1. Write your posts in the posts/ directory")
+        print("1. Write your posts in the posts/ directory as .md files")
         print("2. Run: python update_blog.py")
         print("3. Run: upload_to_github.bat")
 
