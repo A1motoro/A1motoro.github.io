@@ -172,103 +172,15 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         return cards_html
     
     def generate_post_html(self, post):
-        """Generate HTML for individual post using Monokai theme template"""
-        # Create a complete HTML template with Monokai theme
-        html_template = """<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} - BLOGIIIIII</title>
-    <meta name="description" content="{excerpt}">
-    <meta name="keywords" content="blog, {category}, programming, development">
-    <meta name="author" content="A1m">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="../css/monokai-theme.css" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <nav class="container">
-            <a href="../index.html" class="logo">BLOGIIIIII</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../index.html#featured">Featured</a></li>
-                <li><a href="../index.html#blog">Blog</a></li>
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
-
-    <section class="main-content">
-        <div class="container">
-            <a href="index.html" class="back-link">← Back to All Posts</a>
-            <div class="post-container">
-                <div class="post-header">
-                    <h1 class="post-title">{title}</h1>
-                    <div class="post-meta">
-                        <span><i class="fas fa-calendar"></i> Published: {date}</span>
-                        <span><i class="fas fa-tag"></i> Category: {category}</span>
-                        <span><i class="fas fa-clock"></i> {read_time} read</span>
-                    </div>
-                </div>
-                <div class="post-content">
-                    {content}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 BLOGIIIIII. All rights reserved.</p>
-            <p>Made with ❤️ and lots of coffee</p>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenu.addEventListener('click', () => {{
-            navLinks.classList.toggle('active');
-        }});
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {{
-            anchor.addEventListener('click', function (e) {{
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {{
-                    target.scrollIntoView({{
-                        behavior: 'smooth',
-                        block: 'start'
-                    }});
-                }}
-            }});
-        }});
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {{
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {{
-                header.style.background = 'rgba(39, 40, 34, 0.98)';
-            }} else {{
-                header.style.background = 'rgba(39, 40, 34, 0.95)';
-            }}
-        }});
-    </script>
-</body>
-</html>"""
+        """Generate HTML for individual post using enhanced Monokai theme template"""
+        if not os.path.exists(self.post_template):
+            print(f"Template not found: {self.post_template}")
+            return
         
-        html = html_template.format(
+        with open(self.post_template, 'r', encoding='utf-8') as f:
+            template = f.read()
+        
+        html = template.format(
             title=post['title'],
             date=post['date'],
             category=post['category'],
