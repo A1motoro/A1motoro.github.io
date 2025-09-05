@@ -126,6 +126,21 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         posts.sort(key=lambda x: x['date'], reverse=True)
         return posts
     
+    def get_categories(self, posts):
+        """Extract unique categories from posts"""
+        categories = {}
+        for post in posts:
+            category = post['category'].lower()
+            if category not in categories:
+                categories[category] = {
+                    'name': post['category'],
+                    'count': 0,
+                    'posts': []
+                }
+            categories[category]['count'] += 1
+            categories[category]['posts'].append(post)
+        return categories
+    
     def generate_blog_cards(self, posts):
         """Generate HTML for blog cards"""
         if not posts:
@@ -171,7 +186,7 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         
         return cards_html
     
-    def generate_post_html(self, post):
+    def generate_post_html(self, post, categories=None):
         """Generate HTML for individual post using enhanced Monokai theme template"""
         if not os.path.exists(self.post_template):
             print(f"Template not found: {self.post_template}")
@@ -180,13 +195,21 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         with open(self.post_template, 'r', encoding='utf-8') as f:
             template = f.read()
         
+        # Generate dynamic categories HTML
+        categories_html = ""
+        if categories:
+            for category_name, category_data in categories.items():
+                category_slug = category_name.lower().replace(' ', '-')
+                categories_html += f'<a href="category-{category_slug}.html" class="sidebar-tag">{category_data["name"]}</a>\n                            '
+        
         html = template.format(
             title=post['title'],
             date=post['date'],
             category=post['category'],
             read_time=post['read_time'],
             content=post['content'],
-            excerpt=post['excerpt']
+            excerpt=post['excerpt'],
+            categories_html=categories_html.strip()
         )
         
         output_path = os.path.join(self.posts_dir, f"{post['slug']}.html")
@@ -194,6 +217,111 @@ Thanks for reading! Feel free to leave comments or reach out to me.
             f.write(html)
         
         print(f"Generated: {output_path}")
+    
+    def generate_category_page(self, category_name, category_data):
+        """Generate HTML for a category page"""
+        html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{category_name} - BLOGIIIIII</title>
+    <meta name="description" content="All posts in the {category_name} category">
+    <meta name="keywords" content="blog, {category_name}, programming, development">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/monokai-theme.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" class="logo">BLOGIIIIII</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#featured">Featured</a></li>
+                <li><a href="../index.html#blog">Blog</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    <section class="main-content">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to All Posts</a>
+            <h2 class="section-title">{category_name} Posts ({category_data['count']})</h2>
+            <div class="posts-list">
+"""
+        
+        for post in category_data['posts']:
+            html += f"""
+                <div class="post-item">
+                    <h3 class="post-title">{post['title']}</h3>
+                    <div class="post-meta">Published: {post['date']} • Category: {post['category']} • {post['read_time']} read</div>
+                    <p class="post-excerpt">{post['excerpt']}</p>
+                    <a href="{post['slug']}.html" class="read-more">Read Full Post →</a>
+                </div>
+"""
+        
+        html += """
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BLOGIIIIII. All rights reserved.</p>
+            <p>Made with ❤️ and lots of coffee</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenu && navLinks) {
+            mobileMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView(true);
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(39, 40, 34, 0.98)';
+                } else {
+                    header.style.background = 'rgba(39, 40, 34, 0.95)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>"""
+        
+        output_path = os.path.join(self.posts_dir, f"category-{category_name.lower().replace(' ', '-')}.html")
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+        
+        print(f"Generated category page: {output_path}")
     
     def update_main_html(self, posts):
         """Update the main HTML file with new blog posts"""
@@ -365,9 +493,16 @@ pause
             print("No posts to process!")
             return
         
+        # Get categories
+        categories = self.get_categories(posts)
+        
         # Generate individual post HTMLs
         for post in posts:
-            self.generate_post_html(post)
+            self.generate_post_html(post, categories)
+        
+        # Generate category pages
+        for category_name, category_data in categories.items():
+            self.generate_category_page(category_name, category_data)
         
         # Update main HTML
         self.update_main_html(posts)
@@ -380,6 +515,10 @@ pause
         
         print("\nBlog update complete!")
         print(f"Processed {len(posts)} posts")
+        print(f"Generated {len(categories)} category pages")
+        print("\nCategories found:")
+        for category_name, category_data in categories.items():
+            print(f"  - {category_data['name']}: {category_data['count']} posts")
         print("\nNext steps:")
         print("1. Write your posts in the posts/ directory as .md files")
         print("2. Run: python update_blog.py")
