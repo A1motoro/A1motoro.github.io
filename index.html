@@ -392,6 +392,63 @@
             }
         }
         
+        /* Crazy Hero Animations */
+        @keyframes heroCrazyEntrance {
+            0% { 
+                transform: scale(0.8) rotate(-5deg); 
+                opacity: 0; 
+                filter: blur(10px);
+            }
+            50% { 
+                transform: scale(1.05) rotate(2deg); 
+                opacity: 0.8; 
+                filter: blur(2px);
+            }
+            100% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1; 
+                filter: blur(0px);
+            }
+        }
+        
+        @keyframes heroIconCrazy {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg); 
+            }
+            25% { 
+                transform: scale(1.1) rotate(5deg); 
+            }
+            50% { 
+                transform: scale(0.9) rotate(-3deg); 
+            }
+            75% { 
+                transform: scale(1.05) rotate(2deg); 
+            }
+        }
+        
+        @keyframes heroIconGlow {
+            0% { 
+                text-shadow: 0 0 30px #a6e22e, 0 0 60px #66d9ef; 
+            }
+            100% { 
+                text-shadow: 0 0 50px #a6e22e, 0 0 100px #66d9ef, 0 0 150px #a6e22e; 
+            }
+        }
+        
+        @keyframes crazyWave {
+            0%, 100% { 
+                transform: translateY(0px) scale(1); 
+            }
+            25% { 
+                transform: translateY(-15px) scale(1.1); 
+            }
+            50% { 
+                transform: translateY(-5px) scale(0.9); 
+            }
+            75% { 
+                transform: translateY(-20px) scale(1.05); 
+            }
+        }
         
         /* Hero CTA Button Hover Effects */
         .cta-button.primary:hover {
@@ -520,76 +577,6 @@
     </style>
 </head>
 <body>
-    <!-- Crazy Startup Animation -->
-    <div id="loading-screen" style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background: linear-gradient(135deg, #272822 0%, #1e1f1c 100%); display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; z-index: 99999 !important; overflow: hidden !important; visibility: visible !important; opacity: 1 !important; margin: 0 !important; padding: 0 !important; border: none !important;">
-        <!-- Matrix Rain Effect -->
-        <div id="matrix-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 1; visibility: visible;">
-            <!-- Initial matrix characters for immediate visibility -->
-            <div style="position: absolute; left: 10%; top: 20%; color: #a6e22e; font-size: 20px; font-family: 'Courier New', monospace; font-weight: bold; opacity: 0.9; text-shadow: 0 0 10px currentColor;">A</div>
-            <div style="position: absolute; left: 30%; top: 40%; color: #66d9ef; font-size: 18px; font-family: 'Courier New', monospace; font-weight: bold; opacity: 0.9; text-shadow: 0 0 10px currentColor;">B</div>
-            <div style="position: absolute; left: 70%; top: 30%; color: #a6e22e; font-size: 16px; font-family: 'Courier New', monospace; font-weight: bold; opacity: 0.9; text-shadow: 0 0 10px currentColor;">D</div>
-            <div style="position: absolute; left: 90%; top: 50%; color: #66d9ef; font-size: 24px; font-family: 'Courier New', monospace; font-weight: bold; opacity: 0.9; text-shadow: 0 0 10px currentColor;">E</div>
-        </div>
-        
-        <!-- Main Logo with Crazy Animation -->
-        <div style="position: relative; z-index: 2; text-align: center;">
-            <div id="crazy-logo" style="width: 120px; height: 120px; background: linear-gradient(45deg, #a6e22e, #66d9ef); border-radius: 20px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; animation: crazyStartup 1s ease-out, crazyGlow 2s ease-in-out infinite, crazyShake 0.5s ease-in-out 1.5s; will-change: transform, opacity; z-index: 10; position: relative;">
-                <i class="fas fa-code" style="font-size: 50px; color: #f8f8f2; animation: crazyPulse 1s ease-in-out infinite; opacity: 1 !important; visibility: visible !important; text-shadow: 0 0 20px #a6e22e; z-index: 11; position: relative;"></i>
-            </div>
-            
-            <h2 id="crazy-title" style="color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 0 0 20px currentColor; z-index: 10; position: relative; opacity: 1 !important; visibility: visible !important;">
-                <span class="wave-letter" style="display: inline-block; animation: letterWave1 0.3s ease-out 0.1s;">B</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave2 0.3s ease-out 0.2s;">L</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave3 0.3s ease-out 0.3s;">O</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave4 0.3s ease-out 0.4s;">G</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave5 0.3s ease-out 0.5s;">I</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave6 0.3s ease-out 0.6s;">I</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave7 0.3s ease-out 0.7s;">I</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave8 0.3s ease-out 0.8s;">I</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave9 0.3s ease-out 0.9s;">I</span>
-                <span class="wave-letter" style="display: inline-block; animation: letterWave10 0.3s ease-out 1.0s;">I</span>
-            </h2>
-            
-            <div id="loading-text" style="margin-top: 20px; animation: contentReveal 1s ease-out 1s both;">
-                <p style="color: #66d9ef; font-size: 1.2rem; margin: 0; animation: crazyShake 0.3s ease-in-out 1.2s;">🚀 Initializing awesome content...</p>
-                <p style="color: #a6e22e; font-size: 1rem; margin: 5px 0 0 0; animation: contentReveal 1s ease-out 1.3s both;">⚡ Loading animations...</p>
-                <p style="color: #66d9ef; font-size: 1rem; margin: 5px 0 0 0; animation: contentReveal 1s ease-out 1.6s both;">🎨 Applying Monokai magic...</p>
-            </div>
-        </div>
-        
-        <!-- Additional Falling Elements -->
-        <div id="falling-elements" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
-            <!-- Floating Code Icons -->
-            <div id="floating-icon-1" style="position: absolute; top: 20%; left: 15%; font-size: 30px; color: #a6e22e; opacity: 0.6; animation: float 3s ease-in-out infinite;">
-                <i class="fas fa-terminal"></i>
-            </div>
-            <div id="floating-icon-2" style="position: absolute; top: 30%; right: 20%; font-size: 25px; color: #66d9ef; opacity: 0.5; animation: float 2.5s ease-in-out infinite 0.5s;">
-                <i class="fas fa-bug"></i>
-            </div>
-            <div id="floating-icon-3" style="position: absolute; top: 60%; left: 10%; font-size: 35px; color: #f8f8f2; opacity: 0.4; animation: float 3.5s ease-in-out infinite 1s;">
-                <i class="fas fa-laptop-code"></i>
-            </div>
-            <div id="floating-icon-4" style="position: absolute; top: 70%; right: 15%; font-size: 28px; color: #a6e22e; opacity: 0.6; animation: float 2.8s ease-in-out infinite 1.5s;">
-                <i class="fas fa-code-branch"></i>
-            </div>
-            
-            <!-- Floating Geometric Shapes -->
-            <div id="floating-shape-1" style="position: absolute; top: 25%; right: 10%; width: 20px; height: 20px; background: #a6e22e; border-radius: 50%; opacity: 0.7; animation: float 2.2s ease-in-out infinite 0.3s;"></div>
-            <div id="floating-shape-2" style="position: absolute; top: 45%; left: 25%; width: 15px; height: 15px; background: #66d9ef; transform: rotate(45deg); opacity: 0.6; animation: float 2.8s ease-in-out infinite 0.7s;"></div>
-            <div id="floating-shape-3" style="position: absolute; top: 65%; right: 30%; width: 18px; height: 18px; background: #f8f8f2; border-radius: 3px; opacity: 0.5; animation: float 3.1s ease-in-out infinite 1.2s;"></div>
-            <div id="floating-shape-4" style="position: absolute; top: 35%; left: 70%; width: 12px; height: 12px; background: #a6e22e; border-radius: 50%; opacity: 0.8; animation: float 2.5s ease-in-out infinite 0.5s;"></div>
-            
-            <!-- Floating Text Elements -->
-            <div id="floating-text-1" style="position: absolute; top: 15%; left: 60%; font-size: 14px; color: #66d9ef; font-family: 'Courier New', monospace; opacity: 0.6; animation: float 2.7s ease-in-out infinite 0.4s;">{ }</div>
-            <div id="floating-text-2" style="position: absolute; top: 55%; right: 25%; font-size: 16px; color: #a6e22e; font-family: 'Courier New', monospace; opacity: 0.5; animation: float 3.3s ease-in-out infinite 0.9s;">&lt;/&gt;</div>
-            <div id="floating-text-3" style="position: absolute; top: 75%; left: 40%; font-size: 12px; color: #f8f8f2; font-family: 'Courier New', monospace; opacity: 0.7; animation: float 2.9s ease-in-out infinite 1.1s;">#</div>
-        </div>
-        
-        <!-- Progress Bar -->
-        <div id="progress-container" style="position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); width: 300px; height: 4px; background: #49483e; border-radius: 2px; overflow: hidden; z-index: 2;">
-            <div id="progress-bar" style="height: 100%; background: linear-gradient(90deg, #a6e22e, #66d9ef); border-radius: 2px; width: 0%; animation: progressFill 2.5s ease-out 0.5s forwards;"></div>
-        </div>
-    </div>
     <!-- Header -->
     <header id="main-header">
         <nav class="container">
@@ -613,7 +600,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero" style="transform: translateY(-100vh); opacity: 0; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 0; padding: 0; overflow: hidden;">
+    <section id="home" class="hero" style="height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 0; padding: 0; overflow: hidden; animation: heroCrazyEntrance 2s ease-out;">
         <!-- Animated Background Pattern -->
         <div class="hero-bg-pattern" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.1;">
             <div class="floating-code" style="position: absolute; top: 10%; left: 10%; font-family: 'Courier New', monospace; color: #a6e22e; font-size: 24px; animation: floatCode 6s ease-in-out infinite;">&lt;/&gt;</div>
@@ -628,15 +615,26 @@
         
         <!-- Main Content -->
         <div class="container" style="text-align: center; z-index: 3; position: relative;">
-            <!-- Animated Icon -->
-            <div class="hero-icon" style="margin-bottom: 30px; animation: heroIconPulse 2s ease-in-out infinite;">
-                <i class="fas fa-code" style="font-size: 60px; color: #a6e22e; text-shadow: 0 0 30px #a6e22e; animation: heroIconRotate 4s linear infinite;"></i>
-            </div>
+            <!-- Crazy Animated Icon -->
+            <div class="hero-icon" style="margin-bottom: 30px; animation: heroIconPulse 2s ease-in-out infinite, heroIconCrazy 3s ease-in-out infinite;">
+                <i class="fas fa-code" style="font-size: 60px; color: #a6e22e; text-shadow: 0 0 30px #a6e22e; animation: heroIconRotate 4s linear infinite, heroIconGlow 2s ease-in-out infinite alternate;"></i>
+                </div>
             
             <!-- Main Title with Enhanced Animation -->
             <h1 id="hero-title" style="margin-bottom: 20px; animation: heroTitleEntrance 1.5s ease-out 0.5s both;">
                 <span style="display: block; font-size: 1.2em; color: #f8f8f2; margin-bottom: 10px; animation: heroSubtitleGlow 3s ease-in-out infinite alternate;">Welcome to</span>
-                <span id="hero-blogii" class="gradient-text" style="font-size: 3.5em; display: block; animation: heroMainTitleEntrance 1.8s ease-out 1s both;">BLOGIIIIII</span>
+                <span id="hero-blogii" class="gradient-text" style="font-size: 3.5em; display: block; animation: heroMainTitleEntrance 1.8s ease-out 1s both;">
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.1s;">B</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.2s;">L</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.3s;">O</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.4s;">G</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.5s;">I</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.6s;">I</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.7s;">I</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.8s;">I</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 0.9s;">I</span>
+                    <span style="display: inline-block; animation: crazyWave 0.3s ease-out 1.0s;">I</span>
+                </span>
             </h1>
             
             <!-- Enhanced Subtitle -->
@@ -655,7 +653,7 @@
                 <a href="#blog" class="cta-button secondary" style="background: transparent; color: #f8f8f2; padding: 15px 30px; border: 2px solid #66d9ef; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(102, 217, 239, 0.2);">
                     <i class="fas fa-blog" style="margin-right: 8px;"></i>View All Posts
                 </a>
-            </div>
+</div>
             
         </div>
     </section>
@@ -668,7 +666,7 @@
                 <a href="posts/welcome-to-my-blog.html" class="featured-card main-featured">
                 <div class="blog-image">
                         <i class="fas fa-file-alt"></i>
-                </div>
+        </div>
                 <div class="blog-content">
                         <h3 class="blog-title">Welcome to My Blog</h3>
                         <div class="blog-meta">Published on September 5, 2025 • 3 min read</div>
@@ -676,7 +674,7 @@
                         <div class="read-more">Read Full Post →</div>
                 </div>
                 </a>
-</div>
+        </div>
                 </div>
     </section>
 
@@ -770,7 +768,7 @@
     </footer>
 
     <script>
-        // IMMEDIATE viewport positioning - must be first
+        // Simple page initialization
         (function() {
             // Force immediate scroll slightly up from top
             window.scrollTo(0, -20);
@@ -782,20 +780,6 @@
             document.body.style.padding = '0';
             document.documentElement.style.margin = '0';
             document.documentElement.style.padding = '0';
-            
-            // Force loading screen to cover viewport immediately
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                loadingScreen.style.position = 'fixed';
-                loadingScreen.style.top = '0';
-                loadingScreen.style.left = '0';
-                loadingScreen.style.width = '100vw';
-                loadingScreen.style.height = '100vh';
-                loadingScreen.style.zIndex = '9999';
-                loadingScreen.style.display = 'flex';
-                loadingScreen.style.justifyContent = 'center';
-                loadingScreen.style.alignItems = 'center';
-            }
         })();
         
         // Simple scroll reset function
@@ -910,173 +894,9 @@
             }
         }
 
-        // Create Matrix Rain Effect
-        function createMatrixRain() {
-            const matrixContainer = document.getElementById('matrix-rain');
-            if (!matrixContainer) return;
-            
-            const characters = '01';
-            const colors = ['#a6e22e', '#66d9ef'];
-            
-            function createMatrixChar() {
-                const char = document.createElement('div');
-                char.textContent = characters[Math.floor(Math.random() * characters.length)];
-                char.style.position = 'absolute';
-                char.style.left = Math.random() * 100 + '%';
-                char.style.top = '-20px';
-                char.style.color = colors[Math.floor(Math.random() * colors.length)];
-                char.style.fontSize = Math.random() * 15 + 12 + 'px';
-                char.style.fontFamily = 'Courier New, monospace';
-                char.style.fontWeight = 'bold';
-                char.style.opacity = '0.8';
-                char.style.animation = `matrixChar ${Math.random() * 2 + 1.5}s linear forwards`;
-                char.style.zIndex = '1';
-                char.style.textShadow = '0 0 8px currentColor';
-                char.style.willChange = 'transform, opacity';
-                
-                matrixContainer.appendChild(char);
-                
-                // Remove character after animation
-                setTimeout(() => {
-                    if (char.parentNode) {
-                        char.parentNode.removeChild(char);
-                    }
-                }, 3500);
-            }
-            
-            // Create matrix characters more frequently and visibly
-            const matrixInterval = setInterval(createMatrixChar, 80);
-            
-            // Stop matrix rain after 4 seconds
-            setTimeout(() => {
-                clearInterval(matrixInterval);
-            }, 4000);
-        }
 
-        // Center viewport on loading screen immediately
-        centerViewportOnLoadingScreen();
-        
-        // Immediately ensure starting scene elements are visible
-        setTimeout(() => {
-            const logo = document.getElementById('crazy-logo');
-            const title = document.getElementById('crazy-title');
-            const codeIcon = document.querySelector('.fas.fa-code');
-            
-            if (logo) {
-                logo.style.opacity = '1';
-                logo.style.visibility = 'visible';
-                logo.style.display = 'flex';
-                logo.style.zIndex = '10';
-                logo.style.position = 'relative';
-            }
-            
-            if (title) {
-                title.style.opacity = '1';
-                title.style.visibility = 'visible';
-                title.style.display = 'block';
-                title.style.zIndex = '10';
-                title.style.position = 'relative';
-            }
-            
-            if (codeIcon) {
-                codeIcon.style.opacity = '1';
-                codeIcon.style.visibility = 'visible';
-                codeIcon.style.display = 'inline-block';
-                codeIcon.style.zIndex = '11';
-                codeIcon.style.position = 'relative';
-            }
-        }, 100);
-        
-        // Debug: Check if animations are working
-        console.log('🚀 Starting crazy startup animation...');
-        
-        // Add loading delay to ensure everything is ready
-        function startAnimationsWithDelay() {
-            // Test if CSS is loading
-            const testElement = document.createElement('div');
-            testElement.style.animation = 'crazyStartup 1s ease-out';
-            document.body.appendChild(testElement);
-            const computedStyle = window.getComputedStyle(testElement);
-            console.log('CSS Animation support:', computedStyle.animationName);
-            document.body.removeChild(testElement);
-            
-            // Start matrix rain
-            console.log('🌧️ Starting matrix rain...');
-            createMatrixRain();
-            
-            // Ensure logo and title are visible
-            const logo = document.getElementById('crazy-logo');
-            const title = document.getElementById('crazy-title');
-            const codeIcon = document.querySelector('.fas.fa-code');
-            
-            if (logo) {
-                logo.style.opacity = '1';
-                logo.style.visibility = 'visible';
-                logo.style.display = 'flex';
-                logo.style.zIndex = '10';
-                logo.style.position = 'relative';
-                console.log('✅ Logo is ready');
-            }
-            
-            if (title) {
-                title.style.opacity = '1';
-                title.style.visibility = 'visible';
-                title.style.display = 'block';
-                title.style.zIndex = '10';
-                title.style.position = 'relative';
-                console.log('✅ Title is ready');
-            }
-            
-            if (codeIcon) {
-                codeIcon.style.opacity = '1';
-                codeIcon.style.visibility = 'visible';
-                codeIcon.style.display = 'inline-block';
-                codeIcon.style.zIndex = '11';
-                codeIcon.style.position = 'relative';
-                console.log('✅ Code icon is ready');
-            }
-        }
-        
-        // Start animations after DOM is ready and a short delay
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(startAnimationsWithDelay, 300);
-            });
-        } else {
-            // DOM is already ready
-            setTimeout(startAnimationsWithDelay, 300);
-        }
-        
-        // Debug: Check if elements are visible and force visibility if needed
-        setTimeout(() => {
-            const matrixContainer = document.getElementById('matrix-rain');
-            const codeIcon = document.querySelector('.fas.fa-code');
-            const logo = document.getElementById('crazy-logo');
-            const title = document.getElementById('crazy-title');
-            
-            console.log('Matrix container:', matrixContainer);
-            console.log('Code icon:', codeIcon);
-            console.log('Matrix container children:', matrixContainer?.children.length);
-            
-            // Force visibility of critical elements if they're not showing
-            if (logo && logo.style.opacity !== '1') {
-                logo.style.opacity = '1';
-                logo.style.visibility = 'visible';
-                console.log('🔧 Forced logo visibility');
-            }
-            
-            if (title && title.style.opacity !== '1') {
-                title.style.opacity = '1';
-                title.style.visibility = 'visible';
-                console.log('🔧 Forced title visibility');
-            }
-            
-            if (codeIcon && codeIcon.style.opacity !== '1') {
-                codeIcon.style.opacity = '1';
-                codeIcon.style.visibility = 'visible';
-                console.log('🔧 Forced code icon visibility');
-            }
-        }, 1000);
+        // Simple page load - no crazy startup needed
+        console.log('🚀 Page loaded with crazy hero section!');
         
         // Falling animation function
         function startFallingAnimation() {
