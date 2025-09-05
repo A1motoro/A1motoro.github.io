@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Python Programming - BLOGIIIIII</title>
+    <meta name="description" content="Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.">
+    <meta name="keywords" content="blog, Programming, programming, development">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/monokai-theme.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" class="logo">BLOGIIIIII</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#featured">Featured</a></li>
+                <li><a href="../index.html#blog">Blog</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="main-content">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to All Posts</a>
+            <div class="post-container">
+                <div class="post-header">
+                    <h1 class="post-title">Getting Started with Python Programming</h1>
+                    <div class="post-meta">
+                        <span><i class="fas fa-calendar"></i> Published: December 15, 2024</span>
+                        <span><i class="fas fa-tag"></i> Category: Programming</span>
+                        <span><i class="fas fa-clock"></i> 8 min read</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h1 id="getting-started-with-python-programming">Getting Started with Python Programming</h1>
+<p><strong>Published:</strong> December 15, 2024
+<strong>Category:</strong> Programming
+<strong>Read Time:</strong> 8 min</p>
+<h2 id="introduction">Introduction</h2>
+<p>Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
+<h2 id="why-choose-python">Why Choose Python?</h2>
+<p>Python has several advantages that make it an excellent choice for beginners:</p>
+<ul>
+<li><strong>Easy to Read</strong>: Python's syntax is clean and readable</li>
+<li><strong>Versatile</strong>: Used in web development, data science, AI, automation, and more</li>
+<li><strong>Large Community</strong>: Extensive documentation and support</li>
+<li><strong>Cross-Platform</strong>: Runs on Windows, Mac, and Linux</li>
+</ul>
+<h2 id="setting-up-python">Setting Up Python</h2>
+<h3 id="installation">Installation</h3>
+<ol>
+<li>Visit <a href="https://python.org">python.org</a></li>
+<li>Download the latest version</li>
+<li>Run the installer</li>
+<li>Verify installation with: <code>python --version</code></li>
+</ol>
+<h3 id="your-first-python-program">Your First Python Program</h3>
+<p>Let's start with the classic "Hello, World!" program:</p>
+<pre><code class="language-python"># This is a comment
+print(&quot;Hello, World!&quot;)
+
+# Variables in Python
+name = &quot;Alice&quot;
+age = 25
+print(f&quot;Hello, {name}! You are {age} years old.&quot;)
+</code></pre>
+<h2 id="basic-python-concepts">Basic Python Concepts</h2>
+<h3 id="variables-and-data-types">Variables and Data Types</h3>
+<p>Python is dynamically typed, meaning you don't need to declare variable types:</p>
+<pre><code class="language-python"># Numbers
+integer_num = 42
+float_num = 3.14
+
+# Strings
+message = &quot;Hello, Python!&quot;
+multiline = &quot;&quot;&quot;This is a
+multiline string&quot;&quot;&quot;
+
+# Lists
+fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;]
+numbers = [1, 2, 3, 4, 5]
+
+# Dictionaries
+person = {
+    &quot;name&quot;: &quot;Alice&quot;,
+    &quot;age&quot;: 25,
+    &quot;city&quot;: &quot;New York&quot;
+}
+</code></pre>
+<h3 id="control-flow">Control Flow</h3>
+<p>Python uses indentation to define code blocks:</p>
+<pre><code class="language-python"># If statements
+age = 18
+if age &gt;= 18:
+    print(&quot;You are an adult&quot;)
+elif age &gt;= 13:
+    print(&quot;You are a teenager&quot;)
+else:
+    print(&quot;You are a child&quot;)
+
+# Loops
+# For loop
+for fruit in fruits:
+    print(f&quot;I like {fruit}&quot;)
+
+# While loop
+count = 0
+while count &lt; 5:
+    print(f&quot;Count: {count}&quot;)
+    count += 1
+</code></pre>
+<h3 id="functions">Functions</h3>
+<p>Functions help organize and reuse code:</p>
+<pre><code class="language-python">def greet(name, greeting=&quot;Hello&quot;):
+    &quot;&quot;&quot;This function greets a person&quot;&quot;&quot;
+    return f&quot;{greeting}, {name}!&quot;
+
+# Using the function
+message = greet(&quot;Alice&quot;)
+print(message)  # Output: Hello, Alice!
+
+# With custom greeting
+message = greet(&quot;Bob&quot;, &quot;Good morning&quot;)
+print(message)  # Output: Good morning, Bob!
+</code></pre>
+<h2 id="working-with-files">Working with Files</h2>
+<p>Python makes file operations simple:</p>
+<pre><code class="language-python"># Writing to a file
+with open(&quot;example.txt&quot;, &quot;w&quot;) as file:
+    file.write(&quot;Hello, File!&quot;)
+
+# Reading from a file
+with open(&quot;example.txt&quot;, &quot;r&quot;) as file:
+    content = file.read()
+    print(content)
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<p>Python provides try-except blocks for error handling:</p>
+<pre><code class="language-python">try:
+    number = int(input(&quot;Enter a number: &quot;))
+    result = 10 / number
+    print(f&quot;Result: {result}&quot;)
+except ValueError:
+    print(&quot;Please enter a valid number!&quot;)
+except ZeroDivisionError:
+    print(&quot;Cannot divide by zero!&quot;)
+except Exception as e:
+    print(f&quot;An error occurred: {e}&quot;)
+</code></pre>
+<h2 id="next-steps">Next Steps</h2>
+<p>Now that you understand the basics, here are some areas to explore:</p>
+<ol>
+<li><strong>Object-Oriented Programming</strong>: Learn about classes and objects</li>
+<li><strong>Libraries and Modules</strong>: Explore Python's rich ecosystem</li>
+<li><strong>Web Development</strong>: Try Flask or Django</li>
+<li><strong>Data Science</strong>: Learn pandas, numpy, and matplotlib</li>
+<li><strong>Automation</strong>: Write scripts to automate tasks</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Python is an excellent language for beginners and professionals alike. Its simple syntax, powerful features, and vast ecosystem make it a great choice for almost any programming task.</p>
+<p>Remember: the best way to learn programming is by practicing. Start with small projects and gradually work your way up to more complex applications.</p>
+<p>Happy coding! 🐍</p>
+<hr />
+<p><em>This post was written in Markdown and automatically converted to HTML with a beautiful VSCode Monokai theme.</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BLOGIIIIII. All rights reserved.</p>
+            <p>Made with ❤️ and lots of coffee</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(39, 40, 34, 0.98)';
+            } else {
+                header.style.background = 'rgba(39, 40, 34, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
