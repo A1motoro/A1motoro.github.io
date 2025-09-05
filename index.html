@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>BLOGIIIIII - Developer & Writer</title>
     <meta name="description" content="A personal blog sharing thoughts on technology, development, and life experiences with a modern VSCode Monokai theme.">
     <meta name="keywords" content="blog, developer, technology, programming, personal">
@@ -15,24 +15,12 @@
     <style>
         @keyframes crazyStartup {
             0% { 
-                transform: scale(0.2); 
+                transform: scale(0.1); 
                 opacity: 0; 
             }
-            20% { 
+            50% { 
                 transform: scale(0.8); 
-                opacity: 0.6; 
-            }
-            40% { 
-                transform: scale(1.1); 
-                opacity: 0.9; 
-            }
-            60% { 
-                transform: scale(0.95); 
-                opacity: 1; 
-            }
-            80% { 
-                transform: scale(1.02); 
-                opacity: 1; 
+                opacity: 0.8; 
             }
             100% { 
                 transform: scale(1); 
@@ -81,32 +69,122 @@
         }
         
         @keyframes matrixChar {
-            0% { transform: translateY(-100vh); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
+            0% { transform: translateY(-100vh); opacity: 0.8; }
             100% { transform: translateY(100vh); opacity: 0; }
         }
         
         
         .gradient-text {
-            background: linear-gradient(45deg, #a6e22e, #66d9ef);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease-in-out infinite;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef, #a6e22e) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 3s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate !important;
+            font-weight: bold !important;
+            text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4) !important;
+        }
+        
+        .glowing-title {
+            animation: titleGlow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4);
+        }
+        
+        /* Override external CSS for hero section gradient text */
+        .hero .gradient-text {
+            background: linear-gradient(45deg, #a6e22e, #66d9ef, #a6e22e) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 3s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate !important;
+            font-weight: bold !important;
+            text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4) !important;
         }
         
         @keyframes gradientShift {
-            0%, 100% { 
-                background: linear-gradient(45deg, #a6e22e, #66d9ef);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+            0% { 
+                background-position: 0% 50%;
             }
             50% { 
-                background: linear-gradient(45deg, #66d9ef, #a6e22e);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                background-position: 100% 50%;
             }
+            100% { 
+                background-position: 0% 50%;
+            }
+        }
+        
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(166, 226, 46, 1), 0 0 60px rgba(102, 217, 239, 0.8), 0 0 90px rgba(166, 226, 46, 0.6);
+            }
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(166, 226, 46, 1), 0 0 60px rgba(102, 217, 239, 0.8), 0 0 90px rgba(166, 226, 46, 0.6);
+            }
+        }
+        
+        /* Letter Wave Animations */
+        .wave-letter {
+            transform-origin: center bottom;
+        }
+        
+        @keyframes letterWave1 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave2 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave3 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave4 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave5 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave6 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave7 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave8 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave9 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave10 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
         }
         
         @keyframes canvasFall {
@@ -220,14 +298,47 @@
             }
         }
         
-        /* Content sections transparency */
+        /* Content sections transparency - more background visible */
         .featured-posts, .main-content, .about, footer {
-            background: rgba(39, 40, 34, 0.85) !important;
-            backdrop-filter: blur(2px);
+            background: rgba(39, 40, 34, 0.6) !important;
+            backdrop-filter: blur(1px);
+        }
+        
+        /* Force proper viewport positioning */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            height: 100vh !important;
+            width: 100vw !important;
+        }
+        
+        /* Prevent scrolling during loading */
+        body.loading {
+            overflow: hidden !important;
+            height: 100vh !important;
+            width: 100vw !important;
+        }
+        
+        /* Force loading screen positioning */
+        #loading-screen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            overflow: hidden !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            z-index: 9999 !important;
         }
         
         .featured-posts .container, .main-content .container, .about .container, footer .container {
-            background: rgba(39, 40, 34, 0.7);
+            background: rgba(39, 40, 34, 0.4);
             border-radius: 10px;
             padding: 20px;
             margin: 0 auto !important;
@@ -235,21 +346,73 @@
             width: 100%;
             box-sizing: border-box;
         }
+        
+        /* Fast scroll optimization */
+        html {
+            scroll-behavior: auto !important;
+        }
+        
+        body {
+            scroll-behavior: auto !important;
+        }
+        
+        /* Normal blog card hover animations */
+        .blog-card, .featured-card {
+            transition: all 0.3s ease !important;
+        }
+        
+        .blog-card:hover, .featured-card:hover {
+            transition: all 0.3s ease !important;
+        }
+        
+        .blog-card .read-more {
+            transition: all 0.3s ease !important;
+        }
+        
+        /* Blog post pages transparency - make background more visible */
+        .post-container, .blog-main, .main-content {
+            background: rgba(39, 40, 34, 0.3) !important;
+            backdrop-filter: blur(0.5px);
+        }
+        
+        .post-content {
+            background: rgba(39, 40, 34, 0.2) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
     <!-- Crazy Startup Animation -->
-    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #272822 0%, #1e1f1c 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease; overflow: hidden; visibility: visible; opacity: 1; border-bottom: none;">
+    <div id="loading-screen" style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background: linear-gradient(135deg, #272822 0%, #1e1f1c 100%); display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; z-index: 9999 !important; overflow: hidden !important; visibility: visible !important; opacity: 1 !important; margin: 0 !important; padding: 0 !important; border: none !important;">
         <!-- Matrix Rain Effect -->
-        <div id="matrix-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></div>
+        <div id="matrix-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 1; visibility: visible;">
+            <!-- Initial matrix characters for immediate visibility -->
+            <div style="position: absolute; left: 10%; top: 20%; color: #a6e22e; font-size: 20px; font-family: 'Courier New', monospace; font-weight: bold; opacity: 0.9; text-shadow: 0 0 10px currentColor;">A</div>
+            <div style="position: absolute; left: 30%; top: 40%; color: #66d9ef; font-size: 18px; font-family: 'Courier New', monospace; font-weight: bold; opacity: 0.9; text-shadow: 0 0 10px currentColor;">B</div>
+            <div style="position: absolute; left: 70%; top: 30%; color: #a6e22e; font-size: 16px; font-family: 'Courier New', monospace; font-weight: bold; opacity: 0.9; text-shadow: 0 0 10px currentColor;">D</div>
+            <div style="position: absolute; left: 90%; top: 50%; color: #66d9ef; font-size: 24px; font-family: 'Courier New', monospace; font-weight: bold; opacity: 0.9; text-shadow: 0 0 10px currentColor;">E</div>
+        </div>
         
         <!-- Main Logo with Crazy Animation -->
         <div style="position: relative; z-index: 2; text-align: center;">
-            <div id="crazy-logo" style="width: 120px; height: 120px; background: linear-gradient(45deg, #a6e22e, #66d9ef); border-radius: 20px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; animation: crazyStartup 2s ease-out, crazyGlow 2s ease-in-out infinite, crazyShake 0.5s ease-in-out 1.5s;">
-                <i class="fas fa-code" style="font-size: 50px; color: #272822; animation: crazyPulse 1s ease-in-out infinite;"></i>
+            <div id="crazy-logo" style="width: 120px; height: 120px; background: linear-gradient(45deg, #a6e22e, #66d9ef); border-radius: 20px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; animation: crazyStartup 1s ease-out, crazyGlow 2s ease-in-out infinite, crazyShake 0.5s ease-in-out 1.5s; will-change: transform, opacity;">
+                <i class="fas fa-code" style="font-size: 50px; color: #f8f8f2; animation: crazyPulse 1s ease-in-out infinite; opacity: 1; visibility: visible; text-shadow: 0 0 20px #a6e22e;"></i>
             </div>
             
-            <h2 id="crazy-title" style="color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 3rem; font-weight: bold; margin: 0; animation: textBounce 1.5s ease-in-out 0.5s, colorShift 2s ease-in-out infinite; text-shadow: 0 0 20px currentColor;">BLOGIIIIII</h2>
+            <h2 id="crazy-title" style="color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 0 0 20px currentColor;">
+                <span class="wave-letter" style="display: inline-block; animation: letterWave1 0.3s ease-out 0.1s;">B</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave2 0.3s ease-out 0.2s;">L</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave3 0.3s ease-out 0.3s;">O</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave4 0.3s ease-out 0.4s;">G</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave5 0.3s ease-out 0.5s;">I</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave6 0.3s ease-out 0.6s;">I</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave7 0.3s ease-out 0.7s;">I</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave8 0.3s ease-out 0.8s;">I</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave9 0.3s ease-out 0.9s;">I</span>
+                <span class="wave-letter" style="display: inline-block; animation: letterWave10 0.3s ease-out 1.0s;">I</span>
+            </h2>
             
             <div id="loading-text" style="margin-top: 20px; animation: contentReveal 1s ease-out 1s both;">
                 <p style="color: #66d9ef; font-size: 1.2rem; margin: 0; animation: crazyShake 0.3s ease-in-out 1.2s;">🚀 Initializing awesome content...</p>
@@ -272,9 +435,6 @@
             </div>
             <div id="floating-icon-4" style="position: absolute; top: 70%; right: 15%; font-size: 28px; color: #a6e22e; opacity: 0.6; animation: float 2.8s ease-in-out infinite 1.5s;">
                 <i class="fas fa-code-branch"></i>
-            </div>
-            <div id="floating-icon-5" style="position: absolute; top: 40%; left: 50%; font-size: 32px; color: #66d9ef; opacity: 0.5; animation: float 3.2s ease-in-out infinite 0.8s;">
-                <i class="fas fa-database"></i>
             </div>
             
             <!-- Floating Geometric Shapes -->
@@ -435,50 +595,84 @@
     </footer>
 
     <script>
-        // Reset scroll to top immediately - multiple methods for reliability
-        function resetScrollToTop() {
+        // IMMEDIATE viewport positioning - must be first
+        (function() {
+            // Force immediate scroll to top
             window.scrollTo(0, 0);
-            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
-            document.documentElement.scrollLeft = 0;
-            document.body.scrollLeft = 0;
-            if (document.documentElement.scrollTop !== 0) {
-                document.documentElement.scrollTop = 0;
+            
+            // Ensure body doesn't have any margin/padding that could offset content
+            document.body.style.margin = '0';
+            document.body.style.padding = '0';
+            document.documentElement.style.margin = '0';
+            document.documentElement.style.padding = '0';
+            
+            // Force loading screen to cover viewport immediately
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.style.position = 'fixed';
+                loadingScreen.style.top = '0';
+                loadingScreen.style.left = '0';
+                loadingScreen.style.width = '100vw';
+                loadingScreen.style.height = '100vh';
+                loadingScreen.style.zIndex = '9999';
+                loadingScreen.style.display = 'flex';
+                loadingScreen.style.justifyContent = 'center';
+                loadingScreen.style.alignItems = 'center';
             }
-            if (document.body.scrollTop !== 0) {
-                document.body.scrollTop = 0;
+        })();
+        
+        // Simple scroll reset function
+        function resetScrollToTop() {
+            window.scrollTo(0, 0);
+        }
+        
+        // Ensure viewport is centered on loading screen immediately
+        function centerViewportOnLoadingScreen() {
+            // Reset scroll to top immediately
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            
+            // Ensure loading screen is visible and centered
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.style.position = 'fixed';
+                loadingScreen.style.top = '0';
+                loadingScreen.style.left = '0';
+                loadingScreen.style.width = '100%';
+                loadingScreen.style.height = '100%';
+                loadingScreen.style.display = 'flex';
+                loadingScreen.style.justifyContent = 'center';
+                loadingScreen.style.alignItems = 'center';
             }
         }
         
-        // Call immediately
-        resetScrollToTop();
-        
-        // Reset scroll before page unloads (on reload)
-        window.addEventListener('beforeunload', function() {
-            resetScrollToTop();
-        });
-        
-        // Additional aggressive reset with timeout
-        setTimeout(function() {
-            resetScrollToTop();
-        }, 100);
-        
-        setTimeout(function() {
-            resetScrollToTop();
-        }, 500);
-        
-        // Reset scroll when page becomes visible
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) {
-                resetScrollToTop();
+        // Smooth scroll to top function
+        function smoothScrollToTop() {
+            const startPosition = window.pageYOffset;
+            const distance = -startPosition; // Distance to scroll up
+            const duration = 600; // 600ms for smooth scroll
+            let start = null;
+            
+            function smoothScroll(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                const progressPercent = Math.min(progress / duration, 1);
+                
+                // Easing function for smooth deceleration
+                const ease = 1 - Math.pow(1 - progressPercent, 3);
+                
+                window.scrollTo(0, startPosition + distance * ease);
+                
+                if (progress < duration) {
+                    requestAnimationFrame(smoothScroll);
+                }
             }
-        });
-        
-        // Reset scroll on focus
-        window.addEventListener('focus', function() {
-            resetScrollToTop();
-        });
+            
+            requestAnimationFrame(smoothScroll);
+        }
         
         // Crazy Startup Animation
         let loadingHidden = false;
@@ -487,17 +681,48 @@
             if (loadingHidden) return;
             loadingHidden = true;
             
-            // Reset scroll to top when hiding loading screen
-            resetScrollToTop();
-            
             const loadingScreen = document.getElementById('loading-screen');
             if (loadingScreen) {
                 loadingScreen.style.opacity = '0';
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
-                    // Final scroll reset after loading screen is hidden
                     resetScrollToTop();
                 }, 800);
+            }
+        }
+        
+        function showMainContent() {
+            // Hide loading screen immediately
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
+            
+            // Show all content sections immediately
+            const sections = ['home', 'featured', 'blog', 'about', 'contact'];
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.style.transform = 'translateY(0)';
+                    section.style.opacity = '1';
+                    section.style.animation = 'none';
+                }
+            });
+            
+            // Show header
+            const header = document.getElementById('main-header');
+            if (header) {
+                header.style.transform = 'translateY(0)';
+                header.style.opacity = '1';
+                header.style.animation = 'none';
+            }
+            
+            // Reset hero section to normal height
+            const heroSection = document.getElementById('home');
+            if (heroSection) {
+                heroSection.style.height = '60vh';
+                heroSection.style.transform = 'translateY(0)';
+                heroSection.style.opacity = '1';
             }
         }
 
@@ -506,8 +731,8 @@
             const matrixContainer = document.getElementById('matrix-rain');
             if (!matrixContainer) return;
             
-            const characters = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?';
-            const colors = ['#a6e22e', '#66d9ef', '#f8f8f2'];
+            const characters = '01';
+            const colors = ['#a6e22e', '#66d9ef'];
             
             function createMatrixChar() {
                 const char = document.createElement('div');
@@ -516,12 +741,14 @@
                 char.style.left = Math.random() * 100 + '%';
                 char.style.top = '-20px';
                 char.style.color = colors[Math.floor(Math.random() * colors.length)];
-                char.style.fontSize = Math.random() * 20 + 10 + 'px';
+                char.style.fontSize = Math.random() * 15 + 12 + 'px';
                 char.style.fontFamily = 'Courier New, monospace';
                 char.style.fontWeight = 'bold';
-                char.style.opacity = '0.7';
-                char.style.animation = `matrixChar ${Math.random() * 3 + 2}s linear forwards`;
+                char.style.opacity = '0.8';
+                char.style.animation = `matrixChar ${Math.random() * 2 + 1.5}s linear forwards`;
                 char.style.zIndex = '1';
+                char.style.textShadow = '0 0 8px currentColor';
+                char.style.willChange = 'transform, opacity';
                 
                 matrixContainer.appendChild(char);
                 
@@ -530,31 +757,102 @@
                     if (char.parentNode) {
                         char.parentNode.removeChild(char);
                     }
-                }, 5000);
+                }, 3500);
             }
             
-            // Create matrix characters periodically
-            const matrixInterval = setInterval(createMatrixChar, 100);
+            // Create matrix characters more frequently and visibly
+            const matrixInterval = setInterval(createMatrixChar, 80);
             
-            // Stop matrix rain after 3 seconds
+            // Stop matrix rain after 4 seconds
             setTimeout(() => {
                 clearInterval(matrixInterval);
-            }, 3000);
+            }, 4000);
         }
 
+        // Center viewport on loading screen immediately
+        centerViewportOnLoadingScreen();
+        
         // Debug: Check if animations are working
         console.log('🚀 Starting crazy startup animation...');
         
-        // Test if CSS is loading
-        const testElement = document.createElement('div');
-        testElement.style.animation = 'crazyStartup 1s ease-out';
-        document.body.appendChild(testElement);
-        const computedStyle = window.getComputedStyle(testElement);
-        console.log('CSS Animation support:', computedStyle.animationName);
-        document.body.removeChild(testElement);
+        // Add loading delay to ensure everything is ready
+        function startAnimationsWithDelay() {
+            // Test if CSS is loading
+            const testElement = document.createElement('div');
+            testElement.style.animation = 'crazyStartup 1s ease-out';
+            document.body.appendChild(testElement);
+            const computedStyle = window.getComputedStyle(testElement);
+            console.log('CSS Animation support:', computedStyle.animationName);
+            document.body.removeChild(testElement);
+            
+            // Start matrix rain
+            console.log('🌧️ Starting matrix rain...');
+            createMatrixRain();
+            
+            // Ensure logo and title are visible
+            const logo = document.getElementById('crazy-logo');
+            const title = document.getElementById('crazy-title');
+            const codeIcon = document.querySelector('.fas.fa-code');
+            
+            if (logo) {
+                logo.style.opacity = '1';
+                logo.style.visibility = 'visible';
+                console.log('✅ Logo is ready');
+            }
+            
+            if (title) {
+                title.style.opacity = '1';
+                title.style.visibility = 'visible';
+                console.log('✅ Title is ready');
+            }
+            
+            if (codeIcon) {
+                codeIcon.style.opacity = '1';
+                codeIcon.style.visibility = 'visible';
+                console.log('✅ Code icon is ready');
+            }
+        }
         
-        // Start matrix rain immediately
-        createMatrixRain();
+        // Start animations after DOM is ready and a short delay
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(startAnimationsWithDelay, 300);
+            });
+        } else {
+            // DOM is already ready
+            setTimeout(startAnimationsWithDelay, 300);
+        }
+        
+        // Debug: Check if elements are visible and force visibility if needed
+        setTimeout(() => {
+            const matrixContainer = document.getElementById('matrix-rain');
+            const codeIcon = document.querySelector('.fas.fa-code');
+            const logo = document.getElementById('crazy-logo');
+            const title = document.getElementById('crazy-title');
+            
+            console.log('Matrix container:', matrixContainer);
+            console.log('Code icon:', codeIcon);
+            console.log('Matrix container children:', matrixContainer?.children.length);
+            
+            // Force visibility of critical elements if they're not showing
+            if (logo && logo.style.opacity !== '1') {
+                logo.style.opacity = '1';
+                logo.style.visibility = 'visible';
+                console.log('🔧 Forced logo visibility');
+            }
+            
+            if (title && title.style.opacity !== '1') {
+                title.style.opacity = '1';
+                title.style.visibility = 'visible';
+                console.log('🔧 Forced title visibility');
+            }
+            
+            if (codeIcon && codeIcon.style.opacity !== '1') {
+                codeIcon.style.opacity = '1';
+                codeIcon.style.visibility = 'visible';
+                console.log('🔧 Forced code icon visibility');
+            }
+        }, 1000);
         
         // Falling animation function
         function startFallingAnimation() {
@@ -579,9 +877,7 @@
                 crazyLogo.style.animation = 'elementFall 0.8s ease-out forwards';
             }
             
-            if (crazyTitle) {
-                crazyTitle.style.animation = 'elementFall 0.8s ease-out forwards';
-            }
+            // Title stays in place - no floating animation
             
             if (loadingText) {
                 loadingText.style.animation = 'elementFall 0.8s ease-out forwards';
@@ -611,6 +907,11 @@
             // Start pull-down effect for hero section (synchronized with canvas fall)
             if (heroSection) {
                 heroSection.style.animation = 'heroPullDown 0.8s ease-out forwards';
+                
+                // Add smooth scroll to top when hero section starts pulling down
+                setTimeout(() => {
+                    smoothScrollToTop();
+                }, 400); // Start scrolling halfway through the pull-down animation
             }
             
             // Start pull-down effect for header
@@ -685,6 +986,11 @@
                 // Shorten hero section
                 if (heroSection) {
                     heroSection.style.animation = 'heroShorten 0.6s ease-out forwards';
+                    
+                    // Add smooth scroll to top when hero section starts shortening
+                    setTimeout(() => {
+                        smoothScrollToTop();
+                    }, 200); // Start scrolling when hero shortening is 1/3 complete
                 }
                 
                 // Start content slide up after hero starts shortening
@@ -727,18 +1033,35 @@
 
         // Reset scroll to top when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
-            resetScrollToTop();
+            // Only reset scroll if not coming from a post
+            if (!isComingFromPost()) {
+                resetScrollToTop();
+            }
         });
         
-        // Show startup animation for minimum 3 seconds
+        // Check if coming from a blog post
+        function isComingFromPost() {
+            return document.referrer.includes('posts/') || 
+                   sessionStorage.getItem('fromPost') === 'true' ||
+                   window.location.hash === '#home';
+        }
+        
+        // Show startup animation for minimum 3 seconds (skip if coming from post)
         window.addEventListener('load', function() {
-            // Reset scroll to top
-            resetScrollToTop();
-            
-            // Start the falling animation after 3 seconds
-            setTimeout(() => {
-                startFallingAnimation();
-            }, 3000);
+            // Skip starting scene if coming from a blog post
+            if (isComingFromPost()) {
+                // Hide loading screen immediately
+                hideLoadingScreen();
+                // Show main content immediately
+                showMainContent();
+                // Clear the fromPost flag
+                sessionStorage.removeItem('fromPost');
+            } else {
+                // Start the falling animation after 3 seconds
+                setTimeout(() => {
+                    startFallingAnimation();
+                }, 3000);
+            }
         });
 
         // Fallback: Hide loading screen after 4 seconds regardless
@@ -757,16 +1080,35 @@
             navLinks.classList.toggle('active');
         });
 
-        // Smooth scrolling for navigation links
+        // Fast smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    // Ultra fast smooth scroll implementation
+                    const targetPosition = target.offsetTop - 80; // Account for header height
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    const duration = 150; // Ultra fast - 150ms for instant text appearance
+                    let start = null;
+                    
+                    function fastScroll(timestamp) {
+                        if (!start) start = timestamp;
+                        const progress = timestamp - start;
+                        const progressPercent = Math.min(progress / duration, 1);
+                        
+                        // Easing function for ultra fast acceleration
+                        const ease = progressPercent * progressPercent;
+                        
+                        window.scrollTo(0, startPosition + distance * ease);
+                        
+                        if (progress < duration) {
+                            requestAnimationFrame(fastScroll);
+                        }
+                    }
+                    
+                    requestAnimationFrame(fastScroll);
                 }
             });
         });
@@ -813,12 +1155,34 @@
 
         // Add gentle hover effects to blog cards (no infinite loop)
         document.querySelectorAll('.blog-card').forEach(card => {
+            // Set normal transition
+            card.style.transition = 'all 0.3s ease';
+            
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-5px) scale(1.02)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
+            });
+            
+            // Add ultra fast click effect for immediate feedback
+            card.addEventListener('click', function() {
+                this.style.transform = 'translateY(-2px) scale(1.01)';
+                this.style.transition = 'all 0.05s ease';
+                
+                // Reset after click
+                setTimeout(() => {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.transition = 'all 0.3s ease';
+                }, 50);
+            });
+        });
+        
+        // Set flag when navigating to blog posts
+        document.querySelectorAll('a[href*="posts/"]').forEach(link => {
+            link.addEventListener('click', function() {
+                sessionStorage.setItem('fromPost', 'true');
             });
         });
 
