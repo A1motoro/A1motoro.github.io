@@ -9,10 +9,69 @@
     <meta name="author" content="A1m">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="css/monokai-theme.css" rel="stylesheet">
+    <link href="./css/monokai-theme.css" rel="stylesheet">
+    
+    <!-- Inline Critical Animations for GitHub Pages -->
+    <style>
+        @keyframes crazyStartup {
+            0% { transform: scale(0.5) rotate(-180deg); opacity: 0; }
+            25% { transform: scale(1.2) rotate(-90deg); opacity: 0.8; }
+            50% { transform: scale(0.8) rotate(0deg); opacity: 1; }
+            75% { transform: scale(1.1) rotate(45deg); opacity: 0.9; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        
+        @keyframes crazyGlow {
+            0%, 100% { box-shadow: 0 0 20px #a6e22e, 0 0 40px #66d9ef, 0 0 60px #f92672; }
+            50% { box-shadow: 0 0 30px #f92672, 0 0 60px #a6e22e, 0 0 90px #66d9ef; }
+        }
+        
+        @keyframes crazyShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-1deg); }
+            75% { transform: translateX(5px) rotate(1deg); }
+        }
+        
+        @keyframes textBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        @keyframes colorShift {
+            0% { color: #f8f8f2; }
+            25% { color: #a6e22e; }
+            50% { color: #66d9ef; }
+            75% { color: #f92672; }
+            100% { color: #f8f8f2; }
+        }
+        
+        @keyframes crazyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes contentReveal {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes matrixChar {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
 </head>
 <body>
     <!-- Crazy Startup Animation -->
-    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #272822, #1e1e1e, #272822); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease; overflow: hidden;">
+    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #272822, #1e1e1e, #272822); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease; overflow: hidden; visibility: visible; opacity: 1;">
         <!-- Matrix Rain Effect -->
         <div id="matrix-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></div>
         
@@ -230,6 +289,17 @@
             }, 3000);
         }
 
+        // Debug: Check if animations are working
+        console.log('🚀 Starting crazy startup animation...');
+        
+        // Test if CSS is loading
+        const testElement = document.createElement('div');
+        testElement.style.animation = 'crazyStartup 1s ease-out';
+        document.body.appendChild(testElement);
+        const computedStyle = window.getComputedStyle(testElement);
+        console.log('CSS Animation support:', computedStyle.animationName);
+        document.body.removeChild(testElement);
+        
         // Start matrix rain immediately
         createMatrixRain();
 
