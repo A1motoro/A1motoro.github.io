@@ -392,25 +392,6 @@
             }
         }
         
-        @keyframes scrollIndicatorBounce {
-            0%, 100% { 
-                transform: translateX(-50%) translateY(0); 
-            }
-            50% { 
-                transform: translateX(-50%) translateY(-10px); 
-            }
-        }
-        
-        @keyframes scrollArrowPulse {
-            0%, 100% { 
-                opacity: 0.5; 
-                transform: rotate(45deg) scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: rotate(45deg) scale(1.1); 
-            }
-        }
         
         /* Hero CTA Button Hover Effects */
         .cta-button.primary:hover {
@@ -676,11 +657,6 @@
                 </a>
             </div>
             
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); animation: scrollIndicatorBounce 2s ease-in-out infinite 3s;">
-                <div style="width: 2px; height: 40px; background: linear-gradient(to bottom, #a6e22e, #66d9ef); margin: 0 auto; border-radius: 2px;"></div>
-                <div style="width: 20px; height: 20px; border: 2px solid #66d9ef; border-top: none; border-left: none; transform: rotate(45deg); margin: 10px auto 0; animation: scrollArrowPulse 1.5s ease-in-out infinite;"></div>
-            </div>
         </div>
     </section>
 
