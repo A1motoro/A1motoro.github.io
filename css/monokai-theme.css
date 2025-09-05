@@ -184,11 +184,27 @@ nav {
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    text-decoration: none;
 }
 
 .featured-card.main-featured:hover {
     transform: translateY(-5px);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    color: #272822;
+}
+
+.featured-card.main-featured:visited {
+    color: #272822;
+    text-decoration: none;
+}
+
+.featured-card.main-featured:focus {
+    outline: 2px solid #272822;
+    outline-offset: 2px;
 }
 
 .featured-card .blog-image {
@@ -220,10 +236,13 @@ nav {
     color: #272822;
     font-weight: 600;
     font-size: 1.1rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
 }
 
-.featured-card .read-more:hover {
+.featured-card:hover .read-more {
     color: #f92672;
+    transform: translateX(5px);
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -255,12 +274,29 @@ nav {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #49483e;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .blog-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     border-color: #a6e22e;
+    text-decoration: none;
+    color: inherit;
+}
+
+.blog-card:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.blog-card:focus {
+    outline: 2px solid #a6e22e;
+    outline-offset: 2px;
 }
 
 .blog-image {
@@ -300,11 +336,15 @@ nav {
     color: #66d9ef;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 1rem;
+    pointer-events: none;
 }
 
-.read-more:hover {
-    color: #f92672;
+.blog-card:hover .read-more {
+    color: #a6e22e;
+    transform: translateX(5px);
 }
 
 /* ===== POSTS LIST ===== */

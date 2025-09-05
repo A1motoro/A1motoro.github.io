@@ -171,7 +171,7 @@ Thanks for reading! Feel free to leave comments or reach out to me.
             icon = icon_map.get(post['category'].lower(), 'fas fa-file-alt')
             
             cards_html += f"""
-            <article class="blog-card">
+            <a href="posts/{post['slug']}.html" class="blog-card">
                 <div class="blog-image">
                     <i class="{icon}"></i>
                 </div>
@@ -179,9 +179,9 @@ Thanks for reading! Feel free to leave comments or reach out to me.
                     <h3 class="blog-title">{post['title']}</h3>
                     <div class="blog-meta">Published on {post['date']} • {post['read_time']} read</div>
                     <p class="blog-excerpt">{post['excerpt']}</p>
-                    <a href="posts/{post['slug']}.html" class="read-more">Read More →</a>
+                    <div class="read-more">Read More →</div>
                 </div>
-            </article>
+            </a>
             """
         
         return cards_html
