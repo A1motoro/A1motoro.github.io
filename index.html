@@ -12,19 +12,19 @@
 </head>
 <body>
     <!-- Crazy Startup Animation -->
-    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #272822, #1e1e1e, #272822); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease; overflow: hidden; animation: smoothTransition 3s ease-out;">
+    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #272822, #1e1e1e, #272822); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease; overflow: hidden;">
         <!-- Matrix Rain Effect -->
         <div id="matrix-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></div>
         
         <!-- Main Logo with Crazy Animation -->
         <div style="position: relative; z-index: 2; text-align: center;">
-            <div id="crazy-logo" style="width: 120px; height: 120px; background: linear-gradient(45deg, #a6e22e, #66d9ef, #f92672, #e6db74); border-radius: 20px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; animation: crazyStartup 2s ease-out, crazyGlow 3s ease-in-out infinite 2s, crazyShake 0.5s ease-in-out 1.5s, logoToHeader 1.5s ease-in-out 2.5s forwards;">
+            <div id="crazy-logo" style="width: 120px; height: 120px; background: linear-gradient(45deg, #a6e22e, #66d9ef, #f92672, #e6db74); border-radius: 20px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; animation: crazyStartup 2s ease-out, crazyGlow 3s ease-in-out infinite 2s, crazyShake 0.5s ease-in-out 1.5s;">
                 <i class="fas fa-code" style="font-size: 50px; color: #272822; animation: crazyPulse 1s ease-in-out infinite 2.5s;"></i>
             </div>
             
-            <h2 id="crazy-title" style="color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 3rem; font-weight: bold; margin: 0; animation: textBounce 1.5s ease-in-out 0.5s, colorShift 2s ease-in-out infinite 2s, titleToHero 1.5s ease-in-out 2.5s forwards; text-shadow: 0 0 20px currentColor;">BLOGIIIIII</h2>
+            <h2 id="crazy-title" style="color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 3rem; font-weight: bold; margin: 0; animation: textBounce 1.5s ease-in-out 0.5s, colorShift 2s ease-in-out infinite 2s; text-shadow: 0 0 20px currentColor;">BLOGIIIIII</h2>
             
-            <div id="loading-text" style="margin-top: 20px; animation: contentReveal 1s ease-out 1s both, startupToPage 1s ease-out 2.5s forwards;">
+            <div id="loading-text" style="margin-top: 20px; animation: contentReveal 1s ease-out 1s both;">
                 <p style="color: #66d9ef; font-size: 1.2rem; margin: 0; animation: crazyShake 0.3s ease-in-out 1.2s;">🚀 Initializing awesome content...</p>
                 <p style="color: #a6e22e; font-size: 1rem; margin: 5px 0 0 0; animation: contentReveal 1s ease-out 1.3s both;">⚡ Loading animations...</p>
                 <p style="color: #f92672; font-size: 1rem; margin: 5px 0 0 0; animation: contentReveal 1s ease-out 1.6s both;">🎨 Applying Monokai magic...</p>
@@ -32,12 +32,12 @@
         </div>
         
         <!-- Progress Bar -->
-        <div id="progress-container" style="position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); width: 300px; height: 4px; background: #49483e; border-radius: 2px; overflow: hidden; z-index: 2; animation: startupToPage 1s ease-out 2.5s forwards;">
+        <div id="progress-container" style="position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); width: 300px; height: 4px; background: #49483e; border-radius: 2px; overflow: hidden; z-index: 2;">
             <div id="progress-bar" style="height: 100%; background: linear-gradient(90deg, #a6e22e, #66d9ef, #f92672); border-radius: 2px; width: 0%; animation: progressFill 2.5s ease-out 0.5s forwards;"></div>
         </div>
     </div>
     <!-- Header -->
-    <header id="main-header" style="opacity: 0; animation: pageReveal 1s ease-out 3.5s forwards;">
+    <header id="main-header">
         <nav class="container">
             <a href="#" class="logo">BLOGIIIIII</a>
             <ul class="nav-links">
@@ -56,7 +56,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero" style="opacity: 0; animation: pageReveal 1s ease-out 3.7s forwards;">
+    <section id="home" class="hero">
         <div class="container">
             <h1>Welcome to BLOGIIIIII</h1>
             <p>Sharing thoughts, experiences, and insights on technology, life, and everything in between</p>
@@ -65,7 +65,7 @@
     </section>
 
     <!-- Featured Posts Section -->
-    <section id="featured" class="featured-posts" style="opacity: 0; animation: pageReveal 1s ease-out 3.9s forwards;">
+    <section id="featured" class="featured-posts">
         <div class="container">
             <h2 class="section-title">Featured Posts</h2>
             <div class="featured-grid">
@@ -85,7 +85,7 @@
     </section>
 
     <!-- Recent Posts Section -->
-    <section id="blog" class="main-content" style="opacity: 0; animation: pageReveal 1s ease-out 4.1s forwards;">
+    <section id="blog" class="main-content">
         <div class="container">
             <h2 class="section-title">Recent Posts</h2>
             <div class="blog-grid">
@@ -143,7 +143,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about" style="opacity: 0; animation: pageReveal 1s ease-out 4.3s forwards;">
+    <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
@@ -166,7 +166,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" style="opacity: 0; animation: pageReveal 1s ease-out 4.5s forwards;">
+    <footer id="contact">
         <div class="container">
             <p>&copy; 2024 BLOGIIIIII. All rights reserved.</p>
             <p>Made with ❤️ and lots of coffee</p>
@@ -233,49 +233,20 @@
         // Start matrix rain immediately
         createMatrixRain();
 
-        // Seamless transition from startup to main page
+        // Show startup animation for minimum 3 seconds
         window.addEventListener('load', function() {
-            // Start the transition sequence
+            // Ensure animation shows for at least 3 seconds
             setTimeout(() => {
-                // Make the startup logo transform into header logo
-                const crazyLogo = document.getElementById('crazy-logo');
-                const crazyTitle = document.getElementById('crazy-title');
-                const loadingText = document.getElementById('loading-text');
-                const progressContainer = document.getElementById('progress-container');
-                
-                if (crazyLogo) {
-                    crazyLogo.style.position = 'fixed';
-                    crazyLogo.style.zIndex = '10000';
-                }
-                
-                if (crazyTitle) {
-                    crazyTitle.style.position = 'fixed';
-                    crazyTitle.style.zIndex = '10000';
-                }
-                
-                // Hide loading text and progress bar
-                if (loadingText) {
-                    loadingText.style.opacity = '0';
-                }
-                
-                if (progressContainer) {
-                    progressContainer.style.opacity = '0';
-                }
-                
-                // Hide the startup screen after transition
-                setTimeout(() => {
-                    hideLoadingScreen();
-                }, 2000); // Hide after 2 seconds of transition
-                
-            }, 2500); // Start transition at 2.5 seconds
+                hideLoadingScreen();
+            }, 3000);
         });
 
-        // Fallback: Hide loading screen after 5 seconds regardless
-        setTimeout(hideLoadingScreen, 5000);
+        // Fallback: Hide loading screen after 4 seconds regardless
+        setTimeout(hideLoadingScreen, 4000);
 
         // Immediate fallback for very fast loads
         if (document.readyState === 'complete') {
-            setTimeout(hideLoadingScreen, 3000);
+            setTimeout(hideLoadingScreen, 2000);
         }
 
         // Mobile menu toggle
