@@ -1,6 +1,9 @@
 # A1motoro.github.io
 A personal blog of A1motoro
 
+nice
+
+
 A modern, responsive personal blog built with HTML, CSS, and JavaScript, featuring a VSCode Monokai theme.
 
 ## Features
