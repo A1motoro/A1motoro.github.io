@@ -624,6 +624,198 @@ nav {
     background: rgba(102, 217, 239, 0.05);
 }
 
+/* ===== COMMENTS SECTION ===== */
+.comments-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #49483e;
+}
+
+.comments-title {
+    color: #a6e22e;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.comments-title i {
+    color: #66d9ef;
+}
+
+.comments-container {
+    background: rgba(39, 40, 34, 0.8);
+    border: 1px solid #49483e;
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Utterances styling overrides */
+.comments-container .utterances {
+    max-width: 100% !important;
+}
+
+.comments-container .utterances .timeline {
+    border: none !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment {
+    background: rgba(39, 40, 34, 0.9) !important;
+    border: 1px solid #49483e !important;
+    border-radius: 8px !important;
+    margin-bottom: 1rem !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-header {
+    background: rgba(166, 226, 46, 0.1) !important;
+    border-bottom: 1px solid #49483e !important;
+    padding: 1rem !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-header .timeline-comment-header-text {
+    color: #f8f8f2 !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-header .timeline-comment-header-text .author {
+    color: #a6e22e !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-header .timeline-comment-header-text .timestamp {
+    color: #66d9ef !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body {
+    color: #e6db74 !important;
+    padding: 1rem !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body {
+    color: #e6db74 !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body p {
+    color: #e6db74 !important;
+    margin-bottom: 1rem !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body code {
+    background: #3e3d32 !important;
+    color: #f8f8f2 !important;
+    padding: 0.2rem 0.4rem !important;
+    border-radius: 4px !important;
+    border: 1px solid #49483e !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body pre {
+    background: #3e3d32 !important;
+    color: #f8f8f2 !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+    border: 1px solid #49483e !important;
+    overflow-x: auto !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body pre code {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body a {
+    color: #66d9ef !important;
+    text-decoration: none !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body a:hover {
+    color: #a6e22e !important;
+    text-decoration: underline !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body blockquote {
+    border-left: 4px solid #a6e22e !important;
+    background: rgba(166, 226, 46, 0.05) !important;
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: #e6db74 !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body ul,
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body ol {
+    color: #e6db74 !important;
+    padding-left: 2rem !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-body li {
+    color: #e6db74 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Comment form styling */
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-form {
+    background: rgba(39, 40, 34, 0.9) !important;
+    border: 1px solid #49483e !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-form .comment-form-textarea {
+    background: #3e3d32 !important;
+    color: #f8f8f2 !important;
+    border: 1px solid #49483e !important;
+    border-radius: 4px !important;
+    padding: 0.8rem !important;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-form .comment-form-textarea:focus {
+    border-color: #a6e22e !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(166, 226, 46, 0.2) !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-form .comment-form-button {
+    background: #a6e22e !important;
+    color: #272822 !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.comments-container .utterances .timeline .timeline-comment .timeline-comment-body .comment-form .comment-form-button:hover {
+    background: #66d9ef !important;
+    color: #272822 !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Loading state */
+.comments-container .utterances .loading {
+    color: #66d9ef !important;
+    text-align: center !important;
+    padding: 2rem !important;
+}
+
+.comments-container .utterances .loading::before {
+    content: "Loading comments..." !important;
+    color: #66d9ef !important;
+}
+
+/* Error state */
+.comments-container .utterances .error {
+    color: #f92672 !important;
+    text-align: center !important;
+    padding: 2rem !important;
+    background: rgba(249, 38, 114, 0.1) !important;
+    border: 1px solid rgba(249, 38, 114, 0.3) !important;
+    border-radius: 8px !important;
+}
+
 .post-item {
     background: #3e3d32;
     border-radius: 15px;
