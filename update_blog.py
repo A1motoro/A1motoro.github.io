@@ -332,9 +332,9 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         new_cards = self.generate_blog_cards(posts)
         
         # Replace the blog grid section completely
-        # Find the start and end of the blog-grid div
-        pattern = r'(<div class="blog-grid">[\s\S]*?</div>)'
-        replacement = f'<div class="blog-grid">\n{new_cards}\n</div>'
+        # Find the start and end of the blog-grid div (more specific pattern)
+        pattern = r'(<div class="blog-grid">[\s\S]*?)(?=</div>\s*</div>\s*</section>)'
+        replacement = f'<div class="blog-grid">\n{new_cards}\n            </div>'
         updated_html = re.sub(pattern, replacement, html_content, flags=re.DOTALL)
         
         # If no match, perhaps append it, but assuming it exists

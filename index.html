@@ -11,8 +11,33 @@
     <link href="css/monokai-theme.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Crazy Startup Animation -->
+    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #272822, #1e1e1e, #272822); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease; overflow: hidden; animation: smoothTransition 3s ease-out;">
+        <!-- Matrix Rain Effect -->
+        <div id="matrix-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></div>
+        
+        <!-- Main Logo with Crazy Animation -->
+        <div style="position: relative; z-index: 2; text-align: center;">
+            <div id="crazy-logo" style="width: 120px; height: 120px; background: linear-gradient(45deg, #a6e22e, #66d9ef, #f92672, #e6db74); border-radius: 20px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; animation: crazyStartup 2s ease-out, crazyGlow 3s ease-in-out infinite 2s, crazyShake 0.5s ease-in-out 1.5s, logoToHeader 1.5s ease-in-out 2.5s forwards;">
+                <i class="fas fa-code" style="font-size: 50px; color: #272822; animation: crazyPulse 1s ease-in-out infinite 2.5s;"></i>
+            </div>
+            
+            <h2 id="crazy-title" style="color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 3rem; font-weight: bold; margin: 0; animation: textBounce 1.5s ease-in-out 0.5s, colorShift 2s ease-in-out infinite 2s, titleToHero 1.5s ease-in-out 2.5s forwards; text-shadow: 0 0 20px currentColor;">BLOGIIIIII</h2>
+            
+            <div id="loading-text" style="margin-top: 20px; animation: contentReveal 1s ease-out 1s both, startupToPage 1s ease-out 2.5s forwards;">
+                <p style="color: #66d9ef; font-size: 1.2rem; margin: 0; animation: crazyShake 0.3s ease-in-out 1.2s;">🚀 Initializing awesome content...</p>
+                <p style="color: #a6e22e; font-size: 1rem; margin: 5px 0 0 0; animation: contentReveal 1s ease-out 1.3s both;">⚡ Loading animations...</p>
+                <p style="color: #f92672; font-size: 1rem; margin: 5px 0 0 0; animation: contentReveal 1s ease-out 1.6s both;">🎨 Applying Monokai magic...</p>
+            </div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div id="progress-container" style="position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); width: 300px; height: 4px; background: #49483e; border-radius: 2px; overflow: hidden; z-index: 2; animation: startupToPage 1s ease-out 2.5s forwards;">
+            <div id="progress-bar" style="height: 100%; background: linear-gradient(90deg, #a6e22e, #66d9ef, #f92672); border-radius: 2px; width: 0%; animation: progressFill 2.5s ease-out 0.5s forwards;"></div>
+        </div>
+    </div>
     <!-- Header -->
-    <header>
+    <header id="main-header" style="opacity: 0; animation: pageReveal 1s ease-out 3.5s forwards;">
         <nav class="container">
             <a href="#" class="logo">BLOGIIIIII</a>
             <ul class="nav-links">
@@ -31,7 +56,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" style="opacity: 0; animation: pageReveal 1s ease-out 3.7s forwards;">
         <div class="container">
             <h1>Welcome to BLOGIIIIII</h1>
             <p>Sharing thoughts, experiences, and insights on technology, life, and everything in between</p>
@@ -40,18 +65,18 @@
     </section>
 
     <!-- Featured Posts Section -->
-    <section id="featured" class="featured-posts">
+    <section id="featured" class="featured-posts" style="opacity: 0; animation: pageReveal 1s ease-out 3.9s forwards;">
         <div class="container">
             <h2 class="section-title">Featured Posts</h2>
             <div class="featured-grid">
-                <a href="posts/example-post.html" class="featured-card main-featured">
+                <a href="posts/welcome-to-my-blog.html" class="featured-card main-featured">
                     <div class="blog-image">
-                        <i class="fas fa-code"></i>
+                        <i class="fas fa-file-alt"></i>
                     </div>
                     <div class="blog-content">
-                        <h3 class="blog-title">My First Blog Post</h3>
-                        <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                        <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you. In this post, I'll be discussing my journey into web development and the technologies that have shaped my career.</p>
+                        <h3 class="blog-title">Welcome to My Blog</h3>
+                        <div class="blog-meta">Published on September 5, 2025 • 3 min read</div>
+                        <p class="blog-excerpt">Welcome to my personal blog! I'm excited to share my journey, thoughts, and experiences with you.</p>
                         <div class="read-more">Read Full Post →</div>
                     </div>
                 </a>
@@ -60,7 +85,7 @@
     </section>
 
     <!-- Recent Posts Section -->
-    <section id="blog" class="main-content">
+    <section id="blog" class="main-content" style="opacity: 0; animation: pageReveal 1s ease-out 4.1s forwards;">
         <div class="container">
             <h2 class="section-title">Recent Posts</h2>
             <div class="blog-grid">
@@ -113,627 +138,12 @@
                 </div>
             </a>
             
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Test Post 1</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 2 min read</div>
-                    <p class="blog-excerpt">This is the first test post to demonstrate the blog functionality.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/test-post-2.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Test Post 2</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 2 min read</div>
-                    <p class="blog-excerpt">This is the second test post to verify the blog system.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/test-post-3.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Test Post 3</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 2 min read</div>
-                    <p class="blog-excerpt">This is the final test post to complete our testing suite.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/welcome-to-my-blog.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Welcome to My Blog</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 3 min read</div>
-                    <p class="blog-excerpt">Welcome to my personal blog! I'm excited to share my journey, thoughts, and experiences with you.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/css-tricks-and-tips.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">CSS Tricks and Tips for Better Styling</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 7 min read</div>
-                    <p class="blog-excerpt">CSS is the backbone of web styling, and mastering it can make the difference between a good website and a great one. In this post, I'll share some advanced CSS tricks and tips that will help you create more beautiful and efficient stylesheets.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/getting-started-with-python.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/web-development-tips.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/css-tricks-and-tips.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">CSS Tricks and Tips for Better Styling</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 7 min read</div>
-                    <p class="blog-excerpt">CSS is the backbone of web styling, and mastering it can make the difference between a good website and a great one. In this post, I'll share some advanced CSS tricks and tips that will help you create more beautiful and efficient stylesheets.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/getting-started-with-python.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-            <a href="posts/web-development-tips.html" class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <div class="read-more">Read More →</div>
-                </div>
-            </a>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">CSS Tricks and Tips for Better Styling</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 7 min read</div>
-                    <p class="blog-excerpt">CSS is the backbone of web styling, and mastering it can make the difference between a good website and a great one. In this post, I'll share some advanced CSS tricks and tips that will help you create more beautiful and efficient stylesheets.</p>
-                    <a href="posts/css-tricks-and-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">CSS Tricks and Tips for Better Styling</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 7 min read</div>
-                    <p class="blog-excerpt">CSS is the backbone of web styling, and mastering it can make the difference between a good website and a great one. In this post, I'll share some advanced CSS tricks and tips that will help you create more beautiful and efficient stylesheets.</p>
-                    <a href="posts/css-tricks-and-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">CSS Tricks and Tips for Better Styling</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 7 min read</div>
-                    <p class="blog-excerpt">CSS is the backbone of web styling, and mastering it can make the difference between a good website and a great one. In this post, I'll share some advanced CSS tricks and tips that will help you create more beautiful and efficient stylesheets.</p>
-                    <a href="posts/css-tricks-and-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">CSS Tricks and Tips for Better Styling</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 7 min read</div>
-                    <p class="blog-excerpt">CSS is the backbone of web styling, and mastering it can make the difference between a good website and a great one. In this post, I'll share some advanced CSS tricks and tips that will help you create more beautiful and efficient stylesheets.</p>
-                    <a href="posts/css-tricks-and-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">CSS Tricks and Tips for Better Styling</h3>
-                    <div class="blog-meta">Published on December 20, 2024 • 7 min read</div>
-                    <p class="blog-excerpt">CSS is the backbone of web styling, and mastering it can make the difference between a good website and a great one. In this post, I'll share some advanced CSS tricks and tips that will help you create more beautiful and efficient stylesheets.</p>
-                    <a href="posts/css-tricks-and-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Getting Started with Python Programming</h3>
-                    <div class="blog-meta">Published on December 15, 2024 • 8 min read</div>
-                    <p class="blog-excerpt">Python is one of the most popular programming languages today, known for its simplicity and versatility. Whether you're a complete beginner or coming from another language, Python offers a gentle learning curve and powerful capabilities.</p>
-                    <a href="posts/getting-started-with-python.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-            <article class="blog-card">
-                <div class="blog-image">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">Essential Web Development Tips for Beginners</h3>
-                    <div class="blog-meta">Published on December 10, 2024 • 6 min read</div>
-                    <p class="blog-excerpt">Web development can seem overwhelming at first, but with the right approach and some essential tips, you can build amazing websites and applications. This post covers fundamental practices that every web developer should know.</p>
-                    <a href="posts/web-development-tips.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-            
-</div>
-                <div class="blog-content">
-                    <h3 class="blog-title">My First Blog Post</h3>
-                    <div class="blog-meta">Published on September 05, 2025 • 5 min read</div>
-                    <p class="blog-excerpt">This is my first blog post! I'm excited to share my thoughts and experiences with you.</p>
-                    <a href="posts/example-post.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="blog-content">
-                        <h3 class="blog-title">Getting Started with Web Development</h3>
-                        <div class="blog-meta">Published on September 03, 2025 • 8 min read</div>
-                        <p class="blog-excerpt">A comprehensive guide for beginners who want to start their journey in web development. Covering HTML, CSS, and JavaScript fundamentals.</p>
-                        <a href="posts/" class="read-more">Read More →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <div class="blog-content">
-                        <h3 class="blog-title">Tips for Better Code Organization</h3>
-                        <div class="blog-meta">Published on September 01, 2025 • 6 min read</div>
-                        <p class="blog-excerpt">Learn how to structure your code better and make it more maintainable. These practices will save you time and headaches in the long run.</p>
-                        <a href="posts/" class="read-more">Read More →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="blog-content">
-                        <h3 class="blog-title">Why I Love Programming</h3>
-                        <div class="blog-meta">Published on August 28, 2025 • 4 min read</div>
-                        <p class="blog-excerpt">A personal reflection on what makes programming such a rewarding career and hobby. Sharing the joy of creating something from nothing.</p>
-                        <a href="posts/" class="read-more">Read More →</a>
-                    </div>
-                </article>
-            </div>
-            
-            <div class="view-all-section">
-                <a href="posts/" class="view-all-button">View All Posts</a>
-            </div>
+            </div></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about" style="opacity: 0; animation: pageReveal 1s ease-out 4.3s forwards;">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
@@ -756,7 +166,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer id="contact" style="opacity: 0; animation: pageReveal 1s ease-out 4.5s forwards;">
         <div class="container">
             <p>&copy; 2024 BLOGIIIIII. All rights reserved.</p>
             <p>Made with ❤️ and lots of coffee</p>
@@ -764,6 +174,110 @@
     </footer>
 
     <script>
+        // Crazy Startup Animation
+        let loadingHidden = false;
+        
+        function hideLoadingScreen() {
+            if (loadingHidden) return;
+            loadingHidden = true;
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 800);
+            }
+        }
+
+        // Create Matrix Rain Effect
+        function createMatrixRain() {
+            const matrixContainer = document.getElementById('matrix-rain');
+            if (!matrixContainer) return;
+            
+            const characters = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?';
+            const colors = ['#a6e22e', '#66d9ef', '#f92672', '#e6db74', '#f8f8f2'];
+            
+            function createMatrixChar() {
+                const char = document.createElement('div');
+                char.textContent = characters[Math.floor(Math.random() * characters.length)];
+                char.style.position = 'absolute';
+                char.style.left = Math.random() * 100 + '%';
+                char.style.top = '-20px';
+                char.style.color = colors[Math.floor(Math.random() * colors.length)];
+                char.style.fontSize = Math.random() * 20 + 10 + 'px';
+                char.style.fontFamily = 'Courier New, monospace';
+                char.style.fontWeight = 'bold';
+                char.style.opacity = '0.7';
+                char.style.animation = `matrixChar ${Math.random() * 3 + 2}s linear forwards`;
+                char.style.zIndex = '1';
+                
+                matrixContainer.appendChild(char);
+                
+                // Remove character after animation
+                setTimeout(() => {
+                    if (char.parentNode) {
+                        char.parentNode.removeChild(char);
+                    }
+                }, 5000);
+            }
+            
+            // Create matrix characters periodically
+            const matrixInterval = setInterval(createMatrixChar, 100);
+            
+            // Stop matrix rain after 3 seconds
+            setTimeout(() => {
+                clearInterval(matrixInterval);
+            }, 3000);
+        }
+
+        // Start matrix rain immediately
+        createMatrixRain();
+
+        // Seamless transition from startup to main page
+        window.addEventListener('load', function() {
+            // Start the transition sequence
+            setTimeout(() => {
+                // Make the startup logo transform into header logo
+                const crazyLogo = document.getElementById('crazy-logo');
+                const crazyTitle = document.getElementById('crazy-title');
+                const loadingText = document.getElementById('loading-text');
+                const progressContainer = document.getElementById('progress-container');
+                
+                if (crazyLogo) {
+                    crazyLogo.style.position = 'fixed';
+                    crazyLogo.style.zIndex = '10000';
+                }
+                
+                if (crazyTitle) {
+                    crazyTitle.style.position = 'fixed';
+                    crazyTitle.style.zIndex = '10000';
+                }
+                
+                // Hide loading text and progress bar
+                if (loadingText) {
+                    loadingText.style.opacity = '0';
+                }
+                
+                if (progressContainer) {
+                    progressContainer.style.opacity = '0';
+                }
+                
+                // Hide the startup screen after transition
+                setTimeout(() => {
+                    hideLoadingScreen();
+                }, 2000); // Hide after 2 seconds of transition
+                
+            }, 2500); // Start transition at 2.5 seconds
+        });
+
+        // Fallback: Hide loading screen after 5 seconds regardless
+        setTimeout(hideLoadingScreen, 5000);
+
+        // Immediate fallback for very fast loads
+        if (document.readyState === 'complete') {
+            setTimeout(hideLoadingScreen, 3000);
+        }
+
         // Mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
@@ -795,6 +309,63 @@
                 header.style.background = 'rgba(39, 40, 34, 0.95)';
             }
         });
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.querySelectorAll('.blog-card, .featured-card, .section-title, .about-content').forEach(el => {
+            el.classList.add('scroll-reveal');
+            observer.observe(el);
+        });
+
+        // Add gentle click animation to buttons
+        document.querySelectorAll('button, .btn, .cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                this.style.animation = 'gentlePop 0.8s ease-out';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 800);
+            });
+        });
+
+        // Add gentle hover effects to blog cards (no infinite loop)
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add subtle typing effect to hero title
+        const heroTitle = document.querySelector('.hero h1');
+        if (heroTitle) {
+            const text = heroTitle.textContent;
+            heroTitle.textContent = '';
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    heroTitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+            setTimeout(typeWriter, 500);
+        }
     </script>
 </body>
 </html>
