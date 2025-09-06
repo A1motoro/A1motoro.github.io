@@ -1017,14 +1017,20 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const href = this.getAttribute('href');
+                console.log('Clicked link:', href); // Debug log
+                const target = document.querySelector(href);
+                console.log('Target element:', target); // Debug log
+                
                 if (target) {
                     // Ultra fast smooth scroll implementation
                     const targetPosition = target.offsetTop - 80; // Account for header height
                     const startPosition = window.pageYOffset;
                     const distance = targetPosition - startPosition;
-                    const duration = 150; // Ultra fast - 150ms for instant text appearance
+                    const duration = 300; // Increased duration for better visibility
                     let start = null;
+                    
+                    console.log('Scrolling to position:', targetPosition); // Debug log
                     
                     function fastScroll(timestamp) {
                         if (!start) start = timestamp;
@@ -1038,10 +1044,37 @@
                         
                         if (progress < duration) {
                             requestAnimationFrame(fastScroll);
+                        } else {
+                            console.log('Scroll completed'); // Debug log
                         }
                     }
                     
                     requestAnimationFrame(fastScroll);
+                } else {
+                    console.error('Target element not found for:', href);
+                    // Fallback: try direct scroll
+                    const fallbackTarget = document.getElementById(href.substring(1));
+                    if (fallbackTarget) {
+                        fallbackTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        console.log('Used fallback scroll method');
+                    }
+                }
+            });
+        });
+
+        // Additional CTA button handler for debugging
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                console.log('CTA button clicked:', this.href);
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        console.log('CTA target found:', target);
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        console.error('CTA target not found:', href);
+                    }
                 }
             });
         });
