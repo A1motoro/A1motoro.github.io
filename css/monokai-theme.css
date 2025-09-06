@@ -1342,6 +1342,128 @@ nav {
 .post-content .highlight .vm { color: #f8f8f2 !important; } /* Name Variable Magic - White */
 .post-content .highlight .il { color: #ae81ff !important; } /* Literal Number Integer Long - Purple */
 
+/* Enhanced Code Block Styles */
+.enhanced-code-block {
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid #49483e;
+    background: #272822;
+}
+
+.code-header {
+    background: linear-gradient(135deg, #3e3d32, #49483e);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #49483e;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.code-language {
+    color: #a6e22e;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.code-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.line-count {
+    color: #66d9ef;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.collapse-btn {
+    background: transparent;
+    border: 1px solid #66d9ef;
+    color: #66d9ef;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.collapse-btn:hover {
+    background: #66d9ef;
+    color: #272822;
+    transform: translateY(-1px);
+}
+
+.collapse-btn i {
+    transition: transform 0.3s ease;
+}
+
+.collapse-btn.collapsed i {
+    transform: rotate(-90deg);
+}
+
+.code-content {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.code-content.collapsed {
+    max-height: 0;
+    padding: 0;
+}
+
+.code-content:not(.collapsed) {
+    max-height: 1000px;
+    padding: 0;
+}
+
+.enhanced-code-block .highlight {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    background: #272822;
+}
+
+.enhanced-code-block .highlight pre {
+    margin: 0;
+    padding: 20px;
+    background: #272822;
+    border-radius: 0;
+}
+
+/* Line numbers styling */
+.enhanced-code-block .highlight pre code {
+    counter-reset: line;
+}
+
+.enhanced-code-block .highlight pre code .line {
+    counter-increment: line;
+    position: relative;
+    padding-left: 3em;
+}
+
+.enhanced-code-block .highlight pre code .line::before {
+    content: counter(line);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2em;
+    text-align: right;
+    color: #75715e;
+    font-size: 0.85em;
+    padding-right: 1em;
+    border-right: 1px solid #49483e;
+    margin-right: 1em;
+}
+
 .post-content blockquote {
     border-left: 4px solid #a6e22e;
     padding-left: 1.5rem;

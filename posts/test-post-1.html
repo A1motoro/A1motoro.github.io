@@ -286,6 +286,24 @@
         if (statNumbers.length > 0) {
             statNumbers.forEach(stat => observer.observe(stat));
         }
+        
+        // Enhanced code block collapse functionality
+        function toggleCodeBlock(blockId) {
+            const block = document.getElementById(blockId);
+            const content = block.querySelector('.code-content');
+            const button = block.querySelector('.collapse-btn');
+            const icon = button.querySelector('i');
+            
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                button.classList.remove('collapsed');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('collapsed');
+                button.classList.add('collapsed');
+                icon.style.transform = 'rotate(-90deg)';
+            }
+        }
     </script>
 </body>
 </html>

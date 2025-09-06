@@ -96,10 +96,15 @@ Thanks for reading! Feel free to leave comments or reach out to me.
             'codehilite': {
                 'css_class': 'highlight',
                 'use_pygments': True,
-                'noclasses': False
+                'noclasses': False,
+                'linenums': True,
+                'linenostart': 1
             }
         })
         html_content = md.convert(content)
+        
+        # Enhance code blocks with language labels and collapse functionality
+        html_content = self.enhance_code_blocks(html_content)
         
         # Extract excerpt (first paragraph after title)
         excerpt_match = re.search(r'<p>(.+?)</p>', html_content)
@@ -115,6 +120,89 @@ Thanks for reading! Feel free to leave comments or reach out to me.
             'filename': os.path.basename(file_path),
             'slug': os.path.splitext(os.path.basename(file_path))[0]
         }
+    
+    def enhance_code_blocks(self, html_content):
+        """Enhance code blocks with language labels, line numbers, and collapse functionality"""
+        import re
+        
+        # Pattern to match code blocks (both with and without line numbers)
+        code_block_pattern = r'<div class="highlight">(.*?)</div>'
+        
+        def replace_code_block(match):
+            code_content = match.group(1)
+            
+            # Extract language from the first line if it contains language info
+            lines = code_content.split('\n')
+            language = "text"
+            
+            # Extract the actual code content from HTML structure
+            import re
+            # First try to extract code from the <td class="code"> section
+            code_match = re.search(r'<td class="code">.*?<code>(.*?)</code>', code_content, re.DOTALL)
+            if code_match:
+                code_text = re.sub(r'<[^>]+>', '', code_match.group(1))  # Remove HTML tags from code section
+            else:
+                # Fallback: look for any <code> tag
+                code_match = re.search(r'<code>(.*?)</code>', code_content, re.DOTALL)
+                if code_match:
+                    code_text = re.sub(r'<[^>]+>', '', code_match.group(1))
+                else:
+                    code_text = re.sub(r'<[^>]+>', '', code_content)  # Last resort: remove all HTML tags
+            
+            # Try to detect language from common patterns in the actual code
+            if any(keyword in code_text for keyword in ['class ', 'public:', 'private:', 'int ', 'void ', 'return ', 'Node*', 'Node ', 'std::', 'new ', 'delete ']):
+                language = "cpp"
+            elif any(keyword in code_text for keyword in ['def ', 'import ', 'print(', 'if __name__', 'python']):
+                language = "python"
+            elif any(keyword in code_text for keyword in ['function', 'var ', 'let ', 'const ', 'console.log', 'javascript']):
+                language = "javascript"
+            elif any(keyword in code_text for keyword in ['#include', 'int main', 'printf', 'scanf']):
+                language = "c"
+            elif any(keyword in code_text for keyword in ['<html', '<div', 'class=', 'id=']):
+                language = "html"
+            elif any(keyword in code_text for keyword in ['body {', 'color:', 'margin:', 'padding:']):
+                language = "css"
+            else:
+                language = "text"
+            
+            # For now, set language to CPP for programming posts
+            if 'class ' in code_text or 'Node' in code_text or 'int ' in code_text or 'void ' in code_text:
+                language = "cpp"
+            
+            # Count lines by counting <span class="normal"> elements (line numbers)
+            line_count = code_content.count('<span class="normal">')
+            if line_count == 0:
+                # Fallback: count non-empty lines
+                line_count = len([line for line in lines if line.strip()])
+            
+            # Generate unique ID for collapse functionality
+            import uuid
+            block_id = f"code-block-{str(uuid.uuid4())[:8]}"
+            
+            # Create enhanced code block
+            enhanced_block = f'''
+            <div class="enhanced-code-block" id="{block_id}">
+                <div class="code-header">
+                    <div class="code-language">{language.upper()}</div>
+                    <div class="code-info">
+                        <span class="line-count">{line_count} lines</span>
+                        <button class="collapse-btn" onclick="toggleCodeBlock('{block_id}')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="code-content">
+                    <div class="highlight">{code_content}</div>
+                </div>
+            </div>
+            '''
+            
+            return enhanced_block
+        
+        # Replace all code blocks
+        enhanced_html = re.sub(code_block_pattern, replace_code_block, html_content, flags=re.DOTALL)
+        
+        return enhanced_html
     
     def get_all_posts(self):
         """Get all markdown posts from the posts directory"""
@@ -214,15 +302,15 @@ Thanks for reading! Feel free to leave comments or reach out to me.
                 category_slug = category_name.lower().replace(' ', '-')
                 categories_html += f'<a href="category-{category_slug}.html" class="sidebar-tag">{category_data["name"]}</a>\n                            '
         
-        html = template.format(
-            title=post['title'],
-            date=post['date'],
-            category=post['category'],
-            read_time=post['read_time'],
-            content=post['content'],
-            excerpt=post['excerpt'],
-            categories_html=categories_html.strip()
-        )
+        # Use string replacement instead of format to avoid issues with curly braces in content
+        html = template
+        html = html.replace('{title}', post['title'])
+        html = html.replace('{date}', post['date'])
+        html = html.replace('{category}', post['category'])
+        html = html.replace('{read_time}', post['read_time'])
+        html = html.replace('{content}', post['content'])
+        html = html.replace('{excerpt}', post['excerpt'])
+        html = html.replace('{categories_html}', categories_html.strip())
         
         output_path = os.path.join(self.posts_dir, f"{post['slug']}.html")
         with open(output_path, 'w', encoding='utf-8') as f:
