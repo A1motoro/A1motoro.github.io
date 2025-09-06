@@ -11,15 +11,15 @@ Chainedlist is a data structure that allows for efficient insertion, deletion, a
 
 Generally, when it comes to chained list, we talk about the one-way linked list.
 Take C++ as an example, a simple implementation of a chained list can be done as follows:
-''' C++
+```cpp
 class Node {
     int data;
     Node* next;
 };
-'''
+```
 The block above defines the basic structure of a **node** in the list. Each node contains a data field and a pointer to the next node in the list.
 You can surely simulate the same function in arrays, which could be written as follows:
-```C++
+```cpp
 int arr[100][2]; // Assuming a maximum of 100 nodes
 // arr[i][0] stores the data
 // arr[i][1] stores the pointer to the next node
@@ -32,7 +32,7 @@ So clever reader, guess what it means when head = -1?
 Traversal is an O(n) operation in the chained list. You start at the head and traverse every node until you find the node you're looking for. Here's the implementation in C++:
 Say you want to find the first node with a certain value, you can do it as follows:
 
-```C++
+```cpp
 Node* find(int value) {
     Node* current = head;
     while (current!= NULL) {
@@ -58,7 +58,7 @@ Insertion is highly efficient in a chained list. It work like this:
 Here's the implementation in C++:
 Say you want to insert a new node with a value of data after the node of a certain value, you can do it as follows using the find function from above:
 
-```C++
+```cpp
 void insert(int data, int value){
     Node* newNode = new Node;
     newNode->data = data;
@@ -77,7 +77,7 @@ Deletion is also highly efficient in a chained list. It works like this:
 3. Delete the node you found.
 
 Here's the implementation in C++, like when you want to delete a node with a certain value:
-```C++
+```cpp
 void deleteNode(int value) {
     Node* current = head;
     Node* previous = NULL;
@@ -104,8 +104,8 @@ In the previous section, we discussed the basic model of a chained list. In this
 ### Ways to save memory
 
 How do we save memory when we modify a chained list? One way is to reuse the nodes that are no longer in use. This way, we don't need to allocate new memory for the nodes that are modified.  
-1. **Mark the unused**We can add a flag to each node to indicate whether it's in use or not. In some cases, say the data field is defined to be above zero, we can set the data to a negative value to indicate that the node is unused.
-2. **Reuse empty nodes**We can keep track of the last node that keeps unused to save memory when adding a new node, because we don't need to allocate new memory for the last node.
+1. **Mark the unused** We can add a flag to each node to indicate whether it's in use or not. In some cases, say the data field is defined to be above zero, we can set the data to a negative value to indicate that the node is unused.
+2. **Reuse empty nodes** We can keep track of the last node that keeps unused to save memory when adding a new node, because we don't need to allocate new memory for the last node.
 
 For the second way, we announce a variable Node* _freelast_ to keep track of the last unused node. When we need to add a new node, we first check if there are any unused nodes. If there are, we reuse one of them. Otherwise, we allocate a new node.
 
@@ -113,7 +113,7 @@ We initialize _freelast_ to NULL when the list is created. When we add a new nod
 
 Here's the implementation in C++:
 
-```C++
+```cpp
 class Node {
     int data;
     Node* next;
@@ -170,7 +170,7 @@ We create a hash table mapping data to nodes. The hash table make the time varia
 
 Here's the implementation in C++:
 
-```C++
+```cpp
 #include <unordered_map>
 
 class Node {
@@ -211,7 +211,7 @@ There's another O(log N) way to save time by using a **Skip list**, which need t
 
 Here's the implementation in C++:
 
-```C++
+```cpp
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

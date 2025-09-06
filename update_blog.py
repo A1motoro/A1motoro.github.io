@@ -85,8 +85,20 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         read_time_match = re.search(r'\*\*Read Time:\*\* (.+)', content)
         read_time = read_time_match.group(1) if read_time_match else "5 min"
         
-        # Convert markdown to HTML
-        md = markdown.Markdown(extensions=['fenced_code', 'tables', 'toc'])
+        # Convert markdown to HTML with syntax highlighting
+        md = markdown.Markdown(extensions=[
+            'fenced_code', 
+            'tables', 
+            'toc',
+            'codehilite',
+            'attr_list'
+        ], extension_configs={
+            'codehilite': {
+                'css_class': 'highlight',
+                'use_pygments': True,
+                'noclasses': False
+            }
+        })
         html_content = md.convert(content)
         
         # Extract excerpt (first paragraph after title)
