@@ -271,12 +271,12 @@ Thanks for reading! Feel free to leave comments or reach out to me.
         
         for post in category_data['posts']:
             html += f"""
-                <div class="post-item">
+                <a href="{post['slug']}.html" class="post-item">
                     <h3 class="post-title">{post['title']}</h3>
                     <div class="post-meta">Published: {post['date']} • Category: {post['category']} • {post['read_time']} read</div>
                     <p class="post-excerpt">{post['excerpt']}</p>
-                    <a href="{post['slug']}.html" class="read-more">Read Full Post →</a>
-                </div>
+                    <span class="read-more">Read Full Post →</span>
+                </a>
 """
         
         html += """

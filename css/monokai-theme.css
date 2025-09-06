@@ -944,6 +944,9 @@ nav {
     border: 1px solid #49483e;
     position: relative;
     overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .post-item::before {
