@@ -51,84 +51,25 @@
 <h3 id="initialization">Initialization</h3>
 <p>Generally, when it comes to chained list, we talk about the one-way linked list.
 Take C++ as an example, a simple implementation of a chained list can be done as follows:</p>
-
-            <div class="enhanced-code-block" id="code-block-e9a0b3a8">
-                <div class="code-header">
-                    <div class="code-language">TEXT</div>
-                    <div class="code-info">
-                        <span class="line-count">4 lines</span>
-                        <button class="collapse-btn" onclick="toggleCodeBlock('code-block-e9a0b3a8')">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div>
-                </div>
-            </div>
-            </td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 <span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
 <span class="p">};</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 
 <p>The block above defines the basic structure of a <strong>node</strong> in the list. Each node contains a data field and a pointer to the next node in the list.
 You can surely simulate the same function in arrays, which could be written as follows:</p>
-
-            <div class="enhanced-code-block" id="code-block-097033ec">
-                <div class="code-header">
-                    <div class="code-language">TEXT</div>
-                    <div class="code-info">
-                        <span class="line-count">3 lines</span>
-                        <button class="collapse-btn" onclick="toggleCodeBlock('code-block-097033ec')">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div>
-                </div>
-            </div>
-            </td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span><span class="w"> </span><span class="c1">// Assuming a maximum of 100 nodes</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span><span class="w"> </span><span class="c1">// Assuming a maximum of 100 nodes</span>
 <span class="c1">// arr[i][0] stores the data</span>
 <span class="c1">// arr[i][1] stores the pointer to the next node</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 
 <p>Aside from the nodes, it's worth mentioning the <strong>head</strong> of the list, which is the first node in the list.In the case of arrays, the head could be the pointer to the first element in thechained list. Also the last node in the list usualy own a pointer of -1 or NULL to indicate the end of the list.</p>
 <p>So clever reader, guess what it means when head = -1?</p>
 <h3 id="traversal">Traversal</h3>
 <p>Traversal is an O(n) operation in the chained list. You start at the head and traverse every node until you find the node you're looking for. Here's the implementation in C++:
 Say you want to find the first node with a certain value, you can do it as follows:</p>
-
-            <div class="enhanced-code-block" id="code-block-7681d244">
-                <div class="code-header">
-                    <div class="code-language">TEXT</div>
-                    <div class="code-info">
-                        <span class="line-count">10 lines</span>
-                        <button class="collapse-btn" onclick="toggleCodeBlock('code-block-7681d244')">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div>
-                </div>
-            </div>
-            </td><td class="code"><div><pre><span></span><code><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -138,7 +79,7 @@ Say you want to find the first node with a certain value, you can do it as follo
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 
 <p><em>Easy huh?</em>  </p>
 <h3 id="insertion">Insertion</h3>
@@ -151,35 +92,14 @@ Say you want to find the first node with a certain value, you can do it as follo
 </ol>
 <p>Here's the implementation in C++:
 Say you want to insert a new node with a value of data after the node of a certain value, you can do it as follows using the find function from above:</p>
-
-            <div class="enhanced-code-block" id="code-block-c52ad17f">
-                <div class="code-header">
-                    <div class="code-language">TEXT</div>
-                    <div class="code-info">
-                        <span class="line-count">7 lines</span>
-                        <button class="collapse-btn" onclick="toggleCodeBlock('code-block-c52ad17f')">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div>
-                </div>
-            </div>
-            </td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">){</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">){</span>
 <span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">newNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">;</span>
 <span class="w">    </span><span class="n">newNode</span><span class="o">-&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 <span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
 <span class="w">    </span><span class="n">newNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 <span class="w">    </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newNode</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 
 <h3 id="deletion">Deletion</h3>
 <p>Deletion is also highly efficient in a chained list. It works like this:</p>
@@ -189,38 +109,7 @@ Say you want to insert a new node with a value of data after the node of a certa
 <li>Delete the node you found.</li>
 </ol>
 <p>Here's the implementation in C++, like when you want to delete a node with a certain value:</p>
-
-            <div class="enhanced-code-block" id="code-block-e27f4917">
-                <div class="code-header">
-                    <div class="code-language">TEXT</div>
-                    <div class="code-info">
-                        <span class="line-count">17 lines</span>
-                        <button class="collapse-btn" onclick="toggleCodeBlock('code-block-e27f4917')">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span></pre></div>
-                </div>
-            </div>
-            </td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">deleteNode</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">deleteNode</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
 <span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -237,7 +126,7 @@ Say you want to insert a new node with a value of data after the node of a certa
 <span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 
 <h2 id="modification-of-chained-list"><strong>Modification</strong> of Chained List</h2>
 <p>In the previous section, we discussed the basic model of a chained list. In this section, we will discuss the modification of a chained list.</p>
@@ -248,65 +137,7 @@ Say you want to insert a new node with a value of data after the node of a certa
 <p>For the second way, we announce a variable Node* <em>freelast</em> to keep track of the last unused node. When we need to add a new node, we first check if there are any unused nodes. If there are, we reuse one of them. Otherwise, we allocate a new node.</p>
 <p>We initialize <em>freelast</em> to NULL when the list is created. When we add a new node, we check if <em>freelast</em> is NULL. If it is, we allocate a new node and set <em>freelast</em> to it. Otherwise, we reuse the node pointed to by <em>freelast</em> and set <em>freelast</em> to its next pointer. When a node is deleted, we set its next pointer to <em>freelast</em> and set <em>freelast</em> to the deleted node.</p>
 <p>Here's the implementation in C++:</p>
-
-            <div class="enhanced-code-block" id="code-block-26d7a22a">
-                <div class="code-header">
-                    <div class="code-language">TEXT</div>
-                    <div class="code-info">
-                        <span class="line-count">44 lines</span>
-                        <button class="collapse-btn" onclick="toggleCodeBlock('code-block-26d7a22a')">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span></pre></div>
-                </div>
-            </div>
-            </td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 <span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">used</span><span class="p">;</span>
@@ -350,7 +181,7 @@ Say you want to insert a new node with a value of data after the node of a certa
 <span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 
 <p>For this scene, we use the <strong>memory pool</strong>
 <strong>Notice</strong>:this is not a way to save memory, the whole memory is still allocated, but it reduces the number of allocations and frees.</p>
@@ -359,53 +190,7 @@ Say you want to insert a new node with a value of data after the node of a certa
 The main idea of using  the hashmap is exchange time with memory. We can avoid traversing the list to find a node, which takes O(n) time, and instead, we can look it up in the hash table in constant time.
 We create a hash table mapping data to nodes. The hash table make the time varianse of searching a value from O(n) to O(1).</p>
 <p>Here's the implementation in C++:</p>
-
-            <div class="enhanced-code-block" id="code-block-8afd8cb3">
-                <div class="code-header">
-                    <div class="code-language">TEXT</div>
-                    <div class="code-info">
-                        <span class="line-count">32 lines</span>
-                        <button class="collapse-btn" onclick="toggleCodeBlock('code-block-8afd8cb3')">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span></pre></div>
-                </div>
-            </div>
-            </td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unordered_map&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unordered_map&gt;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
@@ -437,84 +222,12 @@ We create a hash table mapping data to nodes. The hash table make the time varia
 <span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 
 <p>In this implementation, we use the unordered_map from the C++ standard library. The unordered_map is a hash table that provides constant time complexity for insertions, deletions, and lookups.</p>
 <p>There's another O(log N) way to save time by using a <strong>Skip list</strong>, which need the basis to be ordered. The idea is to use multiple levels of skip nodes, each of which skips over some number of nodes. When we need to find a node, we start at the top level and move down the levels until we find the node. When we need to insert or delete a node, we update the skip nodes accordingly.</p>
 <p>Here's the implementation in C++:</p>
-
-            <div class="enhanced-code-block" id="code-block-a35a6102">
-                <div class="code-header">
-                    <div class="code-language">TEXT</div>
-                    <div class="code-info">
-                        <span class="line-count">58 lines</span>
-                        <button class="collapse-btn" onclick="toggleCodeBlock('code-block-a35a6102')">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span></pre></div>
-                </div>
-            </div>
-            </td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ctime&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
@@ -572,7 +285,7 @@ We create a hash table mapping data to nodes. The hash table make the time varia
 <span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 
 <p>In this implementation, we use a SkipNode to represent a skip node. Each SkipNode has a pointer to the next node and a level. The level indicates the number of nodes to skip over when moving down the list. We use a random number to determine the number of nodes to skip over. When we need to insert or delete a node, we update the SkipNodes accordingly. In this way, we are saving the search time from O(n) to O(log N) and meanwhile not using extra memory as we are using in the hashmap way.</p>
 <h3 id="conclusion">Conclusion</h3>
@@ -809,23 +522,6 @@ More reletive practice will be shown in more passages. Wait and see!</p>
             statNumbers.forEach(stat => observer.observe(stat));
         }
         
-        // Enhanced code block collapse functionality
-        function toggleCodeBlock(blockId) {
-            const block = document.getElementById(blockId);
-            const content = block.querySelector('.code-content');
-            const button = block.querySelector('.collapse-btn');
-            const icon = button.querySelector('i');
-            
-            if (content.classList.contains('collapsed')) {
-                content.classList.remove('collapsed');
-                button.classList.remove('collapsed');
-                icon.style.transform = 'rotate(0deg)';
-            } else {
-                content.classList.add('collapsed');
-                button.classList.add('collapsed');
-                icon.style.transform = 'rotate(-90deg)';
-            }
-        }
     </script>
 </body>
 </html>

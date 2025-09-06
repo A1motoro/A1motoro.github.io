@@ -60,4 +60,6 @@ echo It will be live at: https://A1motoro.github.io
 echo.
 echo Changes should be visible in 2-5 minutes.
 echo.
-pause
+echo Closing in 3 seconds...
+timeout /t 3 /nobreak >nul
+exit /b 0
