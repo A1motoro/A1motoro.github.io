@@ -793,90 +793,37 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero" style="height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 0; padding: 0; top: 0; left: 0; width: 100%; background: linear-gradient(135deg, #0d1117 0%, #161b22 25%, #0d1117 50%, #161b22 75%, #0d1117 100%); background-size: 400% 400%; animation: backgroundShift 10s ease-in-out infinite;">
-        <!-- Circuit Board Pattern -->
-        <div class="circuit-board" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background-image: 
-            linear-gradient(90deg, rgba(166, 226, 46, 0.3) 1px, transparent 1px),
-            linear-gradient(rgba(166, 226, 46, 0.3) 1px, transparent 1px),
-            linear-gradient(45deg, rgba(102, 217, 239, 0.2) 1px, transparent 1px),
-            linear-gradient(-45deg, rgba(249, 38, 114, 0.2) 1px, transparent 1px);
-            background-size: 50px 50px, 50px 50px, 100px 100px, 100px 100px;
-            animation: circuitPulse 4s ease-in-out infinite;">
-        </div>
-        
-        <!-- Terminal Window -->
-        <div class="terminal-window" style="position: absolute; top: 20px; left: 20px; width: 400px; height: 200px; background: rgba(13, 17, 23, 0.95); border: 2px solid rgba(166, 226, 46, 0.8); border-radius: 8px; z-index: 2; font-family: 'Courier New', monospace; padding: 15px; box-shadow: 0 0 30px rgba(166, 226, 46, 0.5), inset 0 0 20px rgba(166, 226, 46, 0.1);">
-            <div style="color: #66d9ef; font-size: 12px; margin-bottom: 10px; text-shadow: 0 0 10px rgba(102, 217, 239, 0.8);">$ terminal@blogii:~$</div>
-            <div style="color: #a6e22e; font-size: 11px; line-height: 1.4;">
-                <div style="text-shadow: 0 0 8px rgba(166, 226, 46, 0.6);">npm install creativity</div>
-                <div style="color: #f8f8f2; text-shadow: 0 0 8px rgba(248, 248, 242, 0.6);">✓ Installing packages...</div>
-                <div style="color: #a6e22e; text-shadow: 0 0 8px rgba(166, 226, 46, 0.6);">✓ creativity@2.0.0 installed</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 10px rgba(102, 217, 239, 0.8);">$ <span style="animation: terminalCursor 1s infinite, rollingCursor 3s ease-in-out infinite;">█</span></div>
-            </div>
-        </div>
-        
-        <!-- Code Editor -->
-        <div class="code-editor" style="position: absolute; top: 20px; right: 20px; width: 350px; height: 250px; background: rgba(13, 17, 23, 0.95); border: 2px solid rgba(102, 217, 239, 0.8); border-radius: 8px; z-index: 2; font-family: 'Courier New', monospace; padding: 15px; box-shadow: 0 0 30px rgba(102, 217, 239, 0.5), inset 0 0 20px rgba(102, 217, 239, 0.1);">
-            <div style="color: #f8f8f2; font-size: 11px; line-height: 1.6;">
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">1</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">2</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">3</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">4</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">5</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">6</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">7</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">8</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">9</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.6);">10</div>
-            </div>
-            <div style="position: absolute; top: 15px; left: 40px; color: #f8f8f2; font-size: 11px; line-height: 1.6;">
-                <div style="overflow: hidden; white-space: nowrap; animation: reverseTyping 4s ease-in-out infinite;"><span style="color: #f92672; text-shadow: 0 0 8px rgba(249, 38, 114, 0.8);">const</span> <span style="color: #a6e22e; text-shadow: 0 0 8px rgba(166, 226, 46, 0.8);">blog</span> = {</div>
-                <div style="overflow: hidden; white-space: nowrap; animation: reverseTyping 4s ease-in-out infinite 0.5s;">  <span style="color: #a6e22e; text-shadow: 0 0 8px rgba(166, 226, 46, 0.8);">title</span>: <span style="color: #e6db74; text-shadow: 0 0 8px rgba(230, 219, 116, 0.8);">'Welcome to BLOGIIIIII'</span>,</div>
-                <div style="overflow: hidden; white-space: nowrap; animation: reverseTyping 4s ease-in-out infinite 1s;">  <span style="color: #a6e22e; text-shadow: 0 0 8px rgba(166, 226, 46, 0.8);">content</span>: <span style="color: #e6db74; text-shadow: 0 0 8px rgba(230, 219, 116, 0.8);">'Sharing thoughts...'</span>,</div>
-                <div style="overflow: hidden; white-space: nowrap; animation: reverseTyping 4s ease-in-out infinite 1.5s;">  <span style="color: #a6e22e; text-shadow: 0 0 8px rgba(166, 226, 46, 0.8);">tech</span>: [<span style="color: #e6db74; text-shadow: 0 0 8px rgba(230, 219, 116, 0.8);">'JS'</span>, <span style="color: #e6db74; text-shadow: 0 0 8px rgba(230, 219, 116, 0.8);">'CSS'</span>, <span style="color: #e6db74; text-shadow: 0 0 8px rgba(230, 219, 116, 0.8);">'HTML'</span>],</div>
-                <div style="overflow: hidden; white-space: nowrap; animation: reverseTyping 4s ease-in-out infinite 2s;">  <span style="color: #a6e22e; text-shadow: 0 0 8px rgba(166, 226, 46, 0.8);">publish</span>: <span style="color: #f92672; text-shadow: 0 0 8px rgba(249, 38, 114, 0.8);">true</span></div>
-                <div style="overflow: hidden; white-space: nowrap; animation: reverseTyping 4s ease-in-out infinite 2.5s;">};</div>
-                <div style="overflow: hidden; white-space: nowrap; animation: reverseTyping 4s ease-in-out infinite 3s;"><span style="color: #66d9ef; text-shadow: 0 0 8px rgba(102, 217, 239, 0.8);">console</span>.<span style="color: #a6e22e; text-shadow: 0 0 8px rgba(166, 226, 46, 0.8);">log</span>(<span style="color: #a6e22e; text-shadow: 0 0 8px rgba(166, 226, 46, 0.8);">blog</span>);</div>
-                <div style="color: #66d9ef; text-shadow: 0 0 10px rgba(102, 217, 239, 0.8);">// <span style="animation: terminalCursor 1s infinite, rollingCursor 3s ease-in-out infinite;">█</span></div>
-            </div>
-        </div>
-        
-        <!-- Binary Data Stream -->
-        <div class="binary-stream" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden;">
-            <div style="position: absolute; top: 30%; left: -100px; color: rgba(166, 226, 46, 0.9); font-family: 'Courier New', monospace; font-size: 14px; animation: dataFlow 8s linear infinite; text-shadow: 0 0 15px rgba(166, 226, 46, 1), 0 0 30px rgba(166, 226, 46, 0.6);">01001000 01100101 01101100 01101100 01101111</div>
-            <div style="position: absolute; top: 50%; left: -100px; color: rgba(102, 217, 239, 0.9); font-family: 'Courier New', monospace; font-size: 14px; animation: dataFlow 6s linear infinite 2s; text-shadow: 0 0 15px rgba(102, 217, 239, 1), 0 0 30px rgba(102, 217, 239, 0.6);">01110111 01101111 01110010 01101100 01100100</div>
-            <div style="position: absolute; top: 70%; left: -100px; color: rgba(249, 38, 114, 0.9); font-family: 'Courier New', monospace; font-size: 14px; animation: dataFlow 7s linear infinite 4s; text-shadow: 0 0 15px rgba(249, 38, 114, 1), 0 0 30px rgba(249, 38, 114, 0.6);">01100010 01101100 01101111 01100111 01101001 01101001</div>
-        </div>
-        
-        <!-- Floating Code Snippets -->
-        <div class="code-snippets" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;">
-            <div style="position: absolute; top: 15%; left: 10%; background: rgba(166, 226, 46, 0.2); padding: 8px 12px; border-radius: 4px; border-left: 3px solid rgba(166, 226, 46, 1); font-family: 'Courier New', monospace; font-size: 10px; color: #a6e22e; animation: codeHighlight 3s ease-in-out infinite; text-shadow: 0 0 8px rgba(166, 226, 46, 0.8); box-shadow: 0 0 15px rgba(166, 226, 46, 0.3);">
-                function createBlog() {<br>
-                &nbsp;&nbsp;return "Amazing content";<br>
-                }
-            </div>
-            <div style="position: absolute; top: 25%; right: 15%; background: rgba(102, 217, 239, 0.2); padding: 8px 12px; border-radius: 4px; border-left: 3px solid rgba(102, 217, 239, 1); font-family: 'Courier New', monospace; font-size: 10px; color: #66d9ef; animation: codeHighlight 3s ease-in-out infinite 1s; text-shadow: 0 0 8px rgba(102, 217, 239, 0.8); box-shadow: 0 0 15px rgba(102, 217, 239, 0.3);">
-                const tech = ['JS', 'CSS', 'HTML'];<br>
-                tech.forEach(t => console.log(t));
-            </div>
-            <div style="position: absolute; top: 60%; left: 5%; background: rgba(249, 38, 114, 0.2); padding: 8px 12px; border-radius: 4px; border-left: 3px solid rgba(249, 38, 114, 1); font-family: 'Courier New', monospace; font-size: 10px; color: #f92672; animation: codeHighlight 3s ease-in-out infinite 2s; text-shadow: 0 0 8px rgba(249, 38, 114, 0.8); box-shadow: 0 0 15px rgba(249, 38, 114, 0.3);">
-                if (creativity > 0) {<br>
-                &nbsp;&nbsp;blog.post();
-                }
-            </div>
-        </div>
-        
-        <!-- Matrix-style Binary Rain -->
-        <div class="matrix-rain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden;">
-            <div style="position: absolute; top: -20px; left: 5%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(166, 226, 46, 0.8); animation: binaryBlink 2s ease-in-out infinite; text-shadow: 0 0 10px rgba(166, 226, 46, 0.8);">1</div>
-            <div style="position: absolute; top: -20px; left: 15%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(102, 217, 239, 0.8); animation: binaryBlink 2s ease-in-out infinite 0.5s; text-shadow: 0 0 10px rgba(102, 217, 239, 0.8);">0</div>
-            <div style="position: absolute; top: -20px; left: 25%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(166, 226, 46, 0.8); animation: binaryBlink 2s ease-in-out infinite 1s; text-shadow: 0 0 10px rgba(166, 226, 46, 0.8);">1</div>
-            <div style="position: absolute; top: -20px; left: 35%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(102, 217, 239, 0.8); animation: binaryBlink 2s ease-in-out infinite 1.5s; text-shadow: 0 0 10px rgba(102, 217, 239, 0.8);">0</div>
-            <div style="position: absolute; top: -20px; left: 45%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(166, 226, 46, 0.8); animation: binaryBlink 2s ease-in-out infinite 2s; text-shadow: 0 0 10px rgba(166, 226, 46, 0.8);">1</div>
-            <div style="position: absolute; top: -20px; left: 55%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(102, 217, 239, 0.8); animation: binaryBlink 2s ease-in-out infinite 2.5s; text-shadow: 0 0 10px rgba(102, 217, 239, 0.8);">0</div>
-            <div style="position: absolute; top: -20px; left: 65%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(166, 226, 46, 0.8); animation: binaryBlink 2s ease-in-out infinite 3s; text-shadow: 0 0 10px rgba(166, 226, 46, 0.8);">1</div>
-            <div style="position: absolute; top: -20px; left: 75%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(102, 217, 239, 0.8); animation: binaryBlink 2s ease-in-out infinite 3.5s; text-shadow: 0 0 10px rgba(102, 217, 239, 0.8);">0</div>
-            <div style="position: absolute; top: -20px; left: 85%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(166, 226, 46, 0.8); animation: binaryBlink 2s ease-in-out infinite 4s; text-shadow: 0 0 10px rgba(166, 226, 46, 0.8);">1</div>
-            <div style="position: absolute; top: -20px; left: 95%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(102, 217, 239, 0.8); animation: binaryBlink 2s ease-in-out infinite 4.5s; text-shadow: 0 0 10px rgba(102, 217, 239, 0.8);">0</div>
+        <!-- Thick Glowing Diagonal Lines -->
+        <div class="diagonal-lines" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
+            <!-- 45° Angle Lines -->
+            <div style="position: absolute; top: 20%; left: -100%; width: 400%; height: 8px; background: linear-gradient(45deg, transparent 0%, #a6e22e 30%, #66d9ef 70%, transparent 100%); transform: rotate(45deg); transform-origin: left center; box-shadow: 0 0 20px #a6e22e, 0 0 40px #66d9ef;"></div>
+            <div style="position: absolute; top: 50%; left: -100%; width: 400%; height: 8px; background: linear-gradient(45deg, transparent 0%, #f92672 30%, #e6db74 70%, transparent 100%); transform: rotate(45deg); transform-origin: left center; box-shadow: 0 0 20px #f92672, 0 0 40px #e6db74;"></div>
+            <div style="position: absolute; top: 80%; left: -100%; width: 400%; height: 8px; background: linear-gradient(45deg, transparent 0%, #ae81ff 30%, #f8f8f2 70%, transparent 100%); transform: rotate(45deg); transform-origin: left center; box-shadow: 0 0 20px #ae81ff, 0 0 40px #f8f8f2;"></div>
+            
+            <!-- -45° Angle Lines -->
+            <div style="position: absolute; top: 0; right: -100%; width: 400%; height: 8px; background: linear-gradient(-45deg, transparent 0%, #66d9ef 30%, #a6e22e 70%, transparent 100%); transform: rotate(-45deg); transform-origin: right center; box-shadow: 0 0 20px #66d9ef, 0 0 40px #a6e22e;"></div>
+            <div style="position: absolute; top: 30%; right: -100%; width: 400%; height: 8px; background: linear-gradient(-45deg, transparent 0%, #e6db74 30%, #f92672 70%, transparent 100%); transform: rotate(-45deg); transform-origin: right center; box-shadow: 0 0 20px #e6db74, 0 0 40px #f92672;"></div>
+            <div style="position: absolute; top: 60%; right: -100%; width: 400%; height: 8px; background: linear-gradient(-45deg, transparent 0%, #f8f8f2 30%, #ae81ff 70%, transparent 100%); transform: rotate(-45deg); transform-origin: right center; box-shadow: 0 0 20px #f8f8f2, 0 0 40px #ae81ff;"></div>
+            
+            <!-- 30° Angle Lines -->
+            <div style="position: absolute; top: 10%; left: -80%; width: 300%; height: 6px; background: linear-gradient(30deg, transparent 0%, #f92672 40%, #ae81ff 60%, transparent 100%); transform: rotate(30deg); transform-origin: left center; box-shadow: 0 0 15px #f92672, 0 0 30px #ae81ff;"></div>
+            <div style="position: absolute; top: 40%; left: -80%; width: 300%; height: 6px; background: linear-gradient(30deg, transparent 0%, #a6e22e 40%, #66d9ef 60%, transparent 100%); transform: rotate(30deg); transform-origin: left center; box-shadow: 0 0 15px #a6e22e, 0 0 30px #66d9ef;"></div>
+            <div style="position: absolute; top: 70%; left: -80%; width: 300%; height: 6px; background: linear-gradient(30deg, transparent 0%, #e6db74 40%, #f8f8f2 60%, transparent 100%); transform: rotate(30deg); transform-origin: left center; box-shadow: 0 0 15px #e6db74, 0 0 30px #f8f8f2;"></div>
+            
+            <!-- -30° Angle Lines -->
+            <div style="position: absolute; top: 0; right: -80%; width: 300%; height: 6px; background: linear-gradient(-30deg, transparent 0%, #ae81ff 40%, #f92672 60%, transparent 100%); transform: rotate(-30deg); transform-origin: right center; box-shadow: 0 0 15px #ae81ff, 0 0 30px #f92672;"></div>
+            <div style="position: absolute; top: 30%; right: -80%; width: 300%; height: 6px; background: linear-gradient(-30deg, transparent 0%, #66d9ef 40%, #a6e22e 60%, transparent 100%); transform: rotate(-30deg); transform-origin: right center; box-shadow: 0 0 15px #66d9ef, 0 0 30px #a6e22e;"></div>
+            <div style="position: absolute; top: 60%; right: -80%; width: 300%; height: 6px; background: linear-gradient(-30deg, transparent 0%, #f8f8f2 40%, #e6db74 60%, transparent 100%); transform: rotate(-30deg); transform-origin: right center; box-shadow: 0 0 15px #f8f8f2, 0 0 30px #e6db74;"></div>
+            
+            <!-- 60° Angle Lines -->
+            <div style="position: absolute; top: 15%; left: -90%; width: 350%; height: 7px; background: linear-gradient(60deg, transparent 0%, #e6db74 35%, #f92672 65%, transparent 100%); transform: rotate(60deg); transform-origin: left center; box-shadow: 0 0 18px #e6db74, 0 0 35px #f92672;"></div>
+            <div style="position: absolute; top: 45%; left: -90%; width: 350%; height: 7px; background: linear-gradient(60deg, transparent 0%, #ae81ff 35%, #f8f8f2 65%, transparent 100%); transform: rotate(60deg); transform-origin: left center; box-shadow: 0 0 18px #ae81ff, 0 0 35px #f8f8f2;"></div>
+            <div style="position: absolute; top: 75%; left: -90%; width: 350%; height: 7px; background: linear-gradient(60deg, transparent 0%, #a6e22e 35%, #66d9ef 65%, transparent 100%); transform: rotate(60deg); transform-origin: left center; box-shadow: 0 0 18px #a6e22e, 0 0 35px #66d9ef;"></div>
+            
+            <!-- -60° Angle Lines -->
+            <div style="position: absolute; top: 0; right: -90%; width: 350%; height: 7px; background: linear-gradient(-60deg, transparent 0%, #f92672 35%, #e6db74 65%, transparent 100%); transform: rotate(-60deg); transform-origin: right center; box-shadow: 0 0 18px #f92672, 0 0 35px #e6db74;"></div>
+            <div style="position: absolute; top: 30%; right: -90%; width: 350%; height: 7px; background: linear-gradient(-60deg, transparent 0%, #f8f8f2 35%, #ae81ff 65%, transparent 100%); transform: rotate(-60deg); transform-origin: right center; box-shadow: 0 0 18px #f8f8f2, 0 0 35px #ae81ff;"></div>
+            <div style="position: absolute; top: 60%; right: -90%; width: 350%; height: 7px; background: linear-gradient(-60deg, transparent 0%, #66d9ef 35%, #a6e22e 65%, transparent 100%); transform: rotate(-60deg); transform-origin: right center; box-shadow: 0 0 18px #66d9ef, 0 0 35px #a6e22e;"></div>
         </div>
         
         <!-- Gradient Overlay -->
@@ -1007,10 +954,10 @@
                     <p>I'm a passionate writer, developer, and lifelong learner who loves sharing knowledge and experiences through this blog. With a background in technology and a curiosity for the world around us, I write about everything from coding tutorials to personal reflections.</p>
                     <p>When I'm not writing or coding, you can find me exploring new places, reading books, or experimenting with new technologies. I believe in continuous learning and sharing that knowledge with others.</p>
                     <div class="social-links">
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="mailto:your-email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
