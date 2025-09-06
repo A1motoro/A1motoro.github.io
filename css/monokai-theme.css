@@ -1284,60 +1284,60 @@ nav {
 
 /* Monokai-specific enhancements */
 
-.post-content .highlight .cpf { color: #e6db74; } /* Preprocessor file names */
-.post-content .highlight .c1 { color: #75715e; font-style: italic; } /* Single line comments */
-.post-content .highlight .cm { color: #75715e; font-style: italic; } /* Multi-line comments */
-.post-content .highlight .c { color: #75715e; font-style: italic; } /* Comments */
+.post-content .highlight .cpf { color: #e6db74 !important; } /* Preprocessor file names */
+.post-content .highlight .c1 { color: #75715e !important; font-style: italic !important; } /* Single line comments */
+.post-content .highlight .cm { color: #75715e !important; font-style: italic !important; } /* Multi-line comments */
+.post-content .highlight .c { color: #75715e !important; font-style: italic !important; } /* Comments */
 
 /* Pygments C++ specific classes - True Monokai Theme */
-.post-content .highlight .k { color: #f92672; font-weight: bold; } /* Keywords - Pink */
-.post-content .highlight .kt { color: #66d9ef; } /* Keyword Type - Cyan */
-.post-content .highlight .s { color: #e6db74; } /* String - Yellow */
-.post-content .highlight .c { color: #75715e; font-style: italic; } /* Comment - Gray */
-.post-content .highlight .m { color: #ae81ff; } /* Number - Purple */
-.post-content .highlight .nf { color: #a6e22e; } /* Name Function - Green */
-.post-content .highlight .o { color: #f8f8f2; } /* Operator - White */
-.post-content .highlight .p { color: #f8f8f2; } /* Punctuation - White */
-.post-content .highlight .cp { color: #f92672; } /* Comment Preproc - Pink */
-.post-content .highlight .n { color: #f8f8f2; } /* Name - White */
-.post-content .highlight .nc { color: #a6e22e; } /* Name Class - Green */
-.post-content .highlight .nn { color: #66d9ef; } /* Name Namespace - Cyan */
-.post-content .highlight .nt { color: #f92672; } /* Name Tag - Pink */
-.post-content .highlight .na { color: #a6e22e; } /* Name Attribute - Green */
-.post-content .highlight .nb { color: #a6e22e; } /* Name Builtin - Green */
-.post-content .highlight .no { color: #ae81ff; } /* Name Constant - Purple */
-.post-content .highlight .nd { color: #ae81ff; } /* Name Decorator - Purple */
-.post-content .highlight .ni { color: #ae81ff; } /* Name Entity - Purple */
-.post-content .highlight .ne { color: #f92672; } /* Name Exception - Pink */
-.post-content .highlight .nl { color: #a6e22e; } /* Name Label - Green */
-.post-content .highlight .py { color: #a6e22e; } /* Name Property - Green */
-.post-content .highlight .nv { color: #f8f8f2; } /* Name Variable - White */
-.post-content .highlight .vc { color: #f8f8f2; } /* Name Variable Class - White */
-.post-content .highlight .vg { color: #f8f8f2; } /* Name Variable Global - White */
-.post-content .highlight .vi { color: #f8f8f2; } /* Name Variable Instance - White */
-.post-content .highlight .w { color: #f8f8f2; } /* Text Whitespace - White */
-.post-content .highlight .mb { color: #ae81ff; } /* Literal Number Bin - Purple */
-.post-content .highlight .mf { color: #ae81ff; } /* Literal Number Float - Purple */
-.post-content .highlight .mh { color: #ae81ff; } /* Literal Number Hex - Purple */
-.post-content .highlight .mi { color: #ae81ff; } /* Literal Number Integer - Purple */
-.post-content .highlight .mo { color: #ae81ff; } /* Literal Number Oct - Purple */
-.post-content .highlight .sa { color: #e6db74; } /* Literal String Affix - Yellow */
-.post-content .highlight .sb { color: #e6db74; } /* Literal String Backtick - Yellow */
-.post-content .highlight .sc { color: #e6db74; } /* Literal String Char - Yellow */
-.post-content .highlight .dl { color: #e6db74; } /* Literal String Delimiter - Yellow */
-.post-content .highlight .sd { color: #e6db74; } /* Literal String Doc - Yellow */
-.post-content .highlight .s2 { color: #e6db74; } /* Literal String Double - Yellow */
-.post-content .highlight .se { color: #ae81ff; } /* Literal String Escape - Purple */
-.post-content .highlight .sh { color: #e6db74; } /* Literal String Heredoc - Yellow */
-.post-content .highlight .si { color: #e6db74; } /* Literal String Interpol - Yellow */
-.post-content .highlight .sx { color: #e6db74; } /* Literal String Other - Yellow */
-.post-content .highlight .sr { color: #e6db74; } /* Literal String Regex - Yellow */
-.post-content .highlight .s1 { color: #e6db74; } /* Literal String Single - Yellow */
-.post-content .highlight .ss { color: #e6db74; } /* Literal String Symbol - Yellow */
-.post-content .highlight .bp { color: #a6e22e; } /* Name Builtin Pseudo - Green */
-.post-content .highlight .fm { color: #a6e22e; } /* Name Function Magic - Green */
-.post-content .highlight .vm { color: #f8f8f2; } /* Name Variable Magic - White */
-.post-content .highlight .il { color: #ae81ff; } /* Literal Number Integer Long - Purple */
+.post-content .highlight .k { color: #f92672 !important; font-weight: bold !important; } /* Keywords - Pink */
+.post-content .highlight .kt { color: #66d9ef !important; } /* Keyword Type - Cyan */
+.post-content .highlight .s { color: #e6db74 !important; } /* String - Yellow */
+.post-content .highlight .c { color: #75715e !important; font-style: italic !important; } /* Comment - Gray */
+.post-content .highlight .m { color: #ae81ff !important; } /* Number - Purple */
+.post-content .highlight .nf { color: #a6e22e !important; } /* Name Function - Green */
+.post-content .highlight .o { color: #f8f8f2 !important; } /* Operator - White */
+.post-content .highlight .p { color: #f8f8f2 !important; } /* Punctuation - White */
+.post-content .highlight .cp { color: #f92672 !important; } /* Comment Preproc - Pink */
+.post-content .highlight .n { color: #f8f8f2 !important; } /* Name - White */
+.post-content .highlight .nc { color: #a6e22e !important; } /* Name Class - Green */
+.post-content .highlight .nn { color: #66d9ef !important; } /* Name Namespace - Cyan */
+.post-content .highlight .nt { color: #f92672 !important; } /* Name Tag - Pink */
+.post-content .highlight .na { color: #a6e22e !important; } /* Name Attribute - Green */
+.post-content .highlight .nb { color: #a6e22e !important; } /* Name Builtin - Green */
+.post-content .highlight .no { color: #ae81ff !important; } /* Name Constant - Purple */
+.post-content .highlight .nd { color: #ae81ff !important; } /* Name Decorator - Purple */
+.post-content .highlight .ni { color: #ae81ff !important; } /* Name Entity - Purple */
+.post-content .highlight .ne { color: #f92672 !important; } /* Name Exception - Pink */
+.post-content .highlight .nl { color: #a6e22e !important; } /* Name Label - Green */
+.post-content .highlight .py { color: #a6e22e !important; } /* Name Property - Green */
+.post-content .highlight .nv { color: #f8f8f2 !important; } /* Name Variable - White */
+.post-content .highlight .vc { color: #f8f8f2 !important; } /* Name Variable Class - White */
+.post-content .highlight .vg { color: #f8f8f2 !important; } /* Name Variable Global - White */
+.post-content .highlight .vi { color: #f8f8f2 !important; } /* Name Variable Instance - White */
+.post-content .highlight .w { color: #f8f8f2 !important; } /* Text Whitespace - White */
+.post-content .highlight .mb { color: #ae81ff !important; } /* Literal Number Bin - Purple */
+.post-content .highlight .mf { color: #ae81ff !important; } /* Literal Number Float - Purple */
+.post-content .highlight .mh { color: #ae81ff !important; } /* Literal Number Hex - Purple */
+.post-content .highlight .mi { color: #ae81ff !important; } /* Literal Number Integer - Purple */
+.post-content .highlight .mo { color: #ae81ff !important; } /* Literal Number Oct - Purple */
+.post-content .highlight .sa { color: #e6db74 !important; } /* Literal String Affix - Yellow */
+.post-content .highlight .sb { color: #e6db74 !important; } /* Literal String Backtick - Yellow */
+.post-content .highlight .sc { color: #e6db74 !important; } /* Literal String Char - Yellow */
+.post-content .highlight .dl { color: #e6db74 !important; } /* Literal String Delimiter - Yellow */
+.post-content .highlight .sd { color: #e6db74 !important; } /* Literal String Doc - Yellow */
+.post-content .highlight .s2 { color: #e6db74 !important; } /* Literal String Double - Yellow */
+.post-content .highlight .se { color: #ae81ff !important; } /* Literal String Escape - Purple */
+.post-content .highlight .sh { color: #e6db74 !important; } /* Literal String Heredoc - Yellow */
+.post-content .highlight .si { color: #e6db74 !important; } /* Literal String Interpol - Yellow */
+.post-content .highlight .sx { color: #e6db74 !important; } /* Literal String Other - Yellow */
+.post-content .highlight .sr { color: #e6db74 !important; } /* Literal String Regex - Yellow */
+.post-content .highlight .s1 { color: #e6db74 !important; } /* Literal String Single - Yellow */
+.post-content .highlight .ss { color: #e6db74 !important; } /* Literal String Symbol - Yellow */
+.post-content .highlight .bp { color: #a6e22e !important; } /* Name Builtin Pseudo - Green */
+.post-content .highlight .fm { color: #a6e22e !important; } /* Name Function Magic - Green */
+.post-content .highlight .vm { color: #f8f8f2 !important; } /* Name Variable Magic - White */
+.post-content .highlight .il { color: #ae81ff !important; } /* Literal Number Integer Long - Purple */
 
 .post-content blockquote {
     border-left: 4px solid #a6e22e;
