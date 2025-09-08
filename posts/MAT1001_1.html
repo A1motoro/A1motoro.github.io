@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Blog - BLOGIIIIII</title>
+    <title>MAT1001_1 - BLOGIIIIII</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../css/monokai-theme.css" rel="stylesheet">
     <!-- MathJax for LaTeX math support -->
@@ -49,29 +49,59 @@
                 <div class="blog-main">
                     <div class="post-container">
                         <div class="post-header">
-                            <h1 class="post-title">Welcome to My Blog</h1>
+                            <h1 class="post-title">MAT1001_1</h1>
                             <div class="post-meta">
-                                <span><i class="fas fa-calendar"></i> Published: September 5, 2025</span>
-                                <span><i class="fas fa-tag"></i> Category: Personal</span>
-                                <span><i class="fas fa-clock"></i> 3 min read</span>
+                                <span><i class="fas fa-calendar"></i> Published: September 8, 2025</span>
+                                <span><i class="fas fa-tag"></i> Category: Mathematics</span>
+                                <span><i class="fas fa-clock"></i> TBD min read</span>
                             </div>
                         </div>
                         <div class="post-content">
-                            <h1 id="welcome-to-my-blog">Welcome to My Blog</h1>
-<p><strong>Published:</strong> September 5, 2025
-<strong>Category:</strong> Personal
-<strong>Read Time:</strong> 3 min</p>
-<h2 id="hello-world">Hello World! 👋</h2>
-<p>Welcome to my personal blog! I'm excited to share my journey, thoughts, and experiences with you.</p>
-<h2 id="about-this-blog">About This Blog</h2>
-<p>This is where I'll be writing about:
-- My learning journey
-- Interesting projects I'm working on
-- Thoughts on technology and life
-- Tutorials and tips I discover</p>
-<h2 id="what-to-expect">What to Expect</h2>
-<p>I plan to post regularly about various topics that interest me. Feel free to explore and let me know what you think!</p>
-<p>Thanks for visiting! 🚀</p>
+                            <h1 id="mat1001_1">MAT1001_1</h1>
+<p><strong>Published:</strong> September 8, 2025</p>
+<p><strong>Category:</strong> Mathematics</p>
+<p><strong>Read Time:</strong> TBD min</p>
+<blockquote>
+<p>Change is the only constant.<br />
+<div style="text-align: right; font-style: italic;">— Heraclitus</div></p>
+</blockquote>
+<h2 id="derivatives">Derivatives</h2>
+<p>Derivatives demonstrate the slope k at a point of a graph.Certainly it is not defined as so in math.</p>
+<h3 id="definition-of-derivatives">Definition of Derivatives</h3>
+<p>In modern mathematics, the derivative of a function <span class="arithmatex">\(f(x)\)</span> at a point <span class="arithmatex">\(x\)</span> is defined as the following limit (if it exists):</p>
+<div class="arithmatex">\[
+f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+\]</div>
+<p>This is often denoted as:</p>
+<div class="arithmatex">\[
+\frac{dy}{dx}
+\]</div>
+<h3 id="differentiablity">Differentiablity</h3>
+<p>Derivatives do not always exist, and in the following situations <span class="arithmatex">\(f(x)\)</span> does not have a derivative at a point <span class="arithmatex">\(x\)</span>.
+- <span class="arithmatex">\(x\)</span> not in its domain
+- <span class="arithmatex">\(f(x)\)</span> show discontinuity at <span class="arithmatex">\(x\)</span>
+- the <span class="arithmatex">\(x\)</span> happens to be a cusp or a corner
+- at <span class="arithmatex">\(x\)</span> see a vertical tangent<br />
+To conclude, to make a function differentiable at a certain point, it need to be smooth at the point, and the situations above aren't smooth.</p>
+<p>Notice that the necessary and sufficient condition of <span class="arithmatex">\(h \to x = l\)</span> is <span class="arithmatex">\(h \to 0^{-} = l\)</span> and <span class="arithmatex">\(h \to 0^{+} = l\)</span>, so as it for derivatives:</p>
+<p>That is, the derivative exists at <span class="arithmatex">\(x\)</span> if and only if the left-hand limit and the right-hand limit are equal:</p>
+<div class="arithmatex">\[
+\lim_{h \to 0^-} \frac{f(x+h) - f(x)}{h} = \lim_{h \to 0^+} \frac{f(x+h) - f(x)}{h}
+\]</div>
+<p>If these two one-sided limits are not equal, the derivative at <span class="arithmatex">\(x\)</span> does not exist.</p>
+<h3 id="geometric-interpretation">Geometric Interpretation</h3>
+<h2 id="the-derivative-at-a-point-x-gives-the-slope-of-the-tangent-line-to-the-graph-of-fx-at-that-point-if-the-function-is-not-smooth-for-example-if-there-is-a-corner-or-cusp-the-tangent-line-is-not-well-defined-and-so-the-derivative-does-not-exist-there">The derivative at a point <span class="arithmatex">\(x\)</span> gives the slope of the tangent line to the graph of <span class="arithmatex">\(f(x)\)</span> at that point. If the function is not smooth (for example, if there is a corner or cusp), the tangent line is not well-defined, and so the derivative does not exist there.</h2>
+<h2 id="example">Example</h2>
+<p>Lets see some examples.</p>
+<h4 id="example-1">Example 1</h4>
+<p>Consider the function <span class="arithmatex">\(f(x) = |x|\)</span>. Let's check if it is differentiable at <span class="arithmatex">\(x = 0\)</span>:</p>
+<div class="arithmatex">\[
+\lim_{h \to 0^-} \frac{|0 + h| - |0|}{h} = \lim_{h \to 0^-} \frac{|h|}{h} = \lim_{h \to 0^-} \frac{-h}{h} = -1
+\]</div>
+<div class="arithmatex">\[
+\lim_{h \to 0^+} \frac{|0 + h| - |0|}{h} = \lim_{h \to 0^+} \frac{|h|}{h} = \lim_{h \to 0^+} \frac{h}{h} = 1
+\]</div>
+<p>Since the left and right limits are not equal, <span class="arithmatex">\(f(x) = |x|\)</span> is <strong>not differentiable</strong> at <span class="arithmatex">\(x = 0\)</span>.</p>
                         </div>
                         
                         <!-- Comments Section -->

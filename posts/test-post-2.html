@@ -6,6 +6,21 @@
     <title>Test Post 2 - BLOGIIIIII</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../css/monokai-theme.css" rel="stylesheet">
+    <!-- MathJax for LaTeX math support -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <header>
@@ -100,6 +115,7 @@
                             Categories
                         </h3>
                         <div class="sidebar-tags">
+                            <a href="category-mathematics.html" class="sidebar-tag">Mathematics</a>
                             <a href="category-personal.html" class="sidebar-tag">Personal</a>
                             <a href="category-programming.html" class="sidebar-tag">Programming</a>
                             <a href="category-test.html" class="sidebar-tag">Test</a>

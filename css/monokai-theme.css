@@ -1342,6 +1342,61 @@ nav {
 .post-content .highlight .vm { color: #f8f8f2 !important; } /* Name Variable Magic - White */
 .post-content .highlight .il { color: #ae81ff !important; } /* Literal Number Integer Long - Purple */
 
+/* MathJax LaTeX Math Styling */
+.MathJax {
+    color: #f8f8f2 !important;
+    font-size: 1.1em !important;
+}
+
+/* Inline math styling */
+.MathJax_Display {
+    margin: 1.5rem 0 !important;
+    text-align: center !important;
+}
+
+/* Math formula background and padding */
+.mjx-chtml {
+    background: rgba(39, 40, 34, 0.8) !important;
+    padding: 0.5rem !important;
+    border-radius: 6px !important;
+    border: 1px solid #49483e !important;
+    margin: 0.2rem 0 !important;
+}
+
+/* Display math (block) styling */
+.mjx-chtml[display="true"] {
+    background: rgba(39, 40, 34, 0.9) !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+    border: 1px solid #66d9ef !important;
+    margin: 1.5rem 0 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Math text color */
+.mjx-chtml * {
+    color: #f8f8f2 !important;
+}
+
+/* Math operators and symbols */
+.mjx-chtml .mjx-math {
+    color: #66d9ef !important;
+}
+
+/* Math numbers */
+.mjx-chtml .mjx-mn {
+    color: #ae81ff !important;
+}
+
+/* Math variables */
+.mjx-chtml .mjx-mi {
+    color: #a6e22e !important;
+}
+
+/* Math functions */
+.mjx-chtml .mjx-mo {
+    color: #f92672 !important;
+}
 
 .post-content blockquote {
     border-left: 4px solid #a6e22e;

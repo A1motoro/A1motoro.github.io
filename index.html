@@ -9,6 +9,21 @@
     <meta name="author" content="A1m">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="css/monokai-theme.css" rel="stylesheet">
+    <!-- MathJax for LaTeX math support -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link href="./css/monokai-theme.css" rel="stylesheet">
     
     <!-- Inline Critical Animations for GitHub Pages -->
@@ -889,6 +904,18 @@
             <h2 class="section-title">Recent Posts</h2>
             <div class="blog-grid">
 
+            <a href="posts/MAT1001_1.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">MAT1001_1</h3>
+                    <div class="blog-meta">Published on September 8, 2025 • TBD min read</div>
+                    <p class="blog-excerpt"><strong>Published:</strong> September 8, 2025</p>
+                    <div class="read-more">Read More →</div>
+                </div>
+            </a>
+            
             <a href="posts/welcome-to-my-blog.html" class="blog-card">
                 <div class="blog-image">
                     <i class="fas fa-file-alt"></i>
