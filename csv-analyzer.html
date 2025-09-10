@@ -409,6 +409,84 @@
             display: block;
             animation: fadeInUp 0.5s ease;
         }
+
+        .advanced-analysis {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+
+        .analysis-insight {
+            background: var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .analysis-insight h4 {
+            color: var(--accent);
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+
+        .analysis-insight p {
+            color: var(--text-secondary);
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .insight-metric {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .export-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .export-controls .btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .export-controls .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background: var(--success);
+            color: var(--primary);
+        }
+
+        .btn-accent {
+            background: var(--warning);
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -498,6 +576,32 @@
                 <table class="data-table" id="dataTable">
                     <!-- Table will be populated by JavaScript -->
                 </table>
+            </div>
+
+            <!-- Advanced Analysis -->
+            <h2 class="section-title">
+                <i class="fas fa-brain"></i>
+                Advanced Analysis
+            </h2>
+            <div class="advanced-analysis" id="advancedAnalysis">
+                <!-- Advanced analysis will be populated by JavaScript -->
+            </div>
+
+            <!-- Export Results -->
+            <h2 class="section-title">
+                <i class="fas fa-download"></i>
+                Export Results
+            </h2>
+            <div class="export-controls">
+                <button onclick="exportAnalysisReport()" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> Export Analysis Report
+                </button>
+                <button onclick="exportProcessedData()" class="btn btn-secondary">
+                    <i class="fas fa-file-csv"></i> Export Processed Data
+                </button>
+                <button onclick="exportCharts()" class="btn btn-accent">
+                    <i class="fas fa-image"></i> Export Charts
+                </button>
             </div>
         </div>
     </div>
@@ -625,6 +729,9 @@
                 // Generate data table
                 generateDataTable();
 
+                // Generate advanced analysis
+                generateAdvancedAnalysis();
+
                 // Show success message
                 showSuccess(`Successfully analyzed ${csvData.length} rows of data!`);
 
@@ -655,6 +762,24 @@
                 color: 'var(--success)'
             });
 
+            // Data quality analysis
+            const missingValues = calculateMissingValues();
+            const duplicateRows = calculateDuplicates();
+            
+            stats.push({
+                icon: 'fas fa-exclamation-triangle',
+                value: missingValues.total,
+                label: 'Missing Values',
+                color: 'var(--warning)'
+            });
+
+            stats.push({
+                icon: 'fas fa-copy',
+                value: duplicateRows,
+                label: 'Duplicate Rows',
+                color: 'var(--danger)'
+            });
+
             // Find numeric columns
             const numericColumns = columns.filter(col => {
                 return csvData.some(row => typeof row[col] === 'number' && !isNaN(row[col]));
@@ -665,18 +790,32 @@
                     icon: 'fas fa-calculator',
                     value: numericColumns.length,
                     label: 'Numeric Columns',
-                    color: 'var(--warning)'
+                    color: 'var(--accent)'
                 });
 
-                // Calculate average for first numeric column
+                // Calculate comprehensive stats for first numeric column
                 const firstNumericCol = numericColumns[0];
                 const values = csvData.map(row => row[firstNumericCol]).filter(val => !isNaN(val));
-                const average = values.reduce((sum, val) => sum + val, 0) / values.length;
+                const numericStats = calculateNumericStats(values);
                 
                 stats.push({
                     icon: 'fas fa-chart-line',
-                    value: average.toFixed(2),
-                    label: `Avg ${firstNumericCol}`,
+                    value: numericStats.mean.toFixed(2),
+                    label: `Mean ${firstNumericCol}`,
+                    color: 'var(--success)'
+                });
+
+                stats.push({
+                    icon: 'fas fa-chart-bar',
+                    value: numericStats.median.toFixed(2),
+                    label: `Median ${firstNumericCol}`,
+                    color: 'var(--warning)'
+                });
+
+                stats.push({
+                    icon: 'fas fa-chart-area',
+                    value: numericStats.stdDev.toFixed(2),
+                    label: `Std Dev ${firstNumericCol}`,
                     color: 'var(--danger)'
                 });
             }
@@ -693,6 +832,66 @@
             `).join('');
         }
 
+        function calculateMissingValues() {
+            const columns = Object.keys(csvData[0]);
+            const missingData = {};
+            let totalMissing = 0;
+
+            columns.forEach(col => {
+                const missing = csvData.filter(row => 
+                    row[col] === null || 
+                    row[col] === undefined || 
+                    row[col] === '' || 
+                    (typeof row[col] === 'string' && row[col].trim() === '')
+                ).length;
+                
+                if (missing > 0) {
+                    missingData[col] = missing;
+                    totalMissing += missing;
+                }
+            });
+
+            return { byColumn: missingData, total: totalMissing };
+        }
+
+        function calculateDuplicates() {
+            const rowsAsStrings = csvData.map(row => JSON.stringify(row));
+            const uniqueRows = new Set(rowsAsStrings);
+            return csvData.length - uniqueRows.size;
+        }
+
+        function calculateNumericStats(values) {
+            if (values.length === 0) return { mean: 0, median: 0, mode: 0, stdDev: 0, min: 0, max: 0 };
+
+            // Sort for median calculation
+            const sortedValues = [...values].sort((a, b) => a - b);
+            
+            // Mean
+            const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
+            
+            // Median
+            const median = sortedValues.length % 2 === 0
+                ? (sortedValues[sortedValues.length / 2 - 1] + sortedValues[sortedValues.length / 2]) / 2
+                : sortedValues[Math.floor(sortedValues.length / 2)];
+            
+            // Mode
+            const frequency = {};
+            values.forEach(val => {
+                frequency[val] = (frequency[val] || 0) + 1;
+            });
+            const mode = Object.keys(frequency).reduce((a, b) => frequency[a] > frequency[b] ? a : b);
+            
+            // Standard deviation
+            const variance = values.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / values.length;
+            const stdDev = Math.sqrt(variance);
+            
+            // Min and Max
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+
+            return { mean, median, mode: parseFloat(mode), stdDev, min, max };
+        }
+
         function generateCharts() {
             const columns = Object.keys(csvData[0]);
             const numericColumns = columns.filter(col => {
@@ -700,6 +899,17 @@
             });
 
             let chartsHTML = '';
+
+            // Data Quality Overview Chart
+            const missingValues = calculateMissingValues();
+            const duplicateRows = calculateDuplicates();
+            
+            chartsHTML += `
+                <div class="chart-container">
+                    <h3 class="chart-title">Data Quality Overview</h3>
+                    <canvas id="qualityChart" width="400" height="200"></canvas>
+                </div>
+            `;
 
             // Column distribution chart
             if (numericColumns.length > 0) {
@@ -710,6 +920,26 @@
                     <div class="chart-container">
                         <h3 class="chart-title">Distribution of ${firstNumericCol}</h3>
                         <canvas id="distributionChart" width="400" height="200"></canvas>
+                    </div>
+                `;
+            }
+
+            // Correlation Matrix (if multiple numeric columns)
+            if (numericColumns.length > 1) {
+                chartsHTML += `
+                    <div class="chart-container">
+                        <h3 class="chart-title">Correlation Matrix</h3>
+                        <canvas id="correlationChart" width="400" height="200"></canvas>
+                    </div>
+                `;
+            }
+
+            // Scatter Plot (if multiple numeric columns)
+            if (numericColumns.length >= 2) {
+                chartsHTML += `
+                    <div class="chart-container">
+                        <h3 class="chart-title">Scatter Plot: ${numericColumns[0]} vs ${numericColumns[1]}</h3>
+                        <canvas id="scatterChart" width="400" height="200"></canvas>
                     </div>
                 `;
             }
@@ -731,12 +961,30 @@
                 </div>
             `;
 
+            // Missing Values by Column Chart
+            if (missingValues.total > 0) {
+                chartsHTML += `
+                    <div class="chart-container">
+                        <h3 class="chart-title">Missing Values by Column</h3>
+                        <canvas id="missingChart" width="400" height="200"></canvas>
+                    </div>
+                `;
+            }
+
             chartsSection.innerHTML = chartsHTML;
 
             // Create charts after DOM update
             setTimeout(() => {
+                createQualityChart();
                 createDistributionChart();
+                if (numericColumns.length > 1) {
+                    createCorrelationChart();
+                    createScatterChart();
+                }
                 createTypesChart();
+                if (missingValues.total > 0) {
+                    createMissingChart();
+                }
             }, 100);
         }
 
@@ -795,6 +1043,278 @@
                     }
                 }
             });
+        }
+
+        function createQualityChart() {
+            const canvas = document.getElementById('qualityChart');
+            if (!canvas) return;
+
+            const missingValues = calculateMissingValues();
+            const duplicateRows = calculateDuplicates();
+            const totalCells = csvData.length * Object.keys(csvData[0]).length;
+            const validCells = totalCells - missingValues.total;
+
+            const ctx = canvas.getContext('2d');
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Valid Data', 'Missing Values', 'Duplicate Rows'],
+                    datasets: [{
+                        data: [validCells, missingValues.total, duplicateRows],
+                        backgroundColor: [
+                            'rgba(163, 190, 140, 0.8)',
+                            'rgba(235, 203, 139, 0.8)',
+                            'rgba(191, 97, 106, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(163, 190, 140, 1)',
+                            'rgba(235, 203, 139, 1)',
+                            'rgba(191, 97, 106, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ECEFF4'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createCorrelationChart() {
+            const canvas = document.getElementById('correlationChart');
+            if (!canvas) return;
+
+            const columns = Object.keys(csvData[0]);
+            const numericColumns = columns.filter(col => {
+                return csvData.some(row => typeof row[col] === 'number' && !isNaN(row[col]));
+            });
+
+            if (numericColumns.length < 2) return;
+
+            // Calculate correlation matrix
+            const correlationMatrix = calculateCorrelationMatrix(numericColumns);
+            
+            const ctx = canvas.getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: numericColumns,
+                    datasets: numericColumns.map((col, i) => ({
+                        label: col,
+                        data: correlationMatrix[i],
+                        backgroundColor: `rgba(${94 + i * 30}, ${129 + i * 20}, ${172 + i * 10}, 0.6)`,
+                        borderColor: `rgba(${94 + i * 30}, ${129 + i * 20}, ${172 + i * 10}, 1)`,
+                        borderWidth: 1
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ECEFF4'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            min: -1,
+                            max: 1,
+                            ticks: {
+                                color: '#D8DEE9'
+                            },
+                            grid: {
+                                color: '#4C566A'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#D8DEE9'
+                            },
+                            grid: {
+                                color: '#4C566A'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createScatterChart() {
+            const canvas = document.getElementById('scatterChart');
+            if (!canvas) return;
+
+            const columns = Object.keys(csvData[0]);
+            const numericColumns = columns.filter(col => {
+                return csvData.some(row => typeof row[col] === 'number' && !isNaN(row[col]));
+            });
+
+            if (numericColumns.length < 2) return;
+
+            const xValues = csvData.map(row => row[numericColumns[0]]).filter(val => !isNaN(val));
+            const yValues = csvData.map(row => row[numericColumns[1]]).filter(val => !isNaN(val));
+
+            const ctx = canvas.getContext('2d');
+
+            new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: `${numericColumns[0]} vs ${numericColumns[1]}`,
+                        data: xValues.map((x, i) => ({ x, y: yValues[i] })),
+                        backgroundColor: 'rgba(94, 129, 172, 0.6)',
+                        borderColor: 'rgba(94, 129, 172, 1)',
+                        borderWidth: 1,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ECEFF4'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: numericColumns[0],
+                                color: '#ECEFF4'
+                            },
+                            ticks: {
+                                color: '#D8DEE9'
+                            },
+                            grid: {
+                                color: '#4C566A'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: numericColumns[1],
+                                color: '#ECEFF4'
+                            },
+                            ticks: {
+                                color: '#D8DEE9'
+                            },
+                            grid: {
+                                color: '#4C566A'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createMissingChart() {
+            const canvas = document.getElementById('missingChart');
+            if (!canvas) return;
+
+            const missingValues = calculateMissingValues();
+            const columns = Object.keys(missingValues.byColumn);
+            const values = Object.values(missingValues.byColumn);
+
+            const ctx = canvas.getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: columns,
+                    datasets: [{
+                        label: 'Missing Values',
+                        data: values,
+                        backgroundColor: 'rgba(191, 97, 106, 0.8)',
+                        borderColor: 'rgba(191, 97, 106, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ECEFF4'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#D8DEE9'
+                            },
+                            grid: {
+                                color: '#4C566A'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#D8DEE9'
+                            },
+                            grid: {
+                                color: '#4C566A'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function calculateCorrelationMatrix(numericColumns) {
+            const matrix = [];
+            
+            for (let i = 0; i < numericColumns.length; i++) {
+                const row = [];
+                for (let j = 0; j < numericColumns.length; j++) {
+                    if (i === j) {
+                        row.push(1);
+                    } else {
+                        const correlation = calculateCorrelation(numericColumns[i], numericColumns[j]);
+                        row.push(correlation);
+                    }
+                }
+                matrix.push(row);
+            }
+            
+            return matrix;
+        }
+
+        function calculateCorrelation(col1, col2) {
+            const values1 = csvData.map(row => row[col1]).filter(val => !isNaN(val));
+            const values2 = csvData.map(row => row[col2]).filter(val => !isNaN(val));
+            
+            if (values1.length !== values2.length || values1.length === 0) return 0;
+            
+            const mean1 = values1.reduce((sum, val) => sum + val, 0) / values1.length;
+            const mean2 = values2.reduce((sum, val) => sum + val, 0) / values2.length;
+            
+            let numerator = 0;
+            let sumSq1 = 0;
+            let sumSq2 = 0;
+            
+            for (let i = 0; i < values1.length; i++) {
+                const diff1 = values1[i] - mean1;
+                const diff2 = values2[i] - mean2;
+                numerator += diff1 * diff2;
+                sumSq1 += diff1 * diff1;
+                sumSq2 += diff2 * diff2;
+            }
+            
+            const denominator = Math.sqrt(sumSq1 * sumSq2);
+            return denominator === 0 ? 0 : numerator / denominator;
         }
 
         function createTypesChart() {
@@ -876,6 +1396,203 @@
             }
 
             dataTable.innerHTML = tableHTML;
+        }
+
+        function generateAdvancedAnalysis() {
+            const columns = Object.keys(csvData[0]);
+            const numericColumns = columns.filter(col => {
+                return csvData.some(row => typeof row[col] === 'number' && !isNaN(row[col]));
+            });
+            
+            const missingValues = calculateMissingValues();
+            const duplicateRows = calculateDuplicates();
+            
+            let analysisHTML = '';
+
+            // Data Quality Insights
+            analysisHTML += `
+                <div class="analysis-insight">
+                    <h4><i class="fas fa-shield-alt"></i> Data Quality Assessment</h4>
+                    <p>Your dataset contains <span class="insight-metric">${csvData.length.toLocaleString()}</span> rows and <span class="insight-metric">${columns.length}</span> columns.</p>
+                    <p>Data completeness: <span class="insight-metric">${((1 - missingValues.total / (csvData.length * columns.length)) * 100).toFixed(1)}%</span></p>
+                    <p>Duplicate rows detected: <span class="insight-metric">${duplicateRows}</span> (${((duplicateRows / csvData.length) * 100).toFixed(1)}% of total)</p>
+                </div>
+            `;
+
+            // Statistical Insights
+            if (numericColumns.length > 0) {
+                const firstNumericCol = numericColumns[0];
+                const values = csvData.map(row => row[firstNumericCol]).filter(val => !isNaN(val));
+                const stats = calculateNumericStats(values);
+                
+                analysisHTML += `
+                    <div class="analysis-insight">
+                        <h4><i class="fas fa-chart-line"></i> Statistical Summary for ${firstNumericCol}</h4>
+                        <p>Mean: <span class="insight-metric">${stats.mean.toFixed(2)}</span> | Median: <span class="insight-metric">${stats.median.toFixed(2)}</span> | Mode: <span class="insight-metric">${stats.mode.toFixed(2)}</span></p>
+                        <p>Range: <span class="insight-metric">${stats.min.toFixed(2)}</span> to <span class="insight-metric">${stats.max.toFixed(2)}</span> | Standard Deviation: <span class="insight-metric">${stats.stdDev.toFixed(2)}</span></p>
+                        <p>Data distribution: ${stats.stdDev < stats.mean * 0.1 ? 'Low variability' : stats.stdDev < stats.mean * 0.5 ? 'Moderate variability' : 'High variability'}</p>
+                    </div>
+                `;
+            }
+
+            // Correlation Insights
+            if (numericColumns.length > 1) {
+                const correlations = [];
+                for (let i = 0; i < numericColumns.length; i++) {
+                    for (let j = i + 1; j < numericColumns.length; j++) {
+                        const corr = calculateCorrelation(numericColumns[i], numericColumns[j]);
+                        correlations.push({
+                            col1: numericColumns[i],
+                            col2: numericColumns[j],
+                            correlation: corr
+                        });
+                    }
+                }
+                
+                const strongestCorrelation = correlations.reduce((max, curr) => 
+                    Math.abs(curr.correlation) > Math.abs(max.correlation) ? curr : max
+                );
+                
+                analysisHTML += `
+                    <div class="analysis-insight">
+                        <h4><i class="fas fa-project-diagram"></i> Relationship Analysis</h4>
+                        <p>Strongest correlation: <span class="insight-metric">${strongestCorrelation.col1}</span> ↔ <span class="insight-metric">${strongestCorrelation.col2}</span></p>
+                        <p>Correlation strength: <span class="insight-metric">${strongestCorrelation.correlation.toFixed(3)}</span> (${Math.abs(strongestCorrelation.correlation) > 0.7 ? 'Strong' : Math.abs(strongestCorrelation.correlation) > 0.3 ? 'Moderate' : 'Weak'} relationship)</p>
+                        <p>Direction: ${strongestCorrelation.correlation > 0 ? 'Positive' : 'Negative'} correlation</p>
+                    </div>
+                `;
+            }
+
+            // Data Type Insights
+            const dataTypes = {};
+            columns.forEach(col => {
+                const sampleValue = csvData.find(row => row[col] !== null && row[col] !== undefined && row[col] !== '');
+                if (sampleValue) {
+                    const type = typeof sampleValue[col];
+                    dataTypes[type] = (dataTypes[type] || 0) + 1;
+                }
+            });
+
+            analysisHTML += `
+                <div class="analysis-insight">
+                    <h4><i class="fas fa-tags"></i> Data Type Distribution</h4>
+                    <p>Column types: ${Object.entries(dataTypes).map(([type, count]) => 
+                        `${type}: <span class="insight-metric">${count}</span>`
+                    ).join(' | ')}</p>
+                    <p>${numericColumns.length > 0 ? `${numericColumns.length} numeric columns available for statistical analysis` : 'No numeric columns found for statistical analysis'}</p>
+                </div>
+            `;
+
+            // Recommendations
+            analysisHTML += `
+                <div class="analysis-insight">
+                    <h4><i class="fas fa-lightbulb"></i> Recommendations</h4>
+                    <p>${missingValues.total > 0 ? '• Consider handling missing values before analysis' : '• No missing values detected - data is complete'}</p>
+                    <p>${duplicateRows > 0 ? '• Remove duplicate rows to improve data quality' : '• No duplicate rows found'}</p>
+                    <p>${numericColumns.length > 1 ? '• Multiple numeric columns available for correlation analysis' : '• Limited numeric data for advanced statistical analysis'}</p>
+                    <p>• Use scatter plots to visualize relationships between numeric variables</p>
+                </div>
+            `;
+
+            document.getElementById('advancedAnalysis').innerHTML = analysisHTML;
+        }
+
+        function exportAnalysisReport() {
+            const report = generateAnalysisReport();
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'csv_analysis_report.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function exportProcessedData() {
+            const csv = convertToCSV(csvData);
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'processed_data.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function exportCharts() {
+            const canvas = document.querySelector('canvas');
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = 'chart.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+        }
+
+        function generateAnalysisReport() {
+            const columns = Object.keys(csvData[0]);
+            const numericColumns = columns.filter(col => {
+                return csvData.some(row => typeof row[col] === 'number' && !isNaN(row[col]));
+            });
+            const missingValues = calculateMissingValues();
+            const duplicateRows = calculateDuplicates();
+
+            let report = 'CSV DATA ANALYSIS REPORT\n';
+            report += '='.repeat(50) + '\n\n';
+            
+            report += `Dataset Overview:\n`;
+            report += `- Total Rows: ${csvData.length.toLocaleString()}\n`;
+            report += `- Total Columns: ${columns.length}\n`;
+            report += `- Numeric Columns: ${numericColumns.length}\n`;
+            report += `- Missing Values: ${missingValues.total}\n`;
+            report += `- Duplicate Rows: ${duplicateRows}\n\n`;
+
+            if (numericColumns.length > 0) {
+                report += `Statistical Analysis:\n`;
+                numericColumns.forEach(col => {
+                    const values = csvData.map(row => row[col]).filter(val => !isNaN(val));
+                    const stats = calculateNumericStats(values);
+                    report += `\n${col}:\n`;
+                    report += `  Mean: ${stats.mean.toFixed(2)}\n`;
+                    report += `  Median: ${stats.median.toFixed(2)}\n`;
+                    report += `  Mode: ${stats.mode.toFixed(2)}\n`;
+                    report += `  Min: ${stats.min.toFixed(2)}\n`;
+                    report += `  Max: ${stats.max.toFixed(2)}\n`;
+                    report += `  Std Dev: ${stats.stdDev.toFixed(2)}\n`;
+                });
+            }
+
+            report += `\nGenerated on: ${new Date().toLocaleString()}\n`;
+            return report;
+        }
+
+        function convertToCSV(data) {
+            if (!data || data.length === 0) return '';
+            
+            const columns = Object.keys(data[0]);
+            const csvRows = [];
+            
+            // Add header
+            csvRows.push(columns.join(','));
+            
+            // Add data rows
+            data.forEach(row => {
+                const values = columns.map(col => {
+                    const value = row[col];
+                    if (value === null || value === undefined) return '';
+                    if (typeof value === 'string' && value.includes(',')) {
+                        return `"${value}"`;
+                    }
+                    return value;
+                });
+                csvRows.push(values.join(','));
+            });
+            
+            return csvRows.join('\n');
         }
 
         function showLoading() {
