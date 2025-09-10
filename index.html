@@ -657,6 +657,12 @@
             color: #a6e22e !important;
         }
         
+        .cta-button.csv-button:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 30px rgba(249, 38, 114, 0.6) !important;
+            background: linear-gradient(45deg, #ae81ff, #f92672) !important;
+        }
+        
         /* Hero Section Responsive Design */
         @media (max-width: 768px) {
             .hero-cta-container {
@@ -872,6 +878,9 @@
                 </a>
                 <a href="#blog" class="cta-button secondary" style="background: transparent; color: #f8f8f2; padding: 15px 30px; border: 2px solid #66d9ef; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(102, 217, 239, 0.2); animation: textFloat 2.5s ease-in-out infinite 0.5s, textFadeInOut 2s ease-in-out infinite;">
                     <i class="fas fa-blog" style="margin-right: 8px; animation: textShake 1.5s ease-in-out infinite;"></i>View All Posts
+                </a>
+                <a href="csv-analyzer.html" class="cta-button csv-button" style="background: linear-gradient(45deg, #f92672, #ae81ff); color: #f8f8f2; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(249, 38, 114, 0.3); animation: textFloat 3s ease-in-out infinite 1s, textGlowPulse 2.5s ease-in-out infinite;">
+                    <i class="fas fa-chart-line" style="margin-right: 8px; animation: textScale 1.8s ease-in-out infinite;"></i>CSV Analyzer
                 </a>
             </div>
             
