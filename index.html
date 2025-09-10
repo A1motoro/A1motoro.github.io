@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIE Portfolio - Blog & Data Analysis</title>
+    <meta name="description" content="Personal portfolio featuring blog posts and data analysis tools">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Modern Dark Theme */
+        :root {
+            --primary: #2E3440;
+            --secondary: #3B4252;
+            --accent: #5E81AC;
+            --success: #A3BE8C;
+            --warning: #EBCB8B;
+            --danger: #BF616A;
+            --text: #ECEFF4;
+            --text-secondary: #D8DEE9;
+            --background: #1E1E1E;
+            --surface: #2D2D2D;
+            --border: #4C566A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--background) 0%, var(--primary) 50%, var(--background) 100%);
+            background-size: 400% 400%;
+            animation: backgroundShift 15s ease-in-out infinite;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--accent), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .project-card {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+        
+        .project-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .project-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, var(--accent), var(--success));
+            color: var(--primary);
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(94, 129, 172, 0.3);
+        }
+        
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .project-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="logo">AIE Portfolio</h1>
+            <p class="subtitle">Welcome to my digital space</p>
+            <p class="description">
+                Explore my blog posts covering programming, mathematics, and personal insights, 
+                or dive into my data analysis tools for CSV processing and visualization.
+            </p>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-blog"></i>
+                </div>
+                <h2 class="project-title">Blog</h2>
+                <p class="project-description">
+                    Read my latest posts about programming, mathematics, and personal experiences. 
+                    Discover tutorials, insights, and thoughts on various topics.
+                </p>
+                <a href="blogii/index.html" class="project-link">
+                    <i class="fas fa-arrow-right"></i>
+                    Visit Blog
+                </a>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2 class="project-title">Data Analysis</h2>
+                <p class="project-description">
+                    Upload and analyze your CSV files with advanced statistical analysis, 
+                    beautiful visualizations, and comprehensive data insights.
+                </p>
+                <a href="data-analysis/csv-analyzer.html" class="project-link">
+                    <i class="fas fa-arrow-right"></i>
+                    Analyze Data
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 AIE Portfolio. Built with passion and modern web technologies.</p>
+            <p>
+                <a href="https://github.com/yourusername" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
