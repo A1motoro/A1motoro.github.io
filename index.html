@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIE Portfolio - Blog & Data Analysis</title>
-    <meta name="description" content="Personal portfolio featuring blog posts and data analysis tools">
+    <title>AIE Portfolio - Developer & Data Analyst</title>
+    <meta name="description" content="Personal portfolio featuring blog posts, data analysis tools, and coding projects">
+    <meta name="keywords" content="portfolio, developer, data analysis, blog, programming, AIE">
     <meta name="author" content="A1m">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="core-framework/themes/monokai-core.css" rel="stylesheet">
     
     <style>
-        /* Portfolio-specific styles using Monokai core */
-        .portfolio-container {
+        /* Main page specific styles */
+        .hero-section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-        
-        .portfolio-header {
             text-align: center;
-            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
         }
         
-        .portfolio-logo {
-            font-size: 3rem;
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
             font-weight: bold;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
@@ -35,97 +40,164 @@
             animation: monokaiGlow 3s ease-in-out infinite;
         }
         
-        .portfolio-subtitle {
-            font-size: 1.25rem;
+        .hero-subtitle {
+            font-size: 1.5rem;
             color: var(--monokai-comment);
-            margin-bottom: 0.5rem;
-        }
-        
-        .portfolio-description {
-            font-size: 1rem;
-            color: var(--monokai-comment);
-            max-width: 600px;
-            line-height: 1.6;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 800px;
-        }
-        
-        .project-card {
-            background: var(--monokai-bg-light);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px var(--monokai-shadow);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px var(--monokai-shadow);
-            border-color: var(--monokai-accent);
-        }
-        
-        .project-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--monokai-accent);
+            margin-bottom: 2rem;
             animation: monokaiFloat 3s ease-in-out infinite;
         }
         
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+        .hero-description {
+            font-size: 1.1rem;
             color: var(--monokai-fg);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .project-description {
-            color: var(--monokai-comment);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
         }
         
-        .project-link {
+        .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
             color: var(--monokai-bg);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--monokai-shadow);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--monokai-glow);
+        }
+        
+        .cta-button.secondary {
+            background: linear-gradient(45deg, var(--monokai-bg-light), var(--monokai-bg-hover));
+            color: var(--monokai-accent);
+            border: 2px solid var(--monokai-accent);
+        }
+        
+        .features-section {
+            padding: 4rem 2rem;
+            background: var(--monokai-bg-light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: var(--monokai-bg);
+            border: 1px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--monokai-accent);
+            box-shadow: 0 10px 25px var(--monokai-shadow);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--monokai-accent);
+            margin-bottom: 1rem;
+            animation: monokaiFloat 3s ease-in-out infinite;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--monokai-fg);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            color: var(--monokai-comment);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-link {
+            color: var(--monokai-accent);
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
         }
         
-        .project-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px var(--monokai-glow);
+        .feature-link:hover {
+            color: var(--monokai-accent-secondary);
+            text-shadow: 0 0 10px var(--monokai-glow);
+        }
+        
+        .stats-section {
+            padding: 3rem 2rem;
+            background: var(--monokai-bg);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--monokai-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--monokai-comment);
+            font-size: 1rem;
         }
         
         @media (max-width: 768px) {
-            .portfolio-logo {
-                font-size: 2.25rem;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .portfolio-subtitle {
-                font-size: 1.125rem;
+            .hero-subtitle {
+                font-size: 1.2rem;
             }
             
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .project-card {
-                padding: 1.5rem;
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
@@ -134,48 +206,103 @@
     <!-- Include Core Navigation -->
     <div id="navigation-placeholder"></div>
     
-    <div class="monokai-container portfolio-container">
-        <div class="portfolio-header">
-            <h1 class="portfolio-logo">AIE Portfolio</h1>
-            <p class="portfolio-subtitle">Welcome to my digital space</p>
-            <p class="portfolio-description">
-                Explore my blog posts covering programming, mathematics, and personal insights, 
-                or dive into my data analysis tools for CSV processing and visualization.
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">AIE Portfolio</h1>
+            <p class="hero-subtitle">Developer & Data Analyst</p>
+            <p class="hero-description">
+                Welcome to my digital space! Explore my blog posts covering programming, mathematics, 
+                and personal insights, or dive into my data analysis tools for CSV processing and visualization. 
+                Discover the intersection of code, data, and creativity.
             </p>
-        </div>
-        
-        <div class="projects-grid">
-            <div class="project-card monokai-card">
-                <div class="project-icon">
-                    <i class="fas fa-blog"></i>
-                </div>
-                <h2 class="project-title">Blog</h2>
-                <p class="project-description">
-                    Read my latest posts about programming, mathematics, and personal experiences. 
-                    Discover tutorials, insights, and thoughts on various topics.
-                </p>
-                <a href="blogii/index.html" class="project-link monokai-button">
-                    <i class="fas fa-arrow-right"></i>
-                    Visit Blog
-                </a>
-            </div>
             
-            <div class="project-card monokai-card">
-                <div class="project-icon">
+            <div class="cta-buttons">
+                <a href="blogii/index.html" class="cta-button">
+                    <i class="fas fa-blog"></i>
+                    Visit My Blog
+                </a>
+                <a href="data-analysis/csv-analyzer.html" class="cta-button secondary">
                     <i class="fas fa-chart-line"></i>
-                </div>
-                <h2 class="project-title">Data Analysis</h2>
-                <p class="project-description">
-                    Upload and analyze your CSV files with advanced statistical analysis, 
-                    beautiful visualizations, and comprehensive data insights.
-                </p>
-                <a href="data-analysis/csv-analyzer.html" class="project-link monokai-button">
-                    <i class="fas fa-arrow-right"></i>
                     Analyze Data
                 </a>
             </div>
         </div>
-    </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="monokai-container">
+            <h2 class="monokai-title monokai-center">What I Offer</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <h3 class="feature-title">Technical Blog</h3>
+                    <p class="feature-description">
+                        Read my latest posts about programming, mathematics, and personal experiences. 
+                        Discover tutorials, insights, and thoughts on various technical topics.
+                    </p>
+                    <a href="blogii/index.html" class="feature-link">
+                        Explore Blog <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Data Analysis Tools</h3>
+                    <p class="feature-description">
+                        Upload and analyze your CSV files with advanced statistical analysis, 
+                        beautiful visualizations, and comprehensive data insights.
+                    </p>
+                    <a href="data-analysis/csv-analyzer.html" class="feature-link">
+                        Try Analyzer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="feature-title">About Me</h3>
+                    <p class="feature-description">
+                        Learn more about my journey as a developer, my interests, 
+                        and the technologies I work with.
+                    </p>
+                    <a href="#about" class="feature-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="monokai-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Blog Posts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Code Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Data Tools</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Learning</div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- Include Core Footer -->
     <div id="footer-placeholder"></div>

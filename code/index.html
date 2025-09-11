@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Projects - AIE Portfolio</title>
+    <meta name="description" content="Collection of coding projects including Python scripts, C++ programs, and development tools">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../core-framework/themes/monokai-core.css" rel="stylesheet">
+    
+    <style>
+        .code-container {
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .back-button {
+            margin-bottom: 2rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: var(--monokai-bg-light);
+            border: 1px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--monokai-accent);
+            box-shadow: 0 10px 25px var(--monokai-shadow);
+        }
+        
+        .project-icon {
+            font-size: 2.5rem;
+            color: var(--monokai-accent);
+            margin-bottom: 1rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--monokai-fg);
+            margin-bottom: 1rem;
+        }
+        
+        .project-description {
+            color: var(--monokai-comment);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-link {
+            color: var(--monokai-accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--monokai-accent-secondary);
+            text-shadow: 0 0 10px var(--monokai-glow);
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Core Navigation -->
+    <div id="navigation-placeholder"></div>
+    
+    <div class="monokai-container code-container">
+        <div class="back-button">
+            <a href="../index.html" class="monokai-button">
+                <i class="fas fa-home"></i>
+                Back to Main Page
+            </a>
+        </div>
+        
+        <h1 class="monokai-title">💻 Code Projects</h1>
+        <p class="monokai-subtitle">Collection of my programming projects and development tools</p>
+        <div style="background: var(--monokai-bg-light); border: 1px solid var(--monokai-accent); border-radius: 10px; padding: 1rem; margin: 1rem 0; text-align: center;">
+            <p style="color: var(--monokai-comment); font-size: 0.9rem; margin: 0;">
+                🔒 <strong>Hidden Section:</strong> This page is accessible via direct URL only. 
+                No public navigation links to this section.
+            </p>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fab fa-python"></i>
+                </div>
+                <h3 class="project-title">Python Scripts</h3>
+                <p class="project-description">
+                    Data analysis scripts, automation tools, and Python utilities for various tasks.
+                </p>
+                <a href="python/" class="project-link">
+                    View Python Projects <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="project-title">C++ Programs</h3>
+                <p class="project-description">
+                    C++ implementations including data structures, algorithms, and system programming.
+                </p>
+                <a href="cpp/" class="project-link">
+                    View C++ Projects <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="project-title">Data Files</h3>
+                <p class="project-description">
+                    Datasets and data files used in analysis projects and research.
+                </p>
+                <a href="data/" class="project-link">
+                    View Data Files <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="project-title">Executables</h3>
+                <p class="project-description">
+                    Compiled programs and executable files ready to run.
+                </p>
+                <a href="executables/" class="project-link">
+                    View Executables <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include Core Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        // Load core components
+        fetch('../core-framework/components/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navigation-placeholder').innerHTML = data;
+            });
+            
+        fetch('../core-framework/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
