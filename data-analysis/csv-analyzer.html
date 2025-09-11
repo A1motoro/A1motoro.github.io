@@ -13,33 +13,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     
     <style>
-        /* Modern Dark Theme */
-        :root {
-            --primary: #2E3440;
-            --secondary: #3B4252;
-            --accent: #5E81AC;
-            --success: #A3BE8C;
-            --warning: #EBCB8B;
-            --danger: #BF616A;
-            --text: #ECEFF4;
-            --text-secondary: #D8DEE9;
-            --background: #1E1E1E;
-            --surface: #2D2D2D;
-            --border: #4C566A;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* Monokai Theme Integration */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--background) 0%, var(--primary) 50%, var(--background) 100%);
-            background-size: 400% 400%;
-            animation: backgroundShift 15s ease-in-out infinite;
-            color: var(--text);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: var(--monokai-bg);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(166, 226, 46, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(249, 38, 114, 0.05) 0%, transparent 50%);
+            background-size: 800px 800px, 600px 600px, 400px 400px;
+            background-position: 0 0, 100px 100px, 200px 200px;
+            color: var(--monokai-fg);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -73,12 +57,12 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: var(--text);
+            color: var(--monokai-fg);
         }
         
         .logo i {
             font-size: 24px;
-            color: var(--accent);
+            color: var(--monokai-accent);
             margin-right: 10px;
         }
         
@@ -88,8 +72,8 @@
         }
         
         .back-btn {
-            background: var(--accent);
-            color: var(--text);
+            background: var(--monokai-accent);
+            color: var(--monokai-fg);
             padding: 10px 20px;
             border-radius: 25px;
             text-decoration: none;
@@ -101,7 +85,7 @@
         }
         
         .back-btn:hover {
-            background: var(--success);
+            background: var(--monokai-success);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(163, 190, 140, 0.3);
         }
@@ -115,29 +99,29 @@
         
         /* Upload Section */
         .upload-section {
-            background: var(--surface);
+            background: var(--monokai-bg-light);
             border-radius: 15px;
             padding: 40px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 2px dashed var(--border);
+            border: 2px dashed var(--monokai-border);
             text-align: center;
             transition: all 0.3s ease;
         }
         
         .upload-section:hover {
-            border-color: var(--accent);
+            border-color: var(--monokai-accent);
             transform: translateY(-5px);
         }
         
         .upload-section.dragover {
-            border-color: var(--success);
+            border-color: var(--monokai-success);
             background: rgba(163, 190, 140, 0.1);
         }
         
         .upload-icon {
             font-size: 48px;
-            color: var(--accent);
+            color: var(--monokai-accent);
             margin-bottom: 20px;
             animation: float 3s ease-in-out infinite;
         }
@@ -151,14 +135,14 @@
             font-size: 28px;
             font-weight: bold;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--accent), var(--success));
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-success));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .upload-subtitle {
-            color: var(--text-secondary);
+            color: var(--monokai-comment);
             margin-bottom: 30px;
             font-size: 16px;
         }
@@ -178,8 +162,8 @@
         }
         
         .file-input-btn {
-            background: linear-gradient(45deg, var(--accent), var(--success));
-            color: var(--text);
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-success));
+            color: var(--monokai-fg);
             padding: 15px 30px;
             border-radius: 25px;
             font-weight: bold;
@@ -234,7 +218,7 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
-            color: var(--text);
+            color: var(--monokai-fg);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -248,7 +232,7 @@
         }
         
         .stat-card {
-            background: var(--surface);
+            background: var(--monokai-bg-light);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -272,7 +256,7 @@
         }
         
         .stat-label {
-            color: var(--text-secondary);
+            color: var(--monokai-comment);
             font-size: 14px;
         }
         
@@ -285,7 +269,7 @@
         }
         
         .chart-container {
-            background: var(--surface);
+            background: var(--monokai-bg-light);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -295,12 +279,12 @@
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 15px;
-            color: var(--text);
+            color: var(--monokai-fg);
         }
         
         /* Data Table */
         .data-table-container {
-            background: var(--surface);
+            background: var(--monokai-bg-light);
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -310,20 +294,20 @@
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            color: var(--text);
+            color: var(--monokai-fg);
         }
         
         .data-table th,
         .data-table td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--monokai-border);
         }
         
         .data-table th {
             background: var(--primary);
             font-weight: bold;
-            color: var(--text);
+            color: var(--monokai-fg);
         }
         
         .data-table tr:hover {
@@ -344,8 +328,8 @@
         .spinner {
             width: 40px;
             height: 40px;
-            border: 4px solid var(--border);
-            border-top: 4px solid var(--accent);
+            border: 4px solid var(--monokai-border);
+            border-top: 4px solid var(--monokai-accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -382,8 +366,8 @@
         
         /* Error Message */
         .error-message {
-            background: var(--danger);
-            color: var(--text);
+            background: var(--monokai-error);
+            color: var(--monokai-fg);
             padding: 15px;
             border-radius: 10px;
             margin: 20px 0;
@@ -397,7 +381,7 @@
         
         /* Success Message */
         .success-message {
-            background: var(--success);
+            background: var(--monokai-success);
             color: var(--primary);
             padding: 15px;
             border-radius: 10px;
@@ -411,11 +395,11 @@
         }
 
         .advanced-analysis {
-            background: var(--surface);
+            background: var(--monokai-bg-light);
             border-radius: 15px;
             padding: 25px;
             margin: 20px 0;
-            border: 1px solid var(--border);
+            border: 1px solid var(--monokai-border);
         }
 
         .analysis-insight {
@@ -423,24 +407,24 @@
             border-radius: 10px;
             padding: 20px;
             margin: 15px 0;
-            border-left: 4px solid var(--accent);
+            border-left: 4px solid var(--monokai-accent);
         }
 
         .analysis-insight h4 {
-            color: var(--accent);
+            color: var(--monokai-accent);
             margin: 0 0 10px 0;
             font-size: 1.1em;
         }
 
         .analysis-insight p {
-            color: var(--text-secondary);
+            color: var(--monokai-comment);
             margin: 5px 0;
             line-height: 1.6;
         }
 
         .insight-metric {
             display: inline-block;
-            background: var(--accent);
+            background: var(--monokai-accent);
             color: var(--primary);
             padding: 4px 8px;
             border-radius: 5px;
@@ -474,17 +458,17 @@
         }
 
         .btn-primary {
-            background: var(--accent);
+            background: var(--monokai-accent);
             color: var(--primary);
         }
 
         .btn-secondary {
-            background: var(--success);
+            background: var(--monokai-success);
             color: var(--primary);
         }
 
         .btn-accent {
-            background: var(--warning);
+            background: var(--monokai-warning);
             color: var(--primary);
         }
     </style>
@@ -752,14 +736,14 @@
                 icon: 'fas fa-table',
                 value: csvData.length.toLocaleString(),
                 label: 'Total Rows',
-                color: 'var(--accent)'
+                color: 'var(--monokai-accent)'
             });
 
             stats.push({
                 icon: 'fas fa-columns',
                 value: columns.length,
                 label: 'Total Columns',
-                color: 'var(--success)'
+                color: 'var(--monokai-success)'
             });
 
             // Data quality analysis
@@ -770,14 +754,14 @@
                 icon: 'fas fa-exclamation-triangle',
                 value: missingValues.total,
                 label: 'Missing Values',
-                color: 'var(--warning)'
+                color: 'var(--monokai-warning)'
             });
 
             stats.push({
                 icon: 'fas fa-copy',
                 value: duplicateRows,
                 label: 'Duplicate Rows',
-                color: 'var(--danger)'
+                color: 'var(--monokai-error)'
             });
 
             // Find numeric columns
@@ -790,7 +774,7 @@
                     icon: 'fas fa-calculator',
                     value: numericColumns.length,
                     label: 'Numeric Columns',
-                    color: 'var(--accent)'
+                    color: 'var(--monokai-accent)'
                 });
 
                 // Calculate comprehensive stats for first numeric column
@@ -802,21 +786,21 @@
                     icon: 'fas fa-chart-line',
                     value: numericStats.mean.toFixed(2),
                     label: `Mean ${firstNumericCol}`,
-                    color: 'var(--success)'
+                    color: 'var(--monokai-success)'
                 });
 
                 stats.push({
                     icon: 'fas fa-chart-bar',
                     value: numericStats.median.toFixed(2),
                     label: `Median ${firstNumericCol}`,
-                    color: 'var(--warning)'
+                    color: 'var(--monokai-warning)'
                 });
 
                 stats.push({
                     icon: 'fas fa-chart-area',
                     value: numericStats.stdDev.toFixed(2),
                     label: `Std Dev ${firstNumericCol}`,
-                    color: 'var(--danger)'
+                    color: 'var(--monokai-error)'
                 });
             }
 
@@ -1390,7 +1374,7 @@
             tableHTML += '</tbody>';
 
             if (csvData.length > 10) {
-                tableHTML += `<tfoot><tr><td colspan="${columns.length}" style="text-align: center; font-style: italic; color: var(--text-secondary);">
+                tableHTML += `<tfoot><tr><td colspan="${columns.length}" style="text-align: center; font-style: italic; color: var(--monokai-comment);">
                     Showing first 10 rows of ${csvData.length} total rows
                 </td></tr></tfoot>`;
             }
