@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # OS generated files
+=======
+# Ignore OS generated files
+>>>>>>> 0e92592fdaf42209d9a2b86a17eb2a04dd8613f8
 .DS_Store
 .DS_Store?
 ._*
@@ -7,11 +11,16 @@
 ehthumbs.db
 Thumbs.db
 
+<<<<<<< HEAD
 # IDE files
+=======
+# Ignore editor files
+>>>>>>> 0e92592fdaf42209d9a2b86a17eb2a04dd8613f8
 .vscode/
 .idea/
 *.swp
 *.swo
+<<<<<<< HEAD
 
 # Python
 __pycache__/
@@ -39,3 +48,22 @@ venv.bak/
 
 # Output directories
 output/
+=======
+*~
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Ignore virtual environment
+venv/
+env/
+ENV/
+
+# Ignore temporary files
+*.tmp
+*.temp
+>>>>>>> 0e92592fdaf42209d9a2b86a17eb2a04dd8613f8
