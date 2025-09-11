@@ -7,49 +7,11 @@
     <meta name="description" content="Personal portfolio featuring blog posts and data analysis tools">
     <meta name="author" content="A1m">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="core-framework/themes/monokai-core.css" rel="stylesheet">
     
     <style>
-        /* Modern Dark Theme */
-        :root {
-            --primary: #2E3440;
-            --secondary: #3B4252;
-            --accent: #5E81AC;
-            --success: #A3BE8C;
-            --warning: #EBCB8B;
-            --danger: #BF616A;
-            --text: #ECEFF4;
-            --text-secondary: #D8DEE9;
-            --background: #1E1E1E;
-            --surface: #2D2D2D;
-            --border: #4C566A;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--background) 0%, var(--primary) 50%, var(--background) 100%);
-            background-size: 400% 400%;
-            animation: backgroundShift 15s ease-in-out infinite;
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        @keyframes backgroundShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        /* Portfolio-specific styles using Monokai core */
+        .portfolio-container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -57,30 +19,31 @@
             align-items: center;
         }
         
-        .header {
+        .portfolio-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 4rem;
         }
         
-        .logo {
-            font-size: 48px;
+        .portfolio-logo {
+            font-size: 3rem;
             font-weight: bold;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--accent), var(--success));
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: monokaiGlow 3s ease-in-out infinite;
         }
         
-        .subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
+        .portfolio-subtitle {
+            font-size: 1.25rem;
+            color: var(--monokai-comment);
+            margin-bottom: 0.5rem;
         }
         
-        .description {
-            font-size: 16px;
-            color: var(--text-secondary);
+        .portfolio-description {
+            font-size: 1rem;
+            color: var(--monokai-comment);
             max-width: 600px;
             line-height: 1.6;
         }
@@ -88,59 +51,54 @@
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 2rem;
             width: 100%;
             max-width: 800px;
         }
         
         .project-card {
-            background: var(--surface);
+            background: var(--monokai-bg-light);
             border-radius: 15px;
-            padding: 30px;
+            padding: 2rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px var(--monokai-shadow);
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent);
+            box-shadow: 0 20px 40px var(--monokai-shadow);
+            border-color: var(--monokai-accent);
         }
         
         .project-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: var(--accent);
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--monokai-accent);
+            animation: monokaiFloat 3s ease-in-out infinite;
         }
         
         .project-title {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 15px;
-            color: var(--text);
+            margin-bottom: 1rem;
+            color: var(--monokai-fg);
         }
         
         .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 25px;
+            color: var(--monokai-comment);
+            margin-bottom: 1.5rem;
             line-height: 1.6;
         }
         
         .project-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: linear-gradient(45deg, var(--accent), var(--success));
-            color: var(--primary);
-            padding: 12px 24px;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+            color: var(--monokai-bg);
+            padding: 0.75rem 1.5rem;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
@@ -149,62 +107,45 @@
         
         .project-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(94, 129, 172, 0.3);
-        }
-        
-        .footer {
-            margin-top: 60px;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-        
-        .footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        
-        .footer a:hover {
-            text-decoration: underline;
+            box-shadow: 0 8px 25px var(--monokai-glow);
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
+            .portfolio-logo {
+                font-size: 2.25rem;
             }
             
-            .logo {
-                font-size: 36px;
-            }
-            
-            .subtitle {
-                font-size: 18px;
+            .portfolio-subtitle {
+                font-size: 1.125rem;
             }
             
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 1.5rem;
             }
             
             .project-card {
-                padding: 20px;
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="logo">AIE Portfolio</h1>
-            <p class="subtitle">Welcome to my digital space</p>
-            <p class="description">
+    <!-- Include Core Navigation -->
+    <div id="navigation-placeholder"></div>
+    
+    <div class="monokai-container portfolio-container">
+        <div class="portfolio-header">
+            <h1 class="portfolio-logo">AIE Portfolio</h1>
+            <p class="portfolio-subtitle">Welcome to my digital space</p>
+            <p class="portfolio-description">
                 Explore my blog posts covering programming, mathematics, and personal insights, 
                 or dive into my data analysis tools for CSV processing and visualization.
             </p>
         </div>
         
         <div class="projects-grid">
-            <div class="project-card">
+            <div class="project-card monokai-card">
                 <div class="project-icon">
                     <i class="fas fa-blog"></i>
                 </div>
@@ -213,13 +154,13 @@
                     Read my latest posts about programming, mathematics, and personal experiences. 
                     Discover tutorials, insights, and thoughts on various topics.
                 </p>
-                <a href="blogii/index.html" class="project-link">
+                <a href="blogii/index.html" class="project-link monokai-button">
                     <i class="fas fa-arrow-right"></i>
                     Visit Blog
                 </a>
             </div>
             
-            <div class="project-card">
+            <div class="project-card monokai-card">
                 <div class="project-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
@@ -228,21 +169,30 @@
                     Upload and analyze your CSV files with advanced statistical analysis, 
                     beautiful visualizations, and comprehensive data insights.
                 </p>
-                <a href="data-analysis/csv-analyzer.html" class="project-link">
+                <a href="data-analysis/csv-analyzer.html" class="project-link monokai-button">
                     <i class="fas fa-arrow-right"></i>
                     Analyze Data
                 </a>
             </div>
         </div>
-        
-        <div class="footer">
-            <p>© 2024 AIE Portfolio. Built with passion and modern web technologies.</p>
-            <p>
-                <a href="https://github.com/yourusername" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </p>
-        </div>
     </div>
+    
+    <!-- Include Core Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        // Load core components
+        fetch('core-framework/components/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navigation-placeholder').innerHTML = data;
+            });
+            
+        fetch('core-framework/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
 </body>
 </html>

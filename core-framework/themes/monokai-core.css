@@ -1,0 +1,270 @@
+/* 
+ * AIE Portfolio - Core Monokai Theme Framework
+ * Protected core theme - Only account owner can modify
+ * Author: A1m
+ * Version: 2.0 - Core Framework
+ */
+
+/* ===== CORE MONOKAI COLOR PALETTE ===== */
+:root {
+    /* Primary Monokai Colors */
+    --monokai-bg: #272822;
+    --monokai-fg: #f8f8f2;
+    --monokai-comment: #75715e;
+    --monokai-keyword: #f92672;
+    --monokai-string: #e6db74;
+    --monokai-function: #a6e22e;
+    --monokai-variable: #66d9ef;
+    --monokai-type: #ae81ff;
+    --monokai-number: #ae81ff;
+    --monokai-operator: #f92672;
+    
+    /* Extended Palette for UI */
+    --monokai-accent: #a6e22e;
+    --monokai-accent-secondary: #66d9ef;
+    --monokai-warning: #e6db74;
+    --monokai-error: #f92672;
+    --monokai-success: #a6e22e;
+    --monokai-info: #66d9ef;
+    
+    /* Background Variations */
+    --monokai-bg-light: #3e3d32;
+    --monokai-bg-dark: #1e1f1c;
+    --monokai-bg-hover: #383830;
+    
+    /* Border and Shadow */
+    --monokai-border: #4c566a;
+    --monokai-shadow: rgba(0, 0, 0, 0.3);
+    --monokai-glow: rgba(166, 226, 46, 0.3);
+}
+
+/* ===== CORE RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    line-height: 1.6;
+    color: var(--monokai-fg);
+    background: var(--monokai-bg);
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(166, 226, 46, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(249, 38, 114, 0.05) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 49%, rgba(166, 226, 46, 0.03) 50%, transparent 51%),
+        linear-gradient(-45deg, transparent 49%, rgba(102, 217, 239, 0.03) 50%, transparent 51%);
+    background-size: 800px 800px, 600px 600px, 400px 400px, 60px 60px, 60px 60px;
+    background-position: 0 0, 100px 100px, 200px 200px, 0 0, 0 0;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ===== CORE ANIMATIONS ===== */
+@keyframes monokaiGlow {
+    0%, 100% { 
+        box-shadow: 0 0 20px var(--monokai-glow);
+        text-shadow: 0 0 10px var(--monokai-accent);
+    }
+    50% { 
+        box-shadow: 0 0 30px var(--monokai-glow);
+        text-shadow: 0 0 20px var(--monokai-accent);
+    }
+}
+
+@keyframes monokaiFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes monokaiPulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+@keyframes monokaiSlideIn {
+    from { 
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ===== CORE COMPONENTS ===== */
+.monokai-header {
+    background: var(--monokai-bg-light);
+    border-bottom: 2px solid var(--monokai-accent);
+    box-shadow: 0 4px 20px var(--monokai-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.monokai-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.monokai-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--monokai-accent);
+    text-decoration: none;
+    animation: monokaiGlow 3s ease-in-out infinite;
+}
+
+.monokai-nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.monokai-nav-links a {
+    color: var(--monokai-fg);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.monokai-nav-links a:hover {
+    background: var(--monokai-bg-hover);
+    color: var(--monokai-accent);
+    transform: translateY(-2px);
+}
+
+.monokai-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.monokai-card {
+    background: var(--monokai-bg-light);
+    border: 1px solid var(--monokai-border);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem 0;
+    box-shadow: 0 5px 15px var(--monokai-shadow);
+    transition: all 0.3s ease;
+}
+
+.monokai-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--monokai-shadow);
+    border-color: var(--monokai-accent);
+}
+
+.monokai-button {
+    background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+    color: var(--monokai-bg);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.monokai-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--monokai-glow);
+}
+
+.monokai-title {
+    color: var(--monokai-accent);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px var(--monokai-glow);
+}
+
+.monokai-subtitle {
+    color: var(--monokai-comment);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.monokai-text {
+    color: var(--monokai-fg);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* ===== CORE RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .monokai-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .monokai-nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .monokai-container {
+        padding: 1rem;
+    }
+    
+    .monokai-card {
+        padding: 1rem;
+    }
+}
+
+/* ===== CORE UTILITIES ===== */
+.monokai-center {
+    text-align: center;
+}
+
+.monokai-hidden {
+    display: none;
+}
+
+.monokai-visible {
+    display: block;
+}
+
+.monokai-glow {
+    animation: monokaiGlow 2s ease-in-out infinite;
+}
+
+.monokai-float {
+    animation: monokaiFloat 3s ease-in-out infinite;
+}
+
+.monokai-pulse {
+    animation: monokaiPulse 2s ease-in-out infinite;
+}
+
+/* ===== CORE PROTECTION NOTICE ===== */
+.monokai-protected {
+    position: relative;
+}
+
+.monokai-protected::before {
+    content: "🔒 PROTECTED CORE FRAMEWORK";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--monokai-error);
+    color: var(--monokai-fg);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    border-radius: 3px;
+    z-index: 1001;
+    opacity: 0.8;
+}
