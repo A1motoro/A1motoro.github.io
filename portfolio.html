@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIE Portfolio - Developer & Data Analyst</title>
+    <meta name="description" content="Personal portfolio featuring blog posts, data analysis tools, and coding projects">
+    <meta name="keywords" content="portfolio, developer, data analysis, blog, programming, AIE">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="core-framework/themes/monokai-core.css" rel="stylesheet">
+    
+    <style>
+        /* Main page specific styles */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: monokaiGlow 3s ease-in-out infinite;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--monokai-comment);
+            margin-bottom: 2rem;
+            animation: monokaiFloat 3s ease-in-out infinite;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--monokai-fg);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+            color: var(--monokai-bg);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--monokai-shadow);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--monokai-glow);
+        }
+        
+        .cta-button.secondary {
+            background: linear-gradient(45deg, var(--monokai-bg-light), var(--monokai-bg-hover));
+            color: var(--monokai-accent);
+            border: 2px solid var(--monokai-accent);
+        }
+        
+        .features-section {
+            padding: 4rem 2rem;
+            background: var(--monokai-bg-light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: var(--monokai-bg);
+            border: 1px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--monokai-accent);
+            box-shadow: 0 10px 25px var(--monokai-shadow);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--monokai-accent);
+            margin-bottom: 1rem;
+            animation: monokaiFloat 3s ease-in-out infinite;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--monokai-fg);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            color: var(--monokai-comment);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-link {
+            color: var(--monokai-accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-link:hover {
+            color: var(--monokai-accent-secondary);
+            text-shadow: 0 0 10px var(--monokai-glow);
+        }
+        
+        .stats-section {
+            padding: 3rem 2rem;
+            background: var(--monokai-bg);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--monokai-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--monokai-comment);
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+=======
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>BLOGIIIIII - Developer & Writer</title>
+    <meta name="description" content="A personal blog sharing thoughts on technology, development, and life experiences with a modern VSCode Monokai theme.">
+    <meta name="keywords" content="blog, developer, technology, programming, personal">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/monokai-theme.css" rel="stylesheet">
+    <!-- MathJax for LaTeX math support -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="./css/monokai-theme.css" rel="stylesheet">
+    
+    <!-- Inline Critical Animations for GitHub Pages -->
+    <style>
+        @keyframes crazyStartup {
+            0% { 
+                transform: scale(0.1); 
+                opacity: 0; 
+            }
+            50% { 
+                transform: scale(0.8); 
+                opacity: 0.8; 
+            }
+            100% { 
+                transform: scale(1); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes crazyGlow {
+            0%, 100% { box-shadow: 0 0 20px #a6e22e, 0 0 40px #66d9ef; }
+            50% { box-shadow: 0 0 30px #66d9ef, 0 0 60px #a6e22e; }
+        }
+        
+        @keyframes crazyShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+        
+        @keyframes textBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        @keyframes colorShift {
+            0% { color: #f8f8f2; }
+            25% { color: #a6e22e; }
+            50% { color: #66d9ef; }
+            75% { color: #66d9ef; }
+            100% { color: #f8f8f2; }
+        }
+        
+        @keyframes crazyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes contentReveal {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes matrixChar {
+            0% { transform: translateY(-100vh); opacity: 0.8; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #a6e22e, #66d9ef, #a6e22e) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 3s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate !important;
+            font-weight: bold !important;
+            text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4) !important;
+        }
+        
+        .glowing-title {
+            animation: titleGlow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4);
+        }
+        
+        /* Override external CSS for hero section gradient text */
+        .hero .gradient-text {
+            background: linear-gradient(45deg, #a6e22e, #66d9ef, #a6e22e) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            background-size: 200% 200% !important;
+            animation: gradientShift 3s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate !important;
+            font-weight: bold !important;
+            text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4) !important;
+        }
+        
+        @keyframes gradientShift {
+            0% { 
+                background-position: 0% 50%;
+            }
+            50% { 
+                background-position: 100% 50%;
+            }
+            100% { 
+                background-position: 0% 50%;
+            }
+        }
+        
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(166, 226, 46, 1), 0 0 60px rgba(102, 217, 239, 0.8), 0 0 90px rgba(166, 226, 46, 0.6);
+            }
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(166, 226, 46, 1), 0 0 60px rgba(102, 217, 239, 0.8), 0 0 90px rgba(166, 226, 46, 0.6);
+            }
+        }
+        
+        /* Letter Wave Animations */
+        .wave-letter {
+            transform-origin: center bottom;
+        }
+        
+        @keyframes letterWave1 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave2 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave3 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave4 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave5 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave6 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave7 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave8 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave9 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes letterWave10 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes canvasFall {
+            0% { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(50vh);
+                opacity: 0.5;
+            }
+            100% { 
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes elementFall {
+            0% { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes letterFall {
+            0% { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        
+        
+        
+        
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-10px) rotate(2deg); 
+            }
+            50% { 
+                transform: translateY(-5px) rotate(0deg); 
+            }
+            75% { 
+                transform: translateY(-15px) rotate(-2deg); 
+            }
+        }
+        
+        /* Hero Section Animations */
+        @keyframes floatCode {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1); 
+                opacity: 0.1;
+            }
+            50% { 
+                transform: translateY(-20px) rotate(5deg) scale(1.1); 
+                opacity: 0.3;
+            }
+        }
+        
+        @keyframes heroIconPulse {
+            0%, 100% { 
+                transform: scale(1); 
+            }
+            50% { 
+                transform: scale(1.1); 
+            }
+        }
+        
+        @keyframes heroIconRotate {
+            0% { 
+                transform: rotate(0deg); 
+            }
+            100% { 
+                transform: rotate(360deg); 
+            }
+        }
+        
+        @keyframes heroTitleEntrance {
+            0% { 
+                transform: translateY(50px); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes heroSubtitleGlow {
+            0% { 
+                text-shadow: 0 0 10px rgba(248, 248, 242, 0.5); 
+            }
+            100% { 
+                text-shadow: 0 0 20px rgba(248, 248, 242, 0.8), 0 0 30px rgba(166, 226, 46, 0.3); 
+            }
+        }
+        
+        
+        @keyframes heroMainTitleEntrance {
+            0% { 
+                transform: translateY(30px) scale(0.8); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translateY(0) scale(1); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes heroSubtitleEntrance {
+            0% { 
+                transform: translateY(20px); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes heroCTAEntrance {
+            0% { 
+                transform: translateY(30px); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes ctaButtonPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 5px 20px rgba(166, 226, 46, 0.3); 
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 8px 25px rgba(166, 226, 46, 0.5); 
+            }
+        }
+        
+        /* Crazy Hero Animations */
+        @keyframes heroCrazyEntrance {
+            0% { 
+                transform: scale(0.8) rotate(-5deg); 
+                opacity: 0; 
+                filter: blur(10px);
+            }
+            50% { 
+                transform: scale(1.05) rotate(2deg); 
+                opacity: 0.8; 
+                filter: blur(2px);
+            }
+            100% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1; 
+                filter: blur(0px);
+            }
+        }
+        
+        @keyframes heroIconCrazy {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg); 
+            }
+            25% { 
+                transform: scale(1.1) rotate(5deg); 
+            }
+            50% { 
+                transform: scale(0.9) rotate(-3deg); 
+            }
+            75% { 
+                transform: scale(1.05) rotate(2deg); 
+            }
+        }
+        
+        @keyframes heroIconGlow {
+            0% { 
+                text-shadow: 0 0 30px #a6e22e, 0 0 60px #66d9ef; 
+            }
+            100% { 
+                text-shadow: 0 0 50px #a6e22e, 0 0 100px #66d9ef, 0 0 150px #a6e22e; 
+            }
+        }
+        
+                 @keyframes crazyWave {
+             0%, 100% { 
+                 transform: translateY(0px) scale(1); 
+             }
+             25% { 
+                 transform: translateY(-15px) scale(1.1); 
+             }
+             50% { 
+                 transform: translateY(-5px) scale(0.9); 
+             }
+             75% { 
+                 transform: translateY(-20px) scale(1.05); 
+             }
+         }
+         
+         @keyframes letterPop {
+             0% { 
+                 transform: scale(0) rotate(180deg); 
+                 opacity: 0;
+                 text-shadow: 0 0 0px currentColor;
+             }
+             50% { 
+                 transform: scale(1.3) rotate(0deg); 
+                 opacity: 1;
+                 text-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
+             }
+             100% { 
+                 transform: scale(1) rotate(0deg); 
+                 opacity: 1;
+                 text-shadow: 0 0 20px currentColor;
+             }
+         }
+         
+         /* New Hero Text Animations */
+         @keyframes textGlowPulse {
+             0%, 100% { 
+                 text-shadow: 0 0 20px rgba(166, 226, 46, 0.8), 0 0 40px rgba(102, 217, 239, 0.6), 0 0 60px rgba(166, 226, 46, 0.4);
+             }
+             50% { 
+                 text-shadow: 0 0 30px rgba(166, 226, 46, 1), 0 0 60px rgba(102, 217, 239, 0.8), 0 0 90px rgba(166, 226, 46, 0.6);
+             }
+         }
+         
+         @keyframes textFloat {
+             0%, 100% { 
+                 transform: translateY(0px); 
+             }
+             50% { 
+                 transform: translateY(-10px); 
+             }
+         }
+         
+         @keyframes textShake {
+             0%, 100% { 
+                 transform: translateX(0px); 
+             }
+             25% { 
+                 transform: translateX(-2px); 
+             }
+             75% { 
+                 transform: translateX(2px); 
+             }
+         }
+         
+         @keyframes textRotate {
+             0% { 
+                 transform: rotate(0deg); 
+             }
+             25% { 
+                 transform: rotate(1deg); 
+             }
+             75% { 
+                 transform: rotate(-1deg); 
+             }
+             100% { 
+                 transform: rotate(0deg); 
+             }
+         }
+         
+         @keyframes textScale {
+             0%, 100% { 
+                 transform: scale(1); 
+             }
+             50% { 
+                 transform: scale(1.05); 
+             }
+         }
+         
+         @keyframes textFadeInOut {
+             0%, 100% { 
+                 opacity: 1; 
+             }
+             50% { 
+                 opacity: 0.7; 
+             }
+         }
+         
+         /* Hero Background Animations */
+         @keyframes backgroundShift {
+             0% { 
+                 background-position: 0% 50%; 
+             }
+             50% { 
+                 background-position: 100% 50%; 
+             }
+             100% { 
+                 background-position: 0% 50%; 
+             }
+         }
+         
+         @keyframes particleFloat {
+             0%, 100% { 
+                 transform: translateY(0px) translateX(0px) rotate(0deg); 
+                 opacity: 0.7;
+             }
+             25% { 
+                 transform: translateY(-20px) translateX(10px) rotate(90deg); 
+                 opacity: 1;
+             }
+             50% { 
+                 transform: translateY(-40px) translateX(-5px) rotate(180deg); 
+                 opacity: 0.8;
+             }
+             75% { 
+                 transform: translateY(-20px) translateX(-10px) rotate(270deg); 
+                 opacity: 0.9;
+             }
+         }
+         
+         @keyframes codeRain {
+             0% { 
+                 transform: translateY(-100vh); 
+                 opacity: 0;
+             }
+             10% { 
+                 opacity: 1;
+             }
+             90% { 
+                 opacity: 1;
+             }
+             100% { 
+                 transform: translateY(100vh); 
+                 opacity: 0;
+             }
+         }
+         
+         /* New Technology Background Animations */
+         @keyframes circuitPulse {
+             0%, 100% { 
+                 opacity: 0.3; 
+                 transform: scale(1);
+             }
+             50% { 
+                 opacity: 0.8; 
+                 transform: scale(1.05);
+             }
+         }
+         
+         @keyframes dataFlow {
+             0% { 
+                 transform: translateX(-100px); 
+                 opacity: 0;
+             }
+             50% { 
+                 opacity: 1;
+             }
+             100% { 
+                 transform: translateX(100vw); 
+                 opacity: 0;
+             }
+         }
+         
+         @keyframes binaryBlink {
+             0%, 90% { 
+                 opacity: 0.2; 
+             }
+             95% { 
+                 opacity: 1; 
+             }
+             100% { 
+                 opacity: 0.2; 
+             }
+         }
+         
+         @keyframes terminalCursor {
+             0%, 50% { 
+                 opacity: 1; 
+             }
+             51%, 100% { 
+                 opacity: 0; 
+             }
+         }
+         
+         @keyframes codeHighlight {
+             0%, 80% { 
+                 background-color: transparent; 
+             }
+             90% { 
+                 background-color: rgba(166, 226, 46, 0.3); 
+             }
+             100% { 
+                 background-color: transparent; 
+             }
+         }
+         
+         /* Rolling Cursor and Reverse Typing Animations */
+         @keyframes rollingCursor {
+             0% { 
+                 transform: translateY(0px); 
+                 opacity: 1;
+             }
+             50% { 
+                 transform: translateY(20px); 
+                 opacity: 0.7;
+             }
+             100% { 
+                 transform: translateY(40px); 
+                 opacity: 0;
+             }
+         }
+         
+         @keyframes reverseTyping {
+             0% { 
+                 width: 100%; 
+                 opacity: 1;
+             }
+             100% { 
+                 width: 0%; 
+                 opacity: 0.3;
+             }
+         }
+         
+         @keyframes typewriterEffect {
+             0% { 
+                 width: 0%; 
+                 opacity: 0;
+             }
+             50% { 
+                 opacity: 1;
+             }
+             100% { 
+                 width: 100%; 
+                 opacity: 1;
+             }
+         }
+        
+        /* Hero CTA Button Hover Effects */
+        .cta-button.primary:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 30px rgba(166, 226, 46, 0.6) !important;
+            background: linear-gradient(45deg, #66d9ef, #a6e22e) !important;
+        }
+        
+        .cta-button.secondary:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 30px rgba(102, 217, 239, 0.4) !important;
+            background: rgba(102, 217, 239, 0.1) !important;
+            border-color: #a6e22e !important;
+            color: #a6e22e !important;
+        }
+        
+        .cta-button.csv-button:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 30px rgba(249, 38, 114, 0.6) !important;
+            background: linear-gradient(45deg, #ae81ff, #f92672) !important;
+        }
+        
+        /* Hero Section Responsive Design */
+        @media (max-width: 768px) {
+            .hero-cta-container {
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+            
+            .cta-button {
+                width: 200px !important;
+                text-align: center !important;
+            }
+            
+            #hero-blogii {
+                font-size: 2.5em !important;
+            }
+            
+            .hero-icon i {
+                font-size: 40px !important;
+            }
+        }
+        
+        /* Content sections transparency - more background visible */
+        .featured-posts, .main-content, .about, footer {
+            background: rgba(39, 40, 34, 0.6) !important;
+            backdrop-filter: blur(1px);
+        }
+        
+                 /* Force proper viewport positioning */
+         html, body {
+             margin: 0 !important;
+             padding: 0 !important;
+             overflow-x: hidden !important;
+             overflow-y: auto !important;
+             height: 100% !important;
+             width: 100% !important;
+         }
+         
+         /* Hide scrollbars completely */
+         ::-webkit-scrollbar {
+             display: none !important;
+         }
+         
+         /* Hide scrollbar for Firefox */
+         html {
+             scrollbar-width: none !important;
+         }
+         
+         /* Ensure hero section starts at top */
+         .hero {
+             position: relative !important;
+             top: 0 !important;
+             left: 0 !important;
+             width: 100% !important;
+             margin: 0 !important;
+             padding: 0 !important;
+             transform: none !important;
+             zoom: 1 !important;
+         }
+         
+         /* Prevent any zoom or scale effects */
+         * {
+             transform-origin: center center !important;
+         }
+         
+         /* Ensure no zoom on click or interaction */
+         html, body, .hero, .container {
+             zoom: 1 !important;
+             transform: scale(1) !important;
+         }
+        
+        
+        /* Force loading screen positioning */
+        #loading-screen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            overflow: hidden !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            z-index: 9999 !important;
+        }
+        
+        .featured-posts .container, .main-content .container, .about .container, footer .container {
+            background: rgba(39, 40, 34, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 auto !important;
+            max-width: 1200px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        
+        /* Normal blog card hover animations */
+        .blog-card, .featured-card {
+            transition: all 0.3s ease !important;
+        }
+        
+        .blog-card:hover, .featured-card:hover {
+            transition: all 0.3s ease !important;
+        }
+        
+        .blog-card .read-more {
+            transition: all 0.3s ease !important;
+        }
+        
+        /* Blog post pages transparency - make background more visible */
+        .post-container, .blog-main, .main-content {
+            background: rgba(39, 40, 34, 0.3) !important;
+            backdrop-filter: blur(0.5px);
+        }
+        
+        .post-content {
+            background: rgba(39, 40, 34, 0.2) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+>>>>>>> 0e92592fdaf42209d9a2b86a17eb2a04dd8613f8
+        }
+    </style>
+</head>
+<body>
+<<<<<<< HEAD
+    <!-- Include Core Navigation -->
+    <div id="navigation-placeholder"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">AIE Portfolio</h1>
+            <p class="hero-subtitle">Developer & Data Analyst</p>
+            <p class="hero-description">
+                Welcome to my digital space! Explore my blog posts covering programming, mathematics, 
+                and personal insights, or dive into my data analysis tools for CSV processing and visualization. 
+                Discover the intersection of code, data, and creativity.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="blogii/index.html" class="cta-button">
+                    <i class="fas fa-blog"></i>
+                    Visit My Blog
+                </a>
+                <a href="data-analysis/csv-analyzer.html" class="cta-button secondary">
+                    <i class="fas fa-chart-line"></i>
+                    Analyze Data
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="monokai-container">
+            <h2 class="monokai-title monokai-center">What I Offer</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <h3 class="feature-title">Technical Blog</h3>
+                    <p class="feature-description">
+                        Read my latest posts about programming, mathematics, and personal experiences. 
+                        Discover tutorials, insights, and thoughts on various technical topics.
+                    </p>
+                    <a href="blogii/index.html" class="feature-link">
+                        Explore Blog <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Data Analysis Tools</h3>
+                    <p class="feature-description">
+                        Upload and analyze your CSV files with advanced statistical analysis, 
+                        beautiful visualizations, and comprehensive data insights.
+                    </p>
+                    <a href="data-analysis/csv-analyzer.html" class="feature-link">
+                        Try Analyzer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="feature-title">About Me</h3>
+                    <p class="feature-description">
+                        Learn more about my journey as a developer, my interests, 
+                        and the technologies I work with.
+                    </p>
+                    <a href="#about" class="feature-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+=======
+    <!-- Header -->
+    <header id="main-header">
+        <nav class="container">
+            <div style="display: flex; align-items: center;">
+                <i class="fas fa-code" id="header-icon" style="font-size: 25px; color: #a6e22e; margin-right: 10px;"></i>
+                <a href="#" class="logo gradient-text" id="header-logo">BLOGIIIIII</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 0; padding: 0; top: 0; left: 0; width: 100%; background: linear-gradient(135deg, #0d1117 0%, #161b22 25%, #0d1117 50%, #161b22 75%, #0d1117 100%); background-size: 400% 400%; animation: backgroundShift 10s ease-in-out infinite;">
+        <!-- Thick Glowing Diagonal Lines -->
+        <div class="diagonal-lines" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
+            <!-- 45° Angle Lines -->
+            <div style="position: absolute; top: 20%; left: -100%; width: 400%; height: 8px; background: linear-gradient(45deg, transparent 0%, #a6e22e 30%, #66d9ef 70%, transparent 100%); transform: rotate(45deg); transform-origin: left center; box-shadow: 0 0 20px #a6e22e, 0 0 40px #66d9ef;"></div>
+            <div style="position: absolute; top: 50%; left: -100%; width: 400%; height: 8px; background: linear-gradient(45deg, transparent 0%, #f92672 30%, #e6db74 70%, transparent 100%); transform: rotate(45deg); transform-origin: left center; box-shadow: 0 0 20px #f92672, 0 0 40px #e6db74;"></div>
+            <div style="position: absolute; top: 80%; left: -100%; width: 400%; height: 8px; background: linear-gradient(45deg, transparent 0%, #ae81ff 30%, #f8f8f2 70%, transparent 100%); transform: rotate(45deg); transform-origin: left center; box-shadow: 0 0 20px #ae81ff, 0 0 40px #f8f8f2;"></div>
+            
+            <!-- -45° Angle Lines -->
+            <div style="position: absolute; top: 0; right: -100%; width: 400%; height: 8px; background: linear-gradient(-45deg, transparent 0%, #66d9ef 30%, #a6e22e 70%, transparent 100%); transform: rotate(-45deg); transform-origin: right center; box-shadow: 0 0 20px #66d9ef, 0 0 40px #a6e22e;"></div>
+            <div style="position: absolute; top: 30%; right: -100%; width: 400%; height: 8px; background: linear-gradient(-45deg, transparent 0%, #e6db74 30%, #f92672 70%, transparent 100%); transform: rotate(-45deg); transform-origin: right center; box-shadow: 0 0 20px #e6db74, 0 0 40px #f92672;"></div>
+            <div style="position: absolute; top: 60%; right: -100%; width: 400%; height: 8px; background: linear-gradient(-45deg, transparent 0%, #f8f8f2 30%, #ae81ff 70%, transparent 100%); transform: rotate(-45deg); transform-origin: right center; box-shadow: 0 0 20px #f8f8f2, 0 0 40px #ae81ff;"></div>
+            
+            <!-- 30° Angle Lines -->
+            <div style="position: absolute; top: 10%; left: -80%; width: 300%; height: 6px; background: linear-gradient(30deg, transparent 0%, #f92672 40%, #ae81ff 60%, transparent 100%); transform: rotate(30deg); transform-origin: left center; box-shadow: 0 0 15px #f92672, 0 0 30px #ae81ff;"></div>
+            <div style="position: absolute; top: 40%; left: -80%; width: 300%; height: 6px; background: linear-gradient(30deg, transparent 0%, #a6e22e 40%, #66d9ef 60%, transparent 100%); transform: rotate(30deg); transform-origin: left center; box-shadow: 0 0 15px #a6e22e, 0 0 30px #66d9ef;"></div>
+            <div style="position: absolute; top: 70%; left: -80%; width: 300%; height: 6px; background: linear-gradient(30deg, transparent 0%, #e6db74 40%, #f8f8f2 60%, transparent 100%); transform: rotate(30deg); transform-origin: left center; box-shadow: 0 0 15px #e6db74, 0 0 30px #f8f8f2;"></div>
+            
+            <!-- -30° Angle Lines -->
+            <div style="position: absolute; top: 0; right: -80%; width: 300%; height: 6px; background: linear-gradient(-30deg, transparent 0%, #ae81ff 40%, #f92672 60%, transparent 100%); transform: rotate(-30deg); transform-origin: right center; box-shadow: 0 0 15px #ae81ff, 0 0 30px #f92672;"></div>
+            <div style="position: absolute; top: 30%; right: -80%; width: 300%; height: 6px; background: linear-gradient(-30deg, transparent 0%, #66d9ef 40%, #a6e22e 60%, transparent 100%); transform: rotate(-30deg); transform-origin: right center; box-shadow: 0 0 15px #66d9ef, 0 0 30px #a6e22e;"></div>
+            <div style="position: absolute; top: 60%; right: -80%; width: 300%; height: 6px; background: linear-gradient(-30deg, transparent 0%, #f8f8f2 40%, #e6db74 60%, transparent 100%); transform: rotate(-30deg); transform-origin: right center; box-shadow: 0 0 15px #f8f8f2, 0 0 30px #e6db74;"></div>
+            
+            <!-- 60° Angle Lines -->
+            <div style="position: absolute; top: 15%; left: -90%; width: 350%; height: 7px; background: linear-gradient(60deg, transparent 0%, #e6db74 35%, #f92672 65%, transparent 100%); transform: rotate(60deg); transform-origin: left center; box-shadow: 0 0 18px #e6db74, 0 0 35px #f92672;"></div>
+            <div style="position: absolute; top: 45%; left: -90%; width: 350%; height: 7px; background: linear-gradient(60deg, transparent 0%, #ae81ff 35%, #f8f8f2 65%, transparent 100%); transform: rotate(60deg); transform-origin: left center; box-shadow: 0 0 18px #ae81ff, 0 0 35px #f8f8f2;"></div>
+            <div style="position: absolute; top: 75%; left: -90%; width: 350%; height: 7px; background: linear-gradient(60deg, transparent 0%, #a6e22e 35%, #66d9ef 65%, transparent 100%); transform: rotate(60deg); transform-origin: left center; box-shadow: 0 0 18px #a6e22e, 0 0 35px #66d9ef;"></div>
+            
+            <!-- -60° Angle Lines -->
+            <div style="position: absolute; top: 0; right: -90%; width: 350%; height: 7px; background: linear-gradient(-60deg, transparent 0%, #f92672 35%, #e6db74 65%, transparent 100%); transform: rotate(-60deg); transform-origin: right center; box-shadow: 0 0 18px #f92672, 0 0 35px #e6db74;"></div>
+            <div style="position: absolute; top: 30%; right: -90%; width: 350%; height: 7px; background: linear-gradient(-60deg, transparent 0%, #f8f8f2 35%, #ae81ff 65%, transparent 100%); transform: rotate(-60deg); transform-origin: right center; box-shadow: 0 0 18px #f8f8f2, 0 0 35px #ae81ff;"></div>
+            <div style="position: absolute; top: 60%; right: -90%; width: 350%; height: 7px; background: linear-gradient(-60deg, transparent 0%, #66d9ef 35%, #a6e22e 65%, transparent 100%); transform: rotate(-60deg); transform-origin: right center; box-shadow: 0 0 18px #66d9ef, 0 0 35px #a6e22e;"></div>
+        </div>
+        
+        <!-- Gradient Overlay -->
+        <div class="hero-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(13, 17, 23, 0.8) 0%, rgba(22, 27, 34, 0.9) 50%, rgba(13, 17, 23, 0.8) 100%); z-index: 2;"></div>
+        
+        <!-- Main Content -->
+        <div class="container" style="text-align: center; z-index: 3; position: relative;">
+            <!-- Animated Icon -->
+            <div class="hero-icon" style="margin-bottom: 30px; animation: textFloat 3s ease-in-out infinite;">
+                <i class="fas fa-code" style="font-size: 60px; color: #a6e22e; text-shadow: 0 0 30px #a6e22e; animation: textGlowPulse 2s ease-in-out infinite, textRotate 4s ease-in-out infinite;"></i>
+            </div>
+            
+            <!-- Animated Main Title -->
+            <h1 id="hero-title" style="margin-bottom: 20px; animation: textFloat 4s ease-in-out infinite;">
+                <span style="display: block; font-size: 1.2em; color: #f8f8f2; margin-bottom: 10px; animation: textShake 3s ease-in-out infinite, textFadeInOut 2s ease-in-out infinite;">Welcome to</span>
+                <span id="hero-blogii" class="gradient-text" style="font-size: 3.5em; display: block; letter-spacing: -0.1em; animation: textGlowPulse 2s ease-in-out infinite, textScale 3s ease-in-out infinite;">BLOGIIIIII</span>
+            </h1>
+            
+            <!-- Animated Subtitle -->
+            <p style="font-size: 1.3em; color: #66d9ef; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; text-shadow: 0 0 20px rgba(102, 217, 239, 0.5); animation: textFloat 5s ease-in-out infinite;">
+                Exploring 
+                <span style="color: #a6e22e; font-weight: bold; animation: textShake 2s ease-in-out infinite, textGlowPulse 1.5s ease-in-out infinite;">data structures</span>, 
+                <span style="color: #66d9ef; font-weight: bold; animation: textFloat 3s ease-in-out infinite 0.5s, textFadeInOut 2s ease-in-out infinite;">algorithms</span>, and 
+                <span style="color: #f8f8f2; font-weight: bold; animation: textScale 2.5s ease-in-out infinite 1s, textRotate 4s ease-in-out infinite;">programming concepts</span>
+            </p>
+            
+            <!-- Animated CTA Buttons -->
+            <div class="hero-cta-container" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: textFloat 6s ease-in-out infinite;">
+                <a href="#featured" class="cta-button primary" style="background: linear-gradient(45deg, #a6e22e, #66d9ef); color: #272822; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(166, 226, 46, 0.3); animation: textScale 2s ease-in-out infinite, textGlowPulse 3s ease-in-out infinite;">
+                    <i class="fas fa-star" style="margin-right: 8px; animation: textRotate 2s ease-in-out infinite;"></i>Read Featured Post
+                </a>
+                <a href="#blog" class="cta-button secondary" style="background: transparent; color: #f8f8f2; padding: 15px 30px; border: 2px solid #66d9ef; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(102, 217, 239, 0.2); animation: textFloat 2.5s ease-in-out infinite 0.5s, textFadeInOut 2s ease-in-out infinite;">
+                    <i class="fas fa-blog" style="margin-right: 8px; animation: textShake 1.5s ease-in-out infinite;"></i>View All Posts
+                </a>
+                <a href="csv-analyzer.html" class="cta-button csv-button" style="background: linear-gradient(45deg, #f92672, #ae81ff); color: #f8f8f2; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(249, 38, 114, 0.3); animation: textFloat 3s ease-in-out infinite 1s, textGlowPulse 2.5s ease-in-out infinite;">
+                    <i class="fas fa-chart-line" style="margin-right: 8px; animation: textScale 1.8s ease-in-out infinite;"></i>CSV Analyzer
+                </a>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Featured Posts Section -->
+    <section id="featured" class="featured-posts">
+        <div class="container">
+            <h2 class="section-title">Featured Posts</h2>
+            <div class="featured-grid">
+                <a href="posts/Modification for Chained List.html" class="featured-card main-featured">
+                <div class="blog-image">
+                        <i class="fas fa-code"></i>
+        </div>
+                <div class="blog-content">
+                        <h3 class="blog-title">Modification for Chained List</h3>
+                        <div class="blog-meta">Published on December 20, 2024 • 8 min read • Programming</div>
+                        <p class="blog-excerpt">Chainedlist is a data structure that allows for efficient insertion, deletion, and traversal of elements. It is particularly useful in scenarios where frequent modifications to the list are required.</p>
+                        <div class="read-more">Read Full Post →</div>
+                </div>
+                </a>
+        </div>
+                </div>
+    </section>
+
+    <!-- Recent Posts Section -->
+    <section id="blog" class="main-content">
+        <div class="container">
+            <h2 class="section-title">Recent Posts</h2>
+            <div class="blog-grid">
+
+            <a href="posts/MAT1001_1.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">MAT1001_1</h3>
+                    <div class="blog-meta">Published on September 8, 2025 • TBD min read</div>
+                    <p class="blog-excerpt"><strong>Published:</strong> September 8, 2025</p>
+                    <div class="read-more">Read More →</div>
+                </div>
+            </a>
+            
+            <a href="posts/welcome-to-my-blog.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Welcome to My Blog</h3>
+                    <div class="blog-meta">Published on September 5, 2025 • 3 min read</div>
+                    <p class="blog-excerpt">Welcome to my personal blog! I'm excited to share my journey, thoughts, and experiences with you.</p>
+                    <div class="read-more">Read More →</div>
+                </div>
+            </a>
+            
+            <a href="posts/Practice_of_Chained_Lists.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Untitled Post</h3>
+                    <div class="blog-meta">Published on September 08, 2025 • 5 min read</div>
+                    <p class="blog-excerpt">No excerpt available</p>
+                    <div class="read-more">Read More →</div>
+                </div>
+            </a>
+            
+            <a href="posts/Modification for Chained List.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Modification for Chained List</h3>
+                    <div class="blog-meta">Published on December 20, 2024 • 8 min read</div>
+                    <p class="blog-excerpt">Chainedlist is a data structure that allows for efficient insertion, deletion, and traversal of elements. It is particularly useful in scenarios where frequent modifications to the list are required.</p>
+                    <div class="read-more">Read More →</div>
+                </div>
+            </a>
+            
+            <a href="posts/test-post-1.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Test Post 1</h3>
+                    <div class="blog-meta">Published on December 20, 2024 • 2 min read</div>
+                    <p class="blog-excerpt">This is the first test post to demonstrate the blog functionality.</p>
+                    <div class="read-more">Read More →</div>
+                </div>
+            </a>
+            
+            <a href="posts/test-post-2.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Test Post 2</h3>
+                    <div class="blog-meta">Published on December 20, 2024 • 2 min read</div>
+                    <p class="blog-excerpt">This is the second test post to verify the blog system.</p>
+                    <div class="read-more">Read More →</div>
+                </div>
+            </a>
+            
+            </div></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="about-text">
+                    <h3>Hello, I'm A1m</h3>
+                    <p>I'm a passionate writer, developer, and lifelong learner who loves sharing knowledge and experiences through this blog. With a background in technology and a curiosity for the world around us, I write about everything from coding tutorials to personal reflections.</p>
+                    <p>When I'm not writing or coding, you can find me exploring new places, reading books, or experimenting with new technologies. I believe in continuous learning and sharing that knowledge with others.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="mailto:your-email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+>>>>>>> 0e92592fdaf42209d9a2b86a17eb2a04dd8613f8
+                </div>
+            </div>
+        </div>
+    </section>
+<<<<<<< HEAD
+    
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="monokai-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Blog Posts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Code Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Data Tools</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Learning</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Include Core Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        // Load core components
+        fetch('core-framework/components/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navigation-placeholder').innerHTML = data;
+            });
+            
+        fetch('core-framework/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+=======
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2025 BLOGIIIIII. All rights reserved.</p>
+            <p>Made with ❤️ and lots of coffee</p>
+        </div>
+    </footer>
+
+    <script>
+                 // Simple page initialization
+         (function() {
+             // Ensure body doesn't have any margin/padding that could offset content
+             document.body.style.margin = '0';
+             document.body.style.padding = '0';
+             document.documentElement.style.margin = '0';
+             document.documentElement.style.padding = '0';
+             
+             // Prevent zoom and ensure fixed viewport
+             document.documentElement.style.zoom = '1';
+             document.body.style.zoom = '1';
+             document.documentElement.style.transform = 'scale(1)';
+             document.body.style.transform = 'scale(1)';
+         })();
+        
+        
+
+
+                 // Simple page load - no crazy startup needed
+         console.log('🚀 Page loaded with crazy hero section!');
+         
+        
+        
+
+                 // Check if coming from a blog post
+         function isComingFromPost() {
+             return document.referrer.includes('posts/') || 
+                    sessionStorage.getItem('fromPost') === 'true' ||
+                    window.location.hash === '#home';
+         }
+        
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fast smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                console.log('Clicked link:', href); // Debug log
+                const target = document.querySelector(href);
+                console.log('Target element:', target); // Debug log
+                
+                if (target) {
+                    // Ultra fast smooth scroll implementation
+                    const targetPosition = target.offsetTop - 80; // Account for header height
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    const duration = 300; // Increased duration for better visibility
+                    let start = null;
+                    
+                    console.log('Scrolling to position:', targetPosition); // Debug log
+                    
+                    function fastScroll(timestamp) {
+                        if (!start) start = timestamp;
+                        const progress = timestamp - start;
+                        const progressPercent = Math.min(progress / duration, 1);
+                        
+                        // Easing function for ultra fast acceleration
+                        const ease = progressPercent * progressPercent;
+                        
+                        window.scrollTo(0, startPosition + distance * ease);
+                        
+                        if (progress < duration) {
+                            requestAnimationFrame(fastScroll);
+                        } else {
+                            console.log('Scroll completed'); // Debug log
+                        }
+                    }
+                    
+                    requestAnimationFrame(fastScroll);
+                } else {
+                    console.error('Target element not found for:', href);
+                    // Fallback: try direct scroll
+                    const fallbackTarget = document.getElementById(href.substring(1));
+                    if (fallbackTarget) {
+                        fallbackTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        console.log('Used fallback scroll method');
+                    }
+                }
+            });
+        });
+
+        // Additional CTA button handler for debugging
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                console.log('CTA button clicked:', this.href);
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        console.log('CTA target found:', target);
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        console.error('CTA target not found:', href);
+                    }
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(39, 40, 34, 0.98)';
+            } else {
+                header.style.background = 'rgba(39, 40, 34, 0.95)';
+            }
+        });
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.querySelectorAll('.blog-card, .featured-card, .section-title, .about-content').forEach(el => {
+            el.classList.add('scroll-reveal');
+            observer.observe(el);
+        });
+
+        // Add gentle click animation to buttons
+        document.querySelectorAll('button, .btn, .cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                this.style.animation = 'gentlePop 0.8s ease-out';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 800);
+            });
+        });
+
+        // Add gentle hover effects to blog cards (no infinite loop)
+        document.querySelectorAll('.blog-card').forEach(card => {
+            // Set normal transition
+            card.style.transition = 'all 0.3s ease';
+            
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+            
+            // Add ultra fast click effect for immediate feedback
+            card.addEventListener('click', function() {
+                this.style.transform = 'translateY(-2px) scale(1.01)';
+                this.style.transition = 'all 0.05s ease';
+                
+                // Reset after click
+                setTimeout(() => {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.transition = 'all 0.3s ease';
+                }, 50);
+            });
+        });
+        
+        // Set flag when navigating to blog posts
+        document.querySelectorAll('a[href*="posts/"]').forEach(link => {
+            link.addEventListener('click', function() {
+                sessionStorage.setItem('fromPost', 'true');
+            });
+        });
+
+        // Add subtle typing effect to hero title
+        const heroTitle = document.querySelector('.hero h1');
+        if (heroTitle) {
+            const text = heroTitle.textContent;
+            heroTitle.textContent = '';
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    heroTitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+            setTimeout(typeWriter, 500);
+        }
+    </script>
+</body>
+</html>
