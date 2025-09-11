@@ -4,23 +4,49 @@ echo    AIE PORTFOLIO - UPDATE TOOL
 echo ========================================
 echo.
 
-REM Get the directory where this script is located
-set SCRIPT_DIR=%~dp0
-echo Script location: %SCRIPT_DIR%
+REM Try to find the AIE folder (where index.html is located)
+set AIE_FOLDER=
 
-REM Navigate to the script directory (AIE folder)
-cd /d "%SCRIPT_DIR%"
-
-REM Check if we're in the right directory
-if not exist "index.html" (
-    echo ERROR: index.html not found in %SCRIPT_DIR%
-    echo Please ensure this script is in the AIE folder
-    echo Current directory: %CD%
-    pause
-    exit /b 1
+REM Check current directory first
+if exist "index.html" (
+    set AIE_FOLDER=%CD%
+    goto :found
 )
 
-echo Found index.html - launching Master Update Tool...
+REM Check if we're in scripts folder
+if exist "..\index.html" (
+    set AIE_FOLDER=%CD%\..
+    goto :found
+)
+
+REM Check if we're in a subdirectory
+if exist "..\..\index.html" (
+    set AIE_FOLDER=%CD%\..\..
+    goto :found
+)
+
+REM Look for AIE folder in common locations
+if exist "D:\AIE\index.html" (
+    set AIE_FOLDER=D:\AIE
+    goto :found
+)
+
+if exist "C:\AIE\index.html" (
+    set AIE_FOLDER=C:\AIE
+    goto :found
+)
+
+echo ERROR: Could not find AIE folder with index.html
+echo Current directory: %CD%
+echo Please ensure you're running this from the AIE folder or a subdirectory
+pause
+exit /b 1
+
+:found
+echo Found AIE folder: %AIE_FOLDER%
+cd /d "%AIE_FOLDER%"
+
+echo Launching Master Update Tool...
 echo.
 cd scripts
 call master_update.bat
