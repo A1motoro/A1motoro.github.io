@@ -1,3 +1,0 @@
-markdown==3.5.1
-pygments
-pymdown-extensions

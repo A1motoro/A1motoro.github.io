@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # OS generated files
-=======
-# Ignore OS generated files
->>>>>>> 0e92592fdaf42209d9a2b86a17eb2a04dd8613f8
 .DS_Store
 .DS_Store?
 ._*
@@ -11,16 +7,11 @@
 ehthumbs.db
 Thumbs.db
 
-<<<<<<< HEAD
 # IDE files
-=======
-# Ignore editor files
->>>>>>> 0e92592fdaf42209d9a2b86a17eb2a04dd8613f8
 .vscode/
 .idea/
 *.swp
 *.swo
-<<<<<<< HEAD
 
 # Python
 __pycache__/
@@ -48,22 +39,28 @@ venv.bak/
 
 # Output directories
 output/
-=======
-*~
 
-# Ignore Python cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+# Development scripts (not needed for website)
+scripts/
 
-# Ignore virtual environment
-venv/
-env/
-ENV/
+# Documentation (not needed for website)
+docs/
 
-# Ignore temporary files
-*.tmp
-*.temp
->>>>>>> 0e92592fdaf42209d9a2b86a17eb2a04dd8613f8
+# Duplicate files
+posts/
+templates/
+csv-analyzer.html
+css/
+requirements.txt
+update_blog.py
+
+# Unorganized coding files (will be moved to code/)
+ana.py
+anls.py
+test.py
+linkeasy.cpp
+linked.cpp
+tst.cpp
+tst_fast.cpp
+UM_C19_2021.csv
+wbtest.html
