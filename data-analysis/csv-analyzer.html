@@ -457,6 +457,108 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
+        /* Analysis Preview Cards */
+        .analysis-previews {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .preview-card {
+            background: var(--monokai-bg-light);
+            border: 2px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-card:hover {
+            transform: scale(1.05);
+            border-color: var(--monokai-accent);
+            box-shadow: 0 15px 35px var(--monokai-shadow);
+            z-index: 10;
+        }
+
+        .preview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(166, 226, 46, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .preview-card:hover::before {
+            opacity: 1;
+        }
+
+        .preview-icon {
+            font-size: 2rem;
+            color: var(--monokai-accent);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .preview-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--monokai-fg);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .preview-description {
+            color: var(--monokai-comment);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .preview-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .preview-stat {
+            text-align: center;
+        }
+
+        .preview-stat-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--monokai-accent);
+        }
+
+        .preview-stat-label {
+            font-size: 0.8rem;
+            color: var(--monokai-comment);
+        }
+
+        .preview-chart {
+            height: 100px;
+            background: var(--monokai-bg);
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--monokai-comment);
+            font-size: 0.9rem;
+        }
+
+        .preview-chart:hover {
+            background: var(--monokai-bg-hover);
+        }
+
         .btn-primary {
             background: var(--monokai-accent);
             color: var(--primary);
@@ -529,6 +631,96 @@
         <div class="success-message" id="successMessage">
             <i class="fas fa-check-circle"></i>
             <span id="successText"></span>
+        </div>
+
+        <!-- Analysis Previews -->
+        <div class="analysis-previews" id="analysisPreviews" style="display: none;">
+            <div class="preview-card" data-section="statistics">
+                <div class="preview-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="preview-title">Data Statistics</div>
+                <div class="preview-description">Comprehensive statistical analysis including mean, median, mode, and distribution metrics</div>
+                <div class="preview-stats">
+                    <div class="preview-stat">
+                        <div class="preview-stat-value" id="previewRows">-</div>
+                        <div class="preview-stat-label">Rows</div>
+                    </div>
+                    <div class="preview-stat">
+                        <div class="preview-stat-value" id="previewCols">-</div>
+                        <div class="preview-stat-label">Columns</div>
+                    </div>
+                    <div class="preview-stat">
+                        <div class="preview-stat-value" id="previewNumeric">-</div>
+                        <div class="preview-stat-label">Numeric</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card" data-section="distribution">
+                <div class="preview-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <div class="preview-title">Distribution Analysis</div>
+                <div class="preview-description">Visual distribution of data including histograms, pie charts, and frequency analysis</div>
+                <div class="preview-chart">
+                    <i class="fas fa-chart-pie"></i> Distribution Preview
+                </div>
+            </div>
+
+            <div class="preview-card" data-section="correlation">
+                <div class="preview-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="preview-title">Correlation Matrix</div>
+                <div class="preview-description">Heatmap showing relationships between numeric variables</div>
+                <div class="preview-chart">
+                    <i class="fas fa-th"></i> Correlation Preview
+                </div>
+            </div>
+
+            <div class="preview-card" data-section="outliers">
+                <div class="preview-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="preview-title">Outlier Detection</div>
+                <div class="preview-description">Identification of unusual data points using statistical methods</div>
+                <div class="preview-stats">
+                    <div class="preview-stat">
+                        <div class="preview-stat-value" id="previewOutliers">-</div>
+                        <div class="preview-stat-label">Outliers</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card" data-section="trends">
+                <div class="preview-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="preview-title">Trend Analysis</div>
+                <div class="preview-description">Time series analysis and trend identification for temporal data</div>
+                <div class="preview-chart">
+                    <i class="fas fa-chart-line"></i> Trend Preview
+                </div>
+            </div>
+
+            <div class="preview-card" data-section="summary">
+                <div class="preview-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="preview-title">Data Summary</div>
+                <div class="preview-description">Comprehensive overview including data quality, completeness, and insights</div>
+                <div class="preview-stats">
+                    <div class="preview-stat">
+                        <div class="preview-stat-value" id="previewComplete">-</div>
+                        <div class="preview-stat-label">Complete</div>
+                    </div>
+                    <div class="preview-stat">
+                        <div class="preview-stat-value" id="previewMissing">-</div>
+                        <div class="preview-stat-label">Missing</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Analysis Section -->
@@ -704,6 +896,9 @@
                 // Hide loading
                 hideLoading();
 
+                // Show preview cards
+                showAnalysisPreviews();
+
                 // Generate statistics
                 generateStatistics();
 
@@ -725,6 +920,79 @@
             } catch (error) {
                 showError('Error analyzing data: ' + error.message);
             }
+        }
+
+        function showAnalysisPreviews() {
+            const analysisPreviews = document.getElementById('analysisPreviews');
+            analysisPreviews.style.display = 'grid';
+            
+            // Populate preview data
+            const columns = Object.keys(csvData[0]);
+            const numericColumns = columns.filter(col => {
+                return csvData.some(row => typeof row[col] === 'number' && !isNaN(row[col]));
+            });
+            
+            // Update preview stats
+            document.getElementById('previewRows').textContent = csvData.length;
+            document.getElementById('previewCols').textContent = columns.length;
+            document.getElementById('previewNumeric').textContent = numericColumns.length;
+            
+            // Calculate missing values
+            let totalMissing = 0;
+            csvData.forEach(row => {
+                columns.forEach(col => {
+                    if (row[col] === null || row[col] === undefined || row[col] === '') {
+                        totalMissing++;
+                    }
+                });
+            });
+            
+            const totalCells = csvData.length * columns.length;
+            const completeCells = totalCells - totalMissing;
+            const completePercentage = ((completeCells / totalCells) * 100).toFixed(1);
+            
+            document.getElementById('previewComplete').textContent = completePercentage + '%';
+            document.getElementById('previewMissing').textContent = totalMissing;
+            
+            // Calculate outliers (simplified)
+            let outlierCount = 0;
+            if (numericColumns.length > 0) {
+                const firstNumericCol = numericColumns[0];
+                const values = csvData.map(row => row[firstNumericCol]).filter(val => !isNaN(val));
+                if (values.length > 0) {
+                    const mean = values.reduce((a, b) => a + b, 0) / values.length;
+                    const stdDev = Math.sqrt(values.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / values.length);
+                    outlierCount = values.filter(val => Math.abs(val - mean) > 2 * stdDev).length;
+                }
+            }
+            document.getElementById('previewOutliers').textContent = outlierCount;
+            
+            // Add click handlers for preview cards
+            const previewCards = document.querySelectorAll('.preview-card');
+            previewCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    scrollToSection(section);
+                });
+            });
+        }
+
+        function scrollToSection(sectionName) {
+            const analysisSection = document.getElementById('analysisSection');
+            analysisSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Highlight the corresponding section
+            setTimeout(() => {
+                const sectionTitle = document.querySelector(`[data-section="${sectionName}"]`);
+                if (sectionTitle) {
+                    sectionTitle.style.background = 'var(--monokai-accent)';
+                    sectionTitle.style.color = 'var(--monokai-bg)';
+                    setTimeout(() => {
+                        sectionTitle.style.background = '';
+                        sectionTitle.style.color = '';
+                    }, 2000);
+                }
+            }, 500);
         }
 
         function generateStatistics() {
