@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIE Portfolio - Developer & Data Analyst</title>
+    <meta name="description" content="Personal portfolio featuring blog posts, data analysis tools, and coding projects">
+    <meta name="keywords" content="portfolio, developer, data analysis, blog, programming, AIE">
+    <meta name="author" content="A1m">
+    
+    <!-- Core Framework -->
+    <script src="js-framework/core.js"></script>
+    
+    <style>
+        /* Minimal critical CSS */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: #272822;
+            color: #f8f8f2;
+            overflow-x: hidden;
+        }
+        
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #a6e22e;
+            font-size: 1.2rem;
+        }
+        
+        .main-container {
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        
+        .main-container.loaded {
+            opacity: 1;
+        }
+        
+        /* About section styles */
+        .about-section {
+            background: rgba(39, 40, 34, 0.8);
+            border: 2px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .about-section h2 {
+            color: var(--monokai-accent);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .about-section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: var(--monokai-fg);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skill-item {
+            background: var(--monokai-bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--monokai-border);
+            text-align: center;
+        }
+        
+        .skill-item i {
+            font-size: 2rem;
+            color: var(--monokai-accent);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">🚀 Loading Portfolio...</div>
+    
+    <div class="main-container" id="main-container">
+        <!-- Navigation -->
+        <div id="navigation-container"></div>
+        
+        <!-- Hero section -->
+        <div id="hero-container"></div>
+        
+        <!-- Features section -->
+        <div id="features-container"></div>
+        
+        <!-- About section -->
+        <div class="about-section">
+            <h2>About Me</h2>
+            <p>
+                I'm a passionate developer and data analyst with a love for clean code, 
+                beautiful visualizations, and solving complex problems. My journey spans 
+                across multiple programming languages and technologies.
+            </p>
+            <p>
+                When I'm not coding, you'll find me writing about technology, 
+                exploring new frameworks, or analyzing datasets to uncover hidden insights.
+            </p>
+            
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <h4>Python</h4>
+                    <p>Data Analysis & Web Development</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js-square"></i>
+                    <h4>JavaScript</h4>
+                    <p>Frontend & Interactive Apps</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4>Data Visualization</h4>
+                    <p>Charts, Graphs & Analytics</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <h4>C++</h4>
+                    <p>Algorithms & Performance</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div id="footer-container"></div>
+    </div>
+
+    <script>
+        // Initialize the portfolio page
+        document.addEventListener('DOMContentLoaded', function() {
+            const loading = document.getElementById('loading');
+            const mainContainer = document.getElementById('main-container');
+            
+            // Load components dynamically
+            Promise.all([
+                loadComponent('navigation', 'navigation-container'),
+                loadComponent('hero', 'hero-container', {
+                    title: "AIE Portfolio",
+                    subtitle: "Developer & Data Analyst",
+                    description: "Welcome to my digital space! Explore my blog posts covering programming, mathematics, and personal insights, or dive into my data analysis tools for CSV processing and visualization.",
+                    buttons: [
+                        {
+                            text: "Visit My Blog",
+                            href: "blogii/index.html",
+                            icon: "fas fa-blog",
+                            class: "primary"
+                        },
+                        {
+                            text: "Analyze Data",
+                            href: "data-analysis/csv-analyzer.html",
+                            icon: "fas fa-chart-line",
+                            class: "secondary"
+                        }
+                    ]
+                }),
+                loadComponent('features', 'features-container')
+            ]).then(() => {
+                // Hide loading and show content
+                loading.style.display = 'none';
+                mainContainer.classList.add('loaded');
+                
+                // Initialize page-specific functionality
+                initializePortfolio();
+            }).catch(error => {
+                console.error('Error loading components:', error);
+                loading.textContent = '❌ Error loading portfolio';
+            });
+        });
+        
+        // Load component into container
+        async function loadComponent(componentName, containerId, config = {}) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            try {
+                const component = await aieFramework.loadComponent(componentName);
+                if (component && component.render) {
+                    component.render(container, config);
+                }
+            } catch (error) {
+                console.warn(`Could not load ${componentName}, using fallback`);
+            }
+        }
+        
+        // Initialize portfolio-specific functionality
+        function initializePortfolio() {
+            // Add skill item animations
+            const skillItems = document.querySelectorAll('.skill-item');
+            skillItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    item.style.transition = 'all 0.5s ease-out';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            
+            // Add hover effects to skill items
+            skillItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
+                    this.style.boxShadow = '0 10px 25px var(--monokai-shadow)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
+

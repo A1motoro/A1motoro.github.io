@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 CSV Data Analyzer - AIE Portfolio</title>
+    <meta name="description" content="Advanced CSV data analysis tool with beautiful visualizations and statistical insights.">
+    <meta name="keywords" content="CSV, data analysis, visualization, statistics, charts">
+    <meta name="author" content="A1m">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    
+    <!-- Core Framework -->
+    <script src="../js-framework/core.js"></script>
+    
+    <style>
+        /* Minimal critical CSS */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: #272822;
+            color: #f8f8f2;
+            overflow-x: hidden;
+        }
+        
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #a6e22e;
+            font-size: 1.2rem;
+        }
+        
+        .main-container {
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        
+        .main-container.loaded {
+            opacity: 1;
+        }
+        
+        /* Analyzer specific styles */
+        .analyzer-section {
+            background: rgba(39, 40, 34, 0.8);
+            border: 2px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--monokai-border);
+            border-radius: 10px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--monokai-accent);
+            background: rgba(166, 226, 46, 0.1);
+        }
+        
+        .upload-area.dragover {
+            border-color: var(--monokai-accent);
+            background: rgba(166, 226, 46, 0.2);
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .upload-button {
+            background: var(--monokai-accent);
+            color: var(--monokai-bg);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-button:hover {
+            background: var(--monokai-accent-secondary);
+            transform: translateY(-2px);
+        }
+        
+        .analysis-results {
+            display: none;
+            margin-top: 2rem;
+        }
+        
+        .chart-container {
+            background: var(--monokai-bg-light);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .stat-card {
+            background: var(--monokai-bg-light);
+            border: 1px solid var(--monokai-border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            color: var(--monokai-accent);
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: var(--monokai-comment);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">📊 Loading Data Analyzer...</div>
+    
+    <div class="main-container" id="main-container">
+        <!-- Navigation -->
+        <div id="navigation-container"></div>
+        
+        <!-- Hero section -->
+        <div id="hero-container"></div>
+        
+        <!-- Analyzer section -->
+        <div class="analyzer-section">
+            <h2 style="text-align: center; color: var(--monokai-accent); margin-bottom: 2rem;">
+                📊 CSV Data Analyzer
+            </h2>
+            
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--monokai-accent); margin-bottom: 1rem;"></i>
+                <h3>Upload Your CSV File</h3>
+                <p>Drag and drop your CSV file here or click to browse</p>
+                <input type="file" id="fileInput" class="file-input" accept=".csv">
+                <button class="upload-button" onclick="document.getElementById('fileInput').click()">
+                    Choose File
+                </button>
+            </div>
+            
+            <div class="analysis-results" id="analysisResults">
+                <h3 style="color: var(--monokai-accent);">Analysis Results</h3>
+                
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Stats will be populated here -->
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="dataChart" width="400" height="200"></canvas>
+                </div>
+                
+                <div id="dataTable">
+                    <!-- Data table will be populated here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div id="footer-container"></div>
+    </div>
+
+    <script>
+        // Global variables
+        let csvData = [];
+        let chart = null;
+        
+        // Initialize the analyzer page
+        document.addEventListener('DOMContentLoaded', function() {
+            const loading = document.getElementById('loading');
+            const mainContainer = document.getElementById('main-container');
+            
+            // Load components dynamically
+            Promise.all([
+                loadComponent('navigation', 'navigation-container'),
+                loadComponent('hero', 'hero-container', {
+                    title: "CSV Data Analyzer",
+                    subtitle: "Advanced Data Analysis Tool",
+                    description: "Upload your CSV files and get instant insights with beautiful visualizations and comprehensive statistics.",
+                    buttons: []
+                })
+            ]).then(() => {
+                // Hide loading and show content
+                loading.style.display = 'none';
+                mainContainer.classList.add('loaded');
+                
+                // Initialize analyzer functionality
+                initializeAnalyzer();
+            }).catch(error => {
+                console.error('Error loading components:', error);
+                loading.textContent = '❌ Error loading analyzer';
+            });
+        });
+        
+        // Load component into container
+        async function loadComponent(componentName, containerId, config = {}) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            try {
+                const component = await aieFramework.loadComponent(componentName);
+                if (component && component.render) {
+                    component.render(container, config);
+                }
+            } catch (error) {
+                console.warn(`Could not load ${componentName}, using fallback`);
+            }
+        }
+        
+        // Initialize analyzer functionality
+        function initializeAnalyzer() {
+            const fileInput = document.getElementById('fileInput');
+            const uploadArea = document.getElementById('uploadArea');
+            
+            // File input change handler
+            fileInput.addEventListener('change', handleFileSelect);
+            
+            // Drag and drop handlers
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('dragleave', handleDragLeave);
+            uploadArea.addEventListener('drop', handleDrop);
+            
+            // Click to upload
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+        }
+        
+        // File handling functions
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file && file.type === 'text/csv') {
+                parseCSV(file);
+            } else {
+                alert('Please select a valid CSV file.');
+            }
+        }
+        
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.currentTarget.classList.add('dragover');
+        }
+        
+        function handleDragLeave(event) {
+            event.currentTarget.classList.remove('dragover');
+        }
+        
+        function handleDrop(event) {
+            event.preventDefault();
+            event.currentTarget.classList.remove('dragover');
+            
+            const files = event.dataTransfer.files;
+            if (files.length > 0 && files[0].type === 'text/csv') {
+                parseCSV(files[0]);
+            } else {
+                alert('Please drop a valid CSV file.');
+            }
+        }
+        
+        // Parse CSV file
+        function parseCSV(file) {
+            Papa.parse(file, {
+                header: true,
+                complete: function(results) {
+                    csvData = results.data;
+                    analyzeData();
+                },
+                error: function(error) {
+                    console.error('Error parsing CSV:', error);
+                    alert('Error parsing CSV file. Please check the file format.');
+                }
+            });
+        }
+        
+        // Analyze data and display results
+        function analyzeData() {
+            if (csvData.length === 0) return;
+            
+            const resultsContainer = document.getElementById('analysisResults');
+            const statsGrid = document.getElementById('statsGrid');
+            
+            // Show results
+            resultsContainer.style.display = 'block';
+            
+            // Calculate basic stats
+            const totalRows = csvData.length;
+            const columns = Object.keys(csvData[0]);
+            const numericColumns = columns.filter(col => {
+                return csvData.some(row => !isNaN(parseFloat(row[col])) && isFinite(row[col]));
+            });
+            
+            // Update stats grid
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${totalRows}</div>
+                    <div class="stat-label">Total Rows</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${columns.length}</div>
+                    <div class="stat-label">Columns</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${numericColumns.length}</div>
+                    <div class="stat-label">Numeric Columns</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${Math.round((numericColumns.length / columns.length) * 100)}%</div>
+                    <div class="stat-label">Numeric Data</div>
+                </div>
+            `;
+            
+            // Create simple chart
+            createChart(numericColumns);
+            
+            // Create data table
+            createDataTable();
+        }
+        
+        // Create chart
+        function createChart(numericColumns) {
+            const ctx = document.getElementById('dataChart').getContext('2d');
+            
+            if (chart) {
+                chart.destroy();
+            }
+            
+            // Sample data for demonstration
+            const sampleData = csvData.slice(0, 10).map((row, index) => ({
+                x: index,
+                y: numericColumns.length > 0 ? parseFloat(row[numericColumns[0]]) || 0 : Math.random() * 100
+            }));
+            
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Data Trend',
+                        data: sampleData,
+                        borderColor: '#a6e22e',
+                        backgroundColor: 'rgba(166, 226, 46, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#f8f8f2'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: '#f8f8f2'
+                            },
+                            grid: {
+                                color: '#49483e'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#f8f8f2'
+                            },
+                            grid: {
+                                color: '#49483e'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Create data table
+        function createDataTable() {
+            const tableContainer = document.getElementById('dataTable');
+            const columns = Object.keys(csvData[0]);
+            const sampleData = csvData.slice(0, 5); // Show first 5 rows
+            
+            tableContainer.innerHTML = `
+                <h4 style="color: var(--monokai-accent); margin: 1rem 0;">Sample Data (First 5 Rows)</h4>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; background: var(--monokai-bg-light); border-radius: 8px;">
+                        <thead>
+                            <tr style="background: var(--monokai-bg);">
+                                ${columns.map(col => `<th style="padding: 0.8rem; border: 1px solid var(--monokai-border); color: var(--monokai-accent);">${col}</th>`).join('')}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${sampleData.map(row => `
+                                <tr>
+                                    ${columns.map(col => `<td style="padding: 0.8rem; border: 1px solid var(--monokai-border);">${row[col] || '-'}</td>`).join('')}
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
+

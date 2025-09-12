@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIE Portfolio - Main Hub</title>
+    <meta name="description" content="Main hub for AIE Portfolio - Blog, Data Analysis, and Development Projects">
+    <meta name="keywords" content="portfolio, developer, data analysis, blog, programming, AIE">
+    <meta name="author" content="A1m">
+    
+    <!-- Core Framework -->
+    <script src="js-framework/core.js"></script>
+    
+    <style>
+        /* Minimal critical CSS - rest loaded dynamically */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: #272822;
+            color: #f8f8f2;
+            overflow-x: hidden;
+        }
+        
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #a6e22e;
+            font-size: 1.2rem;
+        }
+        
+        .main-container {
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        
+        .main-container.loaded {
+            opacity: 1;
+        }
+        
+        /* Quick access styles */
+        .quick-links {
+            background: rgba(39, 40, 34, 0.8);
+            border: 2px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .quick-links h3 {
+            color: var(--monokai-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .quick-links a {
+            display: inline-block;
+            margin: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--monokai-bg-light);
+            color: var(--monokai-fg);
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid var(--monokai-border);
+            transition: all 0.3s ease;
+        }
+        
+        .quick-links a:hover {
+            background: var(--monokai-accent);
+            color: var(--monokai-bg);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">🚀 Loading AIE Portfolio...</div>
+    
+    <div class="main-container" id="main-container">
+        <!-- Navigation will be loaded here -->
+        <div id="navigation-container"></div>
+        
+        <!-- Hero section will be loaded here -->
+        <div id="hero-container"></div>
+        
+        <!-- Features section will be loaded here -->
+        <div id="features-container"></div>
+        
+        <!-- Quick links -->
+        <div class="quick-links">
+            <h3>Quick Access</h3>
+            <a href="portfolio.html">Portfolio Overview</a>
+            <a href="docs/README.md">Documentation</a>
+        </div>
+        
+        <!-- Footer will be loaded here -->
+        <div id="footer-container"></div>
+    </div>
+
+    <script>
+        // Initialize the page when framework is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const loading = document.getElementById('loading');
+            const mainContainer = document.getElementById('main-container');
+            
+            // Load components dynamically
+            Promise.all([
+                loadComponent('navigation', 'navigation-container'),
+                loadComponent('hero', 'hero-container'),
+                loadComponent('features', 'features-container')
+            ]).then(() => {
+                // Hide loading and show content
+                loading.style.display = 'none';
+                mainContainer.classList.add('loaded');
+                
+                // Initialize page-specific functionality
+                initializePage();
+            }).catch(error => {
+                console.error('Error loading components:', error);
+                loading.textContent = '❌ Error loading page';
+            });
+        });
+        
+        // Load component into container
+        async function loadComponent(componentName, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            try {
+                // Try to load from framework first
+                const component = await aieFramework.loadComponent(componentName);
+                if (component && component.render) {
+                    component.render(container);
+                }
+            } catch (error) {
+                console.warn(`Could not load ${componentName}, using fallback`);
+                // Fallback content
+                if (componentName === 'navigation') {
+                    container.innerHTML = `
+                        <nav style="background: rgba(39,40,34,0.95); padding: 1rem; text-align: center;">
+                            <a href="index.html" style="color: #a6e22e; text-decoration: none; font-size: 1.2rem;">🏠 AIE Portfolio</a>
+                        </nav>
+                    `;
+                }
+            }
+        }
+        
+        // Initialize page-specific functionality
+        function initializePage() {
+            // Add smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Add entrance animations
+            const elements = document.querySelectorAll('.hero-section, .feature-card');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease-out';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+    </script>
+</body>
+</html>
+
