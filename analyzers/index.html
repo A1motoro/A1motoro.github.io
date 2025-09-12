@@ -370,19 +370,51 @@
     <!-- Include Core Footer -->
     <div id="footer-placeholder"></div>
     
+    <!-- Performance Monitoring -->
+    <script src="js/performance-monitor.js"></script>
+    
+    <!-- Enhanced JavaScript for Performance -->
+    <script src="js/analyzers-page.js"></script>
+    
+    <!-- Service Worker Registration -->
     <script>
-        // Load core components
-        fetch('../core-framework/components/navigation.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navigation-placeholder').innerHTML = data;
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
             });
-            
-        fetch('../core-framework/components/footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
+        }
+    </script>
+    
+    <!-- Fallback for core components -->
+    <script>
+        // Fallback loading for core components
+        if (!window.analyzersPage) {
+            fetch('../core-framework/components/navigation.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navigation-placeholder').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error loading navigation:', error);
+                    document.getElementById('navigation-placeholder').innerHTML = '<nav>Navigation unavailable</nav>';
+                });
+                
+            fetch('../core-framework/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    document.getElementById('footer-placeholder').innerHTML = '<footer>Footer unavailable</footer>';
+                });
+        }
     </script>
 </body>
 </html>
