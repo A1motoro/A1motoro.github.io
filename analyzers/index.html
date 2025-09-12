@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyzers - AIE Portfolio</title>
+    <meta name="description" content="Collection of data analysis tools and analyzers for various data types and formats">
+    <meta name="keywords" content="analyzers, data analysis, CSV, tools, visualization, statistics">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../core-framework/themes/monokai-core.css" rel="stylesheet">
+    
+    <style>
+        /* Analyzers Page Specific Styles */
+        .analyzers-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+        
+        .analyzers-content {
+            z-index: 2;
+            max-width: 1000px;
+            padding: 2rem;
+        }
+        
+        .analyzers-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: monokaiGlow 3s ease-in-out infinite;
+        }
+        
+        .analyzers-subtitle {
+            font-size: 1.5rem;
+            color: var(--monokai-comment);
+            margin-bottom: 2rem;
+            animation: monokaiFloat 3s ease-in-out infinite;
+        }
+        
+        .analyzers-description {
+            font-size: 1.1rem;
+            color: var(--monokai-fg);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, var(--monokai-bg-light), var(--monokai-bg-hover));
+            color: var(--monokai-accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--monokai-shadow);
+            margin-bottom: 3rem;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--monokai-glow);
+            color: var(--monokai-accent);
+            text-decoration: none;
+        }
+        
+        .analyzers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .analyzer-card {
+            background: var(--monokai-bg);
+            border: 1px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .analyzer-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--monokai-accent);
+            box-shadow: 0 10px 25px var(--monokai-shadow);
+        }
+        
+        .analyzer-icon {
+            font-size: 3rem;
+            color: var(--monokai-accent);
+            margin-bottom: 1rem;
+            animation: monokaiFloat 3s ease-in-out infinite;
+        }
+        
+        .analyzer-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--monokai-fg);
+            margin-bottom: 1rem;
+        }
+        
+        .analyzer-description {
+            color: var(--monokai-comment);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .analyzer-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .analyzer-features li {
+            color: var(--monokai-fg);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .analyzer-features li::before {
+            content: "✓";
+            color: var(--monokai-accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .analyzer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+            color: var(--monokai-bg);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--monokai-shadow);
+        }
+        
+        .analyzer-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--monokai-glow);
+            color: var(--monokai-bg);
+            text-decoration: none;
+        }
+        
+        .coming-soon {
+            opacity: 0.7;
+            position: relative;
+        }
+        
+        .coming-soon::after {
+            content: "Coming Soon";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--monokai-accent);
+            color: var(--monokai-bg);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .coming-soon .analyzer-link {
+            background: var(--monokai-bg-light);
+            color: var(--monokai-comment);
+            cursor: not-allowed;
+        }
+        
+        .coming-soon .analyzer-link:hover {
+            transform: none;
+            box-shadow: 0 5px 15px var(--monokai-shadow);
+        }
+        
+        @media (max-width: 768px) {
+            .analyzers-title {
+                font-size: 2.5rem;
+            }
+            
+            .analyzers-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .analyzers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Core Navigation -->
+    <div id="navigation-placeholder"></div>
+    
+    <!-- Analyzers Hero Section -->
+    <section class="analyzers-hero">
+        <div class="analyzers-content">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Main Hub
+            </a>
+            
+            <h1 class="analyzers-title">Analyzers</h1>
+            <p class="analyzers-subtitle">Data Analysis Tools & Utilities</p>
+            <p class="analyzers-description">
+                Explore our collection of powerful data analysis tools designed to help you 
+                process, visualize, and gain insights from various data formats. From CSV 
+                analysis to advanced statistical tools, find the right analyzer for your needs.
+            </p>
+            
+            <div class="analyzers-grid">
+                <!-- CSV Analyzer -->
+                <div class="analyzer-card">
+                    <div class="analyzer-icon">
+                        <i class="fas fa-file-csv"></i>
+                    </div>
+                    <h3 class="analyzer-title">CSV Analyzer</h3>
+                    <p class="analyzer-description">
+                        Upload and analyze CSV files with comprehensive statistical analysis, 
+                        data visualization, and export capabilities.
+                    </p>
+                    <ul class="analyzer-features">
+                        <li>Statistical analysis and summaries</li>
+                        <li>Interactive data visualization</li>
+                        <li>Data cleaning and preprocessing</li>
+                        <li>Export results in multiple formats</li>
+                    </ul>
+                    <a href="csv-analyzer.html" class="analyzer-link">
+                        <i class="fas fa-chart-line"></i>
+                        Launch Analyzer
+                    </a>
+                </div>
+                
+                <!-- JSON Analyzer (Coming Soon) -->
+                <div class="analyzer-card coming-soon">
+                    <div class="analyzer-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h3 class="analyzer-title">JSON Analyzer</h3>
+                    <p class="analyzer-description">
+                        Analyze JSON data structures, validate schemas, and visualize 
+                        hierarchical data relationships.
+                    </p>
+                    <ul class="analyzer-features">
+                        <li>JSON schema validation</li>
+                        <li>Tree structure visualization</li>
+                        <li>Data type analysis</li>
+                        <li>Format conversion tools</li>
+                    </ul>
+                    <a href="#" class="analyzer-link">
+                        <i class="fas fa-code"></i>
+                        Coming Soon
+                    </a>
+                </div>
+                
+                <!-- XML Analyzer (Coming Soon) -->
+                <div class="analyzer-card coming-soon">
+                    <div class="analyzer-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="analyzer-title">XML Analyzer</h3>
+                    <p class="analyzer-description">
+                        Process and analyze XML documents with XPath queries, 
+                        schema validation, and data extraction tools.
+                    </p>
+                    <ul class="analyzer-features">
+                        <li>XPath query builder</li>
+                        <li>XML schema validation</li>
+                        <li>Data extraction tools</li>
+                        <li>Format transformation</li>
+                    </ul>
+                    <a href="#" class="analyzer-link">
+                        <i class="fas fa-sitemap"></i>
+                        Coming Soon
+                    </a>
+                </div>
+                
+                <!-- Database Analyzer (Coming Soon) -->
+                <div class="analyzer-card coming-soon">
+                    <div class="analyzer-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="analyzer-title">Database Analyzer</h3>
+                    <p class="analyzer-description">
+                        Connect to databases and perform advanced queries, 
+                        relationship analysis, and performance monitoring.
+                    </p>
+                    <ul class="analyzer-features">
+                        <li>Multi-database support</li>
+                        <li>Query optimization</li>
+                        <li>Relationship mapping</li>
+                        <li>Performance metrics</li>
+                    </ul>
+                    <a href="#" class="analyzer-link">
+                        <i class="fas fa-server"></i>
+                        Coming Soon
+                    </a>
+                </div>
+                
+                <!-- Text Analyzer (Coming Soon) -->
+                <div class="analyzer-card coming-soon">
+                    <div class="analyzer-icon">
+                        <i class="fas fa-font"></i>
+                    </div>
+                    <h3 class="analyzer-title">Text Analyzer</h3>
+                    <p class="analyzer-description">
+                        Analyze text data with natural language processing, 
+                        sentiment analysis, and keyword extraction.
+                    </p>
+                    <ul class="analyzer-features">
+                        <li>Sentiment analysis</li>
+                        <li>Keyword extraction</li>
+                        <li>Text statistics</li>
+                        <li>Language detection</li>
+                    </ul>
+                    <a href="#" class="analyzer-link">
+                        <i class="fas fa-language"></i>
+                        Coming Soon
+                    </a>
+                </div>
+                
+                <!-- Image Analyzer (Coming Soon) -->
+                <div class="analyzer-card coming-soon">
+                    <div class="analyzer-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="analyzer-title">Image Analyzer</h3>
+                    <p class="analyzer-description">
+                        Analyze image metadata, perform basic image processing, 
+                        and extract visual information.
+                    </p>
+                    <ul class="analyzer-features">
+                        <li>Metadata extraction</li>
+                        <li>Color analysis</li>
+                        <li>Basic image processing</li>
+                        <li>Format conversion</li>
+                    </ul>
+                    <a href="#" class="analyzer-link">
+                        <i class="fas fa-camera"></i>
+                        Coming Soon
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Include Core Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script>
+        // Load core components
+        fetch('../core-framework/components/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navigation-placeholder').innerHTML = data;
+            });
+            
+        fetch('../core-framework/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
