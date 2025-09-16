@@ -1,3 +1,0 @@
-GitHub Pages Deployment Trigger
-This file forces a new deployment to fix submodule issues.
-Timestamp: 2025-01-11
