@@ -8,7 +8,7 @@
     <meta name="keywords" content="AI chat, Qwen, artificial intelligence, conversation, coding assistant">
     <meta name="author" content="A1m">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="core-framework/themes/monokai-core.css" rel="stylesheet">
+    <link href="../core-framework/themes/monokai-core.css" rel="stylesheet">
 
     <style>
         /* AI Talk Specific Styles */
@@ -377,13 +377,13 @@
 
     <script>
         // Load core components
-        fetch('core-framework/components/navigation.html')
+        fetch('../core-framework/components/navigation.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navigation-placeholder').innerHTML = data;
             });
 
-        fetch('core-framework/components/footer.html')
+        fetch('../core-framework/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-placeholder').innerHTML = data;
@@ -397,11 +397,56 @@
             endpoint: 'https://api.qwen.ai/v1/chat/completions'
         };
 
-        // Load saved API config
+        // Load environment variables and saved API config
+        loadEnvironmentConfig();
         loadApiConfig();
 
         // Update session time
         setInterval(updateSessionTime, 1000);
+
+        async function loadEnvironmentConfig() {
+            try {
+                // Try to load .env file (only works locally with a server)
+                const response = await fetch('./.env');
+                if (response.ok) {
+                    const envText = await response.text();
+                    const envVars = parseEnvFile(envText);
+
+                    // Apply environment variables to config
+                    if (envVars.QWEN_API_KEY && envVars.QWEN_API_KEY !== 'your_qwen_api_key_here') {
+                        apiConfig.key = envVars.QWEN_API_KEY;
+                        document.getElementById('api-key').value = envVars.QWEN_API_KEY;
+                    }
+
+                    if (envVars.QWEN_API_ENDPOINT) {
+                        apiConfig.endpoint = envVars.QWEN_API_ENDPOINT;
+                        document.getElementById('api-endpoint').value = envVars.QWEN_API_ENDPOINT;
+                    }
+
+                    console.log('Environment configuration loaded from .env file');
+                }
+            } catch (error) {
+                // .env file not found or not accessible (normal for production)
+                console.log('No .env file found, using manual configuration');
+            }
+        }
+
+        function parseEnvFile(envText) {
+            const envVars = {};
+            const lines = envText.split('\n');
+
+            for (const line of lines) {
+                const trimmedLine = line.trim();
+                if (trimmedLine && !trimmedLine.startsWith('#')) {
+                    const [key, ...valueParts] = trimmedLine.split('=');
+                    if (key && valueParts.length > 0) {
+                        envVars[key.trim()] = valueParts.join('=').trim();
+                    }
+                }
+            }
+
+            return envVars;
+        }
 
         function loadApiConfig() {
             const saved = localStorage.getItem('qwen-api-config');

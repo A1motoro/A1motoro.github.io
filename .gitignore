@@ -54,6 +54,10 @@ css/
 requirements.txt
 update_blog.py
 
+# Environment files (contain sensitive API keys)
+.env
+ai-talk/.env
+
 # Unorganized coding files (will be moved to code/)
 ana.py
 anls.py
