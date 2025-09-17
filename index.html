@@ -52,6 +52,9 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 450px;
         }
         
         .section-card:hover {
@@ -91,12 +94,14 @@
             line-height: 1.6;
             margin-bottom: 2rem;
             text-align: center;
+            flex: 1;
         }
         
         .section-features {
             list-style: none;
             padding: 0;
             margin-bottom: 2rem;
+            flex: 1;
         }
         
         .section-features li {
@@ -127,6 +132,7 @@
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            margin-top: auto;
         }
         
         .section-button:hover {
