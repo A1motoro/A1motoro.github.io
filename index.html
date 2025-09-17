@@ -38,7 +38,7 @@
         
         .sections-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -66,6 +66,10 @@
         
         .section-card.analyzer {
             background: linear-gradient(135deg, var(--monokai-bg-light) 0%, rgba(102, 217, 239, 0.1) 100%);
+        }
+
+        .section-card.ai-talk {
+            background: linear-gradient(135deg, var(--monokai-bg-light) 0%, rgba(249, 38, 114, 0.1) 100%);
         }
         
         .section-icon {
@@ -156,6 +160,12 @@
             transform: translateY(-2px);
         }
         
+        @media (max-width: 1024px) {
+            .sections-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .sections-grid {
                 grid-template-columns: 1fr;
@@ -203,7 +213,29 @@
                     <i class="fas fa-arrow-right"></i> Visit Blog
                 </a>
             </div>
-            
+
+            <!-- AI Talk Section -->
+            <div class="section-card ai-talk">
+                <div class="section-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h2 class="section-title">AI Talk</h2>
+                <p class="section-description">
+                    Chat with Qwen AI assistant. Ask questions, get help with coding,
+                    discuss ideas, and explore AI-powered conversations.
+                </p>
+                <ul class="section-features">
+                    <li>Conversational AI with Qwen</li>
+                    <li>Code assistance and explanations</li>
+                    <li>Creative brainstorming</li>
+                    <li>Educational discussions</li>
+                    <li>Real-time chat interface</li>
+                </ul>
+                <a href="ai-talk.html" class="section-button">
+                    <i class="fas fa-comments"></i> Start Chat
+                </a>
+            </div>
+
             <!-- Data Analyzer Section -->
             <div class="section-card analyzer">
                 <div class="section-icon">

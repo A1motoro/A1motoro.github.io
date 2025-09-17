@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Talk - Qwen Chat Assistant</title>
+    <meta name="description" content="Chat with Qwen AI assistant - intelligent conversations, coding help, and creative brainstorming">
+    <meta name="keywords" content="AI chat, Qwen, artificial intelligence, conversation, coding assistant">
+    <meta name="author" content="A1m">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="core-framework/themes/monokai-core.css" rel="stylesheet">
+
+    <style>
+        /* AI Talk Specific Styles */
+        .ai-talk-container {
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .chat-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .chat-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--monokai-accent);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px var(--monokai-glow);
+        }
+
+        .chat-subtitle {
+            font-size: 1.2rem;
+            color: var(--monokai-comment);
+            margin-bottom: 2rem;
+        }
+
+        .chat-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .chat-sidebar {
+            background: var(--monokai-bg-light);
+            border: 2px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .api-config {
+            margin-bottom: 2rem;
+        }
+
+        .api-config h3 {
+            color: var(--monokai-accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .api-input-group {
+            margin-bottom: 1rem;
+        }
+
+        .api-label {
+            display: block;
+            color: var(--monokai-fg);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .api-input {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--monokai-bg);
+            border: 2px solid var(--monokai-border);
+            border-radius: 8px;
+            color: var(--monokai-fg);
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .api-input:focus {
+            border-color: var(--monokai-accent);
+            outline: none;
+            box-shadow: 0 0 10px var(--monokai-glow);
+        }
+
+        .api-save-btn {
+            width: 100%;
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+            color: var(--monokai-bg);
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .api-save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--monokai-glow);
+        }
+
+        .chat-stats {
+            background: var(--monokai-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--monokai-comment);
+        }
+
+        .stat-value {
+            color: var(--monokai-accent);
+            font-weight: bold;
+        }
+
+        .clear-chat-btn {
+            width: 100%;
+            background: linear-gradient(45deg, var(--monokai-error), var(--monokai-warning));
+            color: var(--monokai-bg);
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(249, 38, 114, 0.3);
+        }
+
+        .chat-main {
+            background: var(--monokai-bg-light);
+            border: 2px solid var(--monokai-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--monokai-bg);
+            border-radius: 10px;
+            border: 1px solid var(--monokai-border);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, var(--monokai-accent), var(--monokai-accent-secondary));
+            color: var(--monokai-bg);
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .message.ai {
+            background: var(--monokai-bg-light);
+            border: 1px solid var(--monokai-border);
+            color: var(--monokai-fg);
+        }
+
+        .message-header {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .message-content {
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem;
+            background: var(--monokai-bg);
+            border: 2px solid var(--monokai-border);
+            border-radius: 10px;
+            color: var(--monokai-fg);
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        .chat-input:focus {
+            border-color: var(--monokai-accent);
+            outline: none;
+            box-shadow: 0 0 10px var(--monokai-glow);
+        }
+
+        .send-btn {
+            background: linear-gradient(45deg, var(--monokai-accent), var(--monokai-accent-secondary));
+            color: var(--monokai-bg);
+            padding: 0 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .send-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--monokai-glow);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 1rem;
+            color: var(--monokai-comment);
+            font-style: italic;
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, var(--monokai-error), var(--monokai-warning));
+            color: var(--monokai-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .chat-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-sidebar {
+                order: 2;
+            }
+
+            .chat-main {
+                order: 1;
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ai-talk-container {
+                padding: 1rem;
+            }
+
+            .chat-title {
+                font-size: 2rem;
+            }
+
+            .chat-input-area {
+                flex-direction: column;
+            }
+
+            .send-btn {
+                width: 100%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Core Navigation -->
+    <div id="navigation-placeholder"></div>
+
+    <div class="monokai-container ai-talk-container">
+        <div class="chat-header">
+            <h1 class="chat-title">AI Talk - Qwen Assistant</h1>
+            <p class="chat-subtitle">Have intelligent conversations with Qwen AI. Ask questions, get coding help, and explore creative ideas.</p>
+        </div>
+
+        <div class="chat-layout">
+            <!-- Sidebar -->
+            <div class="chat-sidebar">
+                <div class="api-config">
+                    <h3><i class="fas fa-key"></i> API Configuration</h3>
+                    <div class="api-input-group">
+                        <label class="api-label" for="api-key">Qwen API Key:</label>
+                        <input type="password" id="api-key" class="api-input" placeholder="Enter your Qwen API key here...">
+                    </div>
+                    <div class="api-input-group">
+                        <label class="api-label" for="api-endpoint">API Endpoint:</label>
+                        <input type="text" id="api-endpoint" class="api-input" value="https://api.qwen.ai/v1/chat/completions" placeholder="API endpoint URL">
+                    </div>
+                    <button class="api-save-btn" onclick="saveApiConfig()">
+                        <i class="fas fa-save"></i> Save Configuration
+                    </button>
+                </div>
+
+                <div class="chat-stats">
+                    <div class="stat-item">
+                        <span>Messages:</span>
+                        <span class="stat-value" id="message-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Session:</span>
+                        <span class="stat-value" id="session-time">00:00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Status:</span>
+                        <span class="stat-value" id="connection-status">Ready</span>
+                    </div>
+                </div>
+
+                <button class="clear-chat-btn" onclick="clearChat()">
+                    <i class="fas fa-trash"></i> Clear Chat
+                </button>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="chat-main">
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message ai">
+                        <div class="message-header">
+                            <i class="fas fa-robot"></i> Qwen AI
+                        </div>
+                        <div class="message-content">
+                            Hello! I'm Qwen, your AI assistant. How can I help you today? Feel free to ask me questions about programming, mathematics, creative ideas, or anything else you're curious about!
+                        </div>
+                    </div>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;"></div>
+
+                <div id="typing-indicator" class="typing-indicator">
+                    <i class="fas fa-circle-notch fa-spin"></i> Qwen is thinking...
+                </div>
+
+                <div class="chat-input-area">
+                    <textarea
+                        id="chat-input"
+                        class="chat-input"
+                        placeholder="Type your message here... (Press Enter to send, Shift+Enter for new line)"
+                        rows="3"
+                    ></textarea>
+                    <button id="send-btn" class="send-btn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Core Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Load core components
+        fetch('core-framework/components/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navigation-placeholder').innerHTML = data;
+            });
+
+        fetch('core-framework/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+
+        // Chat functionality
+        let messageCount = 0;
+        let sessionStart = Date.now();
+        let apiConfig = {
+            key: '',
+            endpoint: 'https://api.qwen.ai/v1/chat/completions'
+        };
+
+        // Load saved API config
+        loadApiConfig();
+
+        // Update session time
+        setInterval(updateSessionTime, 1000);
+
+        function loadApiConfig() {
+            const saved = localStorage.getItem('qwen-api-config');
+            if (saved) {
+                apiConfig = JSON.parse(saved);
+                document.getElementById('api-key').value = apiConfig.key || '';
+                document.getElementById('api-endpoint').value = apiConfig.endpoint;
+            }
+        }
+
+        function saveApiConfig() {
+            apiConfig.key = document.getElementById('api-key').value.trim();
+            apiConfig.endpoint = document.getElementById('api-endpoint').value.trim();
+
+            localStorage.setItem('qwen-api-config', JSON.stringify(apiConfig));
+
+            // Visual feedback
+            const btn = document.querySelector('.api-save-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+            btn.style.background = 'linear-gradient(45deg, var(--monokai-success), var(--monokai-accent))';
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+            }, 2000);
+        }
+
+        function updateSessionTime() {
+            const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            document.getElementById('session-time').textContent =
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function clearChat() {
+            if (confirm('Are you sure you want to clear all messages?')) {
+                document.getElementById('chat-messages').innerHTML = `
+                    <div class="message ai">
+                        <div class="message-header">
+                            <i class="fas fa-robot"></i> Qwen AI
+                        </div>
+                        <div class="message-content">
+                            Chat cleared! How can I help you today?
+                        </div>
+                    </div>
+                `;
+                messageCount = 0;
+                updateMessageCount();
+            }
+        }
+
+        function updateMessageCount() {
+            document.getElementById('message-count').textContent = messageCount;
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            if (!apiConfig.key) {
+                showError('Please configure your Qwen API key first!');
+                return;
+            }
+
+            // Add user message
+            addMessage('user', message);
+            input.value = '';
+            messageCount++;
+            updateMessageCount();
+
+            // Show typing indicator
+            document.getElementById('typing-indicator').style.display = 'block';
+            document.getElementById('connection-status').textContent = 'Thinking...';
+            document.getElementById('send-btn').disabled = true;
+
+            try {
+                const response = await callQwenAPI(message);
+                addMessage('ai', response);
+                messageCount++;
+                updateMessageCount();
+                document.getElementById('connection-status').textContent = 'Ready';
+            } catch (error) {
+                console.error('API Error:', error);
+                showError('Failed to get response from Qwen API. Please check your API key and try again.');
+                document.getElementById('connection-status').textContent = 'Error';
+            } finally {
+                document.getElementById('typing-indicator').style.display = 'none';
+                document.getElementById('send-btn').disabled = false;
+            }
+        }
+
+        function addMessage(type, content) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+
+            const header = type === 'user' ? 'You' : 'Qwen AI';
+            const icon = type === 'user' ? 'fas fa-user' : 'fas fa-robot';
+
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <i class="${icon}"></i> ${header}
+                </div>
+                <div class="message-content">${content}</div>
+            `;
+
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        async function callQwenAPI(message) {
+            const response = await fetch(apiConfig.endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiConfig.key}`
+                },
+                body: JSON.stringify({
+                    model: 'qwen-turbo',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'You are Qwen, a helpful and intelligent AI assistant. Provide clear, accurate, and engaging responses.'
+                        },
+                        {
+                            role: 'user',
+                            content: message
+                        }
+                    ],
+                    max_tokens: 1000,
+                    temperature: 0.7
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`API request failed: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+                throw new Error('Invalid API response format');
+            }
+
+            return data.choices[0].message.content;
+        }
+
+        // Event listeners
+        document.getElementById('chat-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Initialize
+        updateMessageCount();
+    </script>
+</body>
+</html>
