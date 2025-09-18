@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Debug Tool</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #272822;
+            color: #f8f8f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #a6e22e;
+            margin-bottom: 30px;
+        }
+
+        .debug-section {
+            background: rgba(39, 40, 34, 0.8);
+            border: 1px solid #49483e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .debug-section h3 {
+            color: #a6e22e;
+            margin-top: 0;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #f8f8f2;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 8px;
+            background: #272822;
+            border: 1px solid #49483e;
+            border-radius: 5px;
+            color: #f8f8f2;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        .input-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background: #a6e22e;
+            color: #272822;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #75715e;
+        }
+
+        button:disabled {
+            background: #49483e;
+            cursor: not-allowed;
+        }
+
+        .result {
+            background: rgba(39, 40, 34, 0.8);
+            border: 1px solid #49483e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            white-space: pre-wrap;
+            font-family: inherit;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .result.success {
+            border-color: #a6e22e;
+        }
+
+        .result.error {
+            border-color: #f92672;
+        }
+
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .status.success {
+            background: rgba(166, 226, 46, 0.2);
+            border: 1px solid #a6e22e;
+            color: #a6e22e;
+        }
+
+        .status.error {
+            background: rgba(249, 38, 114, 0.2);
+            border: 1px solid #f92672;
+            color: #f92672;
+        }
+
+        .loading {
+            color: #a6e22e;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .endpoint-btns {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .endpoint-btn {
+            background: #49483e;
+            color: #f8f8f2;
+            border: 1px solid #75715e;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .endpoint-btn:hover {
+            background: #75715e;
+        }
+
+        .endpoint-btn.active {
+            background: #a6e22e;
+            color: #272822;
+            border-color: #a6e22e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 API Debug Tool</h1>
+
+        <div id="status" class="status success">Ready to test API connection</div>
+
+        <div class="debug-section">
+            <h3><i class="fas fa-key"></i> API Configuration</h3>
+            <div class="input-group">
+                <label for="api-key">API Key:</label>
+                <input type="password" id="api-key" placeholder="Enter your DashScope API key (sk-...)">
+            </div>
+            <div class="endpoint-btns">
+                <button class="endpoint-btn active" onclick="setEndpoint('dashscope')">DashScope Native</button>
+                <button class="endpoint-btn" onclick="setEndpoint('openai')">OpenAI Compatible</button>
+            </div>
+            <div class="input-group">
+                <label for="api-endpoint">API Endpoint:</label>
+                <input type="text" id="api-endpoint" value="https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation">
+            </div>
+        </div>
+
+        <div class="debug-section">
+            <h3><i class="fas fa-comment"></i> Test Message</h3>
+            <div class="input-group">
+                <label for="test-message">Message:</label>
+                <textarea id="test-message" placeholder="Enter your test message here...">Hello! Can you help me test the API connection?</textarea>
+            </div>
+            <button onclick="testAPI()" id="test-btn">Test API Connection</button>
+            <button onclick="clearResults()">Clear Results</button>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <i class="fas fa-spinner fa-spin"></i> Testing API connection...
+        </div>
+
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        let currentEndpoint = 'dashscope';
+
+        function setEndpoint(type) {
+            currentEndpoint = type;
+            const btns = document.querySelectorAll('.endpoint-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            if (type === 'dashscope') {
+                document.getElementById('api-endpoint').value = 'https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation';
+                btns[0].classList.add('active');
+            } else {
+                document.getElementById('api-endpoint').value = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
+                btns[1].classList.add('active');
+            }
+        }
+
+        async function testAPI() {
+            const apiKey = document.getElementById('api-key').value.trim();
+            const endpoint = document.getElementById('api-endpoint').value.trim();
+            const message = document.getElementById('test-message').value.trim();
+
+            if (!apiKey) {
+                showStatus('Please enter your API key', 'error');
+                return;
+            }
+
+            if (!message) {
+                showStatus('Please enter a test message', 'error');
+                return;
+            }
+
+            showLoading(true);
+            showStatus('Testing API connection...', 'success');
+
+            try {
+                const response = await callQwenAPI(apiKey, endpoint, message);
+                showResult(response, 'success');
+                showStatus('API test successful!', 'success');
+            } catch (error) {
+                console.error('API Test Error:', error);
+                showResult(`Error: ${error.message}`, 'error');
+                showStatus('API test failed', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function callQwenAPI(apiKey, endpoint, message) {
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`,
+                'X-DashScope-SSE': 'disable'
+            };
+
+            let body;
+
+            if (currentEndpoint === 'dashscope') {
+                // DashScope native format
+                body = JSON.stringify({
+                    model: 'qwen-turbo',
+                    input: {
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'You are Qwen, a helpful and intelligent AI assistant. Provide clear, accurate, and engaging responses.'
+                            },
+                            {
+                                role: 'user',
+                                content: message
+                            }
+                        ]
+                    },
+                    parameters: {
+                        max_tokens: 1000,
+                        temperature: 0.7
+                    }
+                });
+            } else {
+                // OpenAI-compatible format
+                body = JSON.stringify({
+                    model: 'qwen-turbo',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'You are Qwen, a helpful and intelligent AI assistant. Provide clear, accurate, and engaging responses.'
+                        },
+                        {
+                            role: 'user',
+                            content: message
+                        }
+                    ],
+                    max_tokens: 1000,
+                    temperature: 0.7,
+                    stream: false
+                });
+            }
+
+            console.log('Request Details:');
+            console.log('Endpoint:', endpoint);
+            console.log('Headers:', headers);
+            console.log('Body:', body);
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: headers,
+                body: body
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
+            }
+
+            const data = await response.json();
+            console.log('API Response:', data);
+
+            if (currentEndpoint === 'dashscope') {
+                // DashScope native format
+                if (data.output && data.output.text) {
+                    return data.output.text;
+                } else {
+                    throw new Error('Invalid DashScope response format: ' + JSON.stringify(data, null, 2));
+                }
+            } else {
+                // OpenAI-compatible format
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    return data.choices[0].message.content;
+                } else {
+                    throw new Error('Invalid OpenAI-compatible response format: ' + JSON.stringify(data, null, 2));
+                }
+            }
+        }
+
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+            document.getElementById('test-btn').disabled = show;
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
+
+        function showResult(content, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = content;
+            resultDiv.className = `result ${type}`;
+            resultDiv.style.display = 'block';
+        }
+
+        function clearResults() {
+            document.getElementById('result').style.display = 'none';
+            showStatus('Ready to test API connection', 'success');
+        }
+
+        // Load saved API key if available
+        window.addEventListener('load', function() {
+            const savedKey = localStorage.getItem('qwen-api-config-key');
+            if (savedKey) {
+                document.getElementById('api-key').value = savedKey;
+            }
+        });
+    </script>
+</body>
+</html>

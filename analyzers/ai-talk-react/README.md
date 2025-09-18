@@ -20,9 +20,34 @@ A modern, intelligent chat interface for Qwen AI assistant built with React and 
 
 - Node.js (v16 or higher)
 - npm or yarn
-- Qwen AI API key
+- Alibaba Cloud DashScope API key (for Qwen AI)
 
-### Installation
+### Getting Your API Key
+
+1. **Sign up for Alibaba Cloud**: Visit [Alibaba Cloud](https://www.alibabacloud.com/)
+2. **Access DashScope**: Go to [DashScope Console](https://dashscope.aliyuncs.com/)
+3. **Create API Key**: Navigate to API Keys section and create a new key
+4. **Copy Your Key**: Save your API key securely
+
+**Note**: The API key should start with `sk-` and will be used for authentication.
+
+## 🚀 Quick Start Options
+
+### **Option 1: One-Click Setup (Easiest)**
+```bash
+# Just double-click this file:
+setup-and-run.bat
+```
+This will install everything and start the development server automatically.
+
+### **Option 2: Quick Start (If already installed)**
+```bash
+# Just double-click this file:
+quick-start.bat
+```
+This checks for existing installation and starts the server.
+
+### **Option 3: Manual Installation**
 
 1. Navigate to the project directory:
 ```bash
@@ -40,6 +65,20 @@ npm start
 ```
 
 4. Open your browser to `http://localhost:3000`
+
+## 🛠️ Troubleshooting
+
+If you encounter issues, run the troubleshooting script:
+```bash
+# Just double-click this file:
+troubleshoot.bat
+```
+
+This will:
+- ✅ Check Node.js and npm installation
+- ✅ Verify dependencies are installed
+- ✅ Test React and TypeScript imports
+- ✅ Provide specific error solutions
 
 ### Building for Production
 
@@ -171,7 +210,7 @@ Create a `.env` file in the root directory for environment-specific configuratio
 
 ```
 QWEN_API_KEY=your_api_key_here
-QWEN_API_ENDPOINT=https://api.qwen.ai/v1/chat/completions
+QWEN_API_ENDPOINT=https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
 ```
 
 ## Contributing
@@ -188,7 +227,7 @@ QWEN_API_ENDPOINT=https://api.qwen.ai/v1/chat/completions
 
 The application integrates with Qwen's chat completion API:
 
-- **Endpoint**: Configurable (default: https://api.qwen.ai/v1/chat/completions)
+- **Endpoint**: Configurable (default: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions)
 - **Model**: qwen-turbo
 - **Parameters**:
   - max_tokens: 1000
@@ -205,19 +244,51 @@ Configuration is stored locally:
 ### Common Issues
 
 1. **API Key Not Working**
-   - Verify your API key is correct
-   - Check API endpoint URL
-   - Ensure API has proper permissions
+   - Verify your API key is correct and starts with `sk-`
+   - Check API endpoint URL (should be DashScope endpoint)
+   - Ensure API has proper permissions in Alibaba Cloud
+   - Check your account balance/credits in DashScope
 
-2. **Messages Not Sending**
+2. **"Failed to load resource: net::ERR_NAME_NOT_RESOLVED"**
+   - This means the API endpoint domain cannot be resolved
+   - Verify you're using the correct DashScope endpoint: `https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions`
+   - Check your internet connection
+   - Try refreshing the page or clearing browser cache
+
+3. **"Failed to load resource: the server responded with a status of 404" for .env**
+   - This is normal - the .env file is optional
+   - Configure your API key directly in the application interface instead
+   - The app will work without the .env file
+
+4. **Messages Not Sending**
    - Check internet connection
    - Verify API configuration is saved
    - Look for error messages in browser console
+   - Ensure your API key has sufficient credits
 
-3. **UI Not Loading**
-   - Clear browser cache
-   - Check Node.js version
-   - Reinstall dependencies
+5. **UI Not Loading**
+   - Clear browser cache and cookies
+   - Check Node.js version (should be v16+)
+   - Reinstall dependencies: `npm install`
+   - Try a different browser
+
+6. **CORS Errors**
+   - If you see CORS-related errors, try using a different browser or disable CORS temporarily for testing
+   - The production build should work better with CORS
+
+### API Error Messages
+
+**"API request failed: 401"**: Invalid API key
+- Double-check your API key from DashScope console
+- Ensure the key starts with `sk-`
+
+**"API request failed: 429"**: Rate limit exceeded
+- Wait a few minutes before trying again
+- Check your API usage limits in DashScope
+
+**"API request failed: 402"**: Insufficient credits
+- Add credits to your Alibaba Cloud account
+- Check your billing status in DashScope console
 
 ### Debug Mode
 

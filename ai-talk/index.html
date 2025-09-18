@@ -311,7 +311,7 @@
                     </div>
                     <div class="api-input-group">
                         <label class="api-label" for="api-endpoint">API Endpoint:</label>
-                        <input type="text" id="api-endpoint" class="api-input" value="https://api.qwen.ai/v1/chat/completions" placeholder="API endpoint URL">
+                        <input type="text" id="api-endpoint" class="api-input" value="https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions" placeholder="API endpoint URL">
                     </div>
                     <button class="api-save-btn" onclick="saveApiConfig()">
                         <i class="fas fa-save"></i> Save Configuration
@@ -394,7 +394,7 @@
         let sessionStart = Date.now();
         let apiConfig = {
             key: '',
-            endpoint: 'https://api.qwen.ai/v1/chat/completions'
+            endpoint: 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions'
         };
 
         // Load environment variables and saved API config

@@ -33,9 +33,10 @@ const App: React.FC = () => {
 
   const [apiConfig, setApiConfig] = useState<ApiConfig>({
     key: '',
-    endpoint: 'https://api.qwen.ai/v1/chat/completions'
+    endpoint: 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions'
   });
 
+  
   const [chatStats, setChatStats] = useState<ChatStats>({
     messages: 1,
     sessionTime: '00:00',
@@ -87,11 +88,11 @@ const App: React.FC = () => {
         const envVars = parseEnvFile(envText);
 
         if (envVars.QWEN_API_KEY && envVars.QWEN_API_KEY !== 'your_qwen_api_key_here') {
-          setApiConfig(prev => ({ ...prev, key: envVars.QWEN_API_KEY }));
+          setApiConfig((prev: ApiConfig) => ({ ...prev, key: envVars.QWEN_API_KEY }));
         }
 
         if (envVars.QWEN_API_ENDPOINT) {
-          setApiConfig(prev => ({ ...prev, endpoint: envVars.QWEN_API_ENDPOINT }));
+          setApiConfig((prev: ApiConfig) => ({ ...prev, endpoint: envVars.QWEN_API_ENDPOINT }));
         }
 
         console.log('Environment configuration loaded from .env file');
@@ -124,7 +125,7 @@ const App: React.FC = () => {
     const seconds = elapsed % 60;
     const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-    setChatStats(prev => ({ ...prev, sessionTime: formattedTime }));
+    setChatStats((prev: ChatStats) => ({ ...prev, sessionTime: formattedTime }));
   };
 
   const scrollToBottom = () => {
@@ -139,19 +140,19 @@ const App: React.FC = () => {
   };
 
   const handleApiConfigChange = (field: keyof ApiConfig, value: string) => {
-    setApiConfig(prev => ({ ...prev, [field]: value }));
+    setApiConfig((prev: ApiConfig) => ({ ...prev, [field]: value }));
   };
 
   const addMessage = (type: 'user' | 'ai', content: string) => {
     const newMessage: Message = {
-      id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+      id: Date.now().toString() + Math.random().toString(36).substring(2, 11),
       type,
       content,
       timestamp: new Date()
     };
 
-    setMessages(prev => [...prev, newMessage]);
-    setChatStats(prev => ({ ...prev, messages: prev.messages + 1 }));
+    setMessages((prev: Message[]) => [...prev, newMessage]);
+    setChatStats((prev: ChatStats) => ({ ...prev, messages: prev.messages + 1 }));
   };
 
   const clearChat = () => {
@@ -164,7 +165,7 @@ const App: React.FC = () => {
           timestamp: new Date()
         }
       ]);
-      setChatStats(prev => ({ ...prev, messages: 1, status: 'Ready' }));
+      setChatStats((prev: ChatStats) => ({ ...prev, messages: 1, status: 'Ready' }));
       setError('');
     }
   };
@@ -175,40 +176,100 @@ const App: React.FC = () => {
   };
 
   const callQwenAPI = async (message: string): Promise<string> => {
-    const response = await fetch(apiConfig.endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiConfig.key}`
-      },
-      body: JSON.stringify({
-        model: 'qwen-turbo',
-        messages: [
-          {
-            role: 'system',
-            content: 'You are Qwen, a helpful and intelligent AI assistant. Provide clear, accurate, and engaging responses.'
+    // Try the DashScope native API first
+    try {
+      const response = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiConfig.key}`,
+          'X-DashScope-SSE': 'disable'
+        },
+        body: JSON.stringify({
+          model: 'qwen-turbo',
+          input: {
+            messages: [
+              {
+                role: 'system',
+                content: 'You are Qwen, a helpful and intelligent AI assistant. Provide clear, accurate, and engaging responses.'
+              },
+              {
+                role: 'user',
+                content: message
+              }
+            ]
           },
-          {
-            role: 'user',
-            content: message
+          parameters: {
+            max_tokens: 1000,
+            temperature: 0.7
           }
-        ],
-        max_tokens: 1000,
-        temperature: 0.7
-      })
-    });
+        })
+      });
 
-    if (!response.ok) {
-      throw new Error(`API request failed: ${response.status}`);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('DashScope API Error:', errorText);
+        throw new Error(`API request failed: ${response.status} - ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log('DashScope API Response:', data);
+
+      // DashScope native format
+      if (data.output && data.output.text) {
+        return data.output.text;
+      } else {
+        throw new Error('Invalid DashScope response format');
+      }
+    } catch (dashScopeError) {
+      console.warn('DashScope API failed, trying OpenAI-compatible endpoint:', dashScopeError);
+
+      // Fallback to OpenAI-compatible endpoint
+      try {
+        const response = await fetch('https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiConfig.key}`,
+            'X-DashScope-SSE': 'disable'
+          },
+          body: JSON.stringify({
+            model: 'qwen-turbo',
+            messages: [
+              {
+                role: 'system',
+                content: 'You are Qwen, a helpful and intelligent AI assistant. Provide clear, accurate, and engaging responses.'
+              },
+              {
+                role: 'user',
+                content: message
+              }
+            ],
+            max_tokens: 1000,
+            temperature: 0.7,
+            stream: false
+          })
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`OpenAI-compatible API failed: ${response.status} - ${errorText}`);
+        }
+
+        const data = await response.json();
+        console.log('OpenAI-compatible API Response:', data);
+
+        // OpenAI-compatible format
+        if (data.choices && data.choices[0] && data.choices[0].message) {
+          return data.choices[0].message.content;
+        } else {
+          throw new Error('Invalid OpenAI-compatible response format');
+        }
+      } catch (openAIError) {
+        console.error('Both API endpoints failed:', openAIError);
+        throw new Error('Failed to connect to Qwen API. Please check your API key and internet connection.');
+      }
     }
-
-    const data = await response.json();
-
-    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-      throw new Error('Invalid API response format');
-    }
-
-    return data.choices[0].message.content;
   };
 
   const sendMessage = async () => {
@@ -226,16 +287,16 @@ const App: React.FC = () => {
 
     // Show typing indicator
     setIsTyping(true);
-    setChatStats(prev => ({ ...prev, status: 'Thinking...' }));
+    setChatStats((prev: ChatStats) => ({ ...prev, status: 'Thinking...' }));
 
     try {
       const response = await callQwenAPI(message);
       addMessage('ai', response);
-      setChatStats(prev => ({ ...prev, status: 'Ready' }));
+      setChatStats((prev: ChatStats) => ({ ...prev, status: 'Ready' }));
     } catch (error) {
       console.error('API Error:', error);
       showError('Failed to get response from Qwen API. Please check your API key and try again.');
-      setChatStats(prev => ({ ...prev, status: 'Error' }));
+      setChatStats((prev: ChatStats) => ({ ...prev, status: 'Error' }));
     } finally {
       setIsTyping(false);
     }
@@ -270,7 +331,7 @@ const App: React.FC = () => {
                 className="api-input"
                 placeholder="Enter your Qwen API key here..."
                 value={apiConfig.key}
-                onChange={(e) => handleApiConfigChange('key', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleApiConfigChange('key', e.target.value)}
               />
             </div>
             <div className="api-input-group">
@@ -281,7 +342,7 @@ const App: React.FC = () => {
                 className="api-input"
                 placeholder="API endpoint URL"
                 value={apiConfig.endpoint}
-                onChange={(e) => handleApiConfigChange('endpoint', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleApiConfigChange('endpoint', e.target.value)}
               />
             </div>
             <button className="api-save-btn" onClick={saveApiConfig}>
@@ -312,7 +373,7 @@ const App: React.FC = () => {
         {/* Main Chat Area */}
         <div className="chat-main">
           <div className="chat-messages">
-            {messages.map((message) => (
+            {messages.map((message: Message) => (
               <div key={message.id} className={`message ${message.type}`}>
                 <div className="message-header">
                   <i className={`fas ${message.type === 'user' ? 'fa-user' : 'fa-robot'}`}></i>
@@ -344,7 +405,7 @@ const App: React.FC = () => {
               placeholder="Type your message here... (Press Enter to send, Shift+Enter for new line)"
               rows={3}
               value={currentMessage}
-              onChange={(e) => setCurrentMessage(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setCurrentMessage(e.target.value)}
               onKeyPress={handleKeyPress}
             />
             <button
