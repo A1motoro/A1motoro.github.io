@@ -1,0 +1,44 @@
+name: Deploy Data Analyzer to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'data-analyzer-react/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'data-analyzer-react/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: data-analyzer-react/package-lock.json
+
+    - name: Install dependencies
+      run: |
+        cd data-analyzer-react
+        npm ci
+
+    - name: Build
+      run: |
+        cd data-analyzer-react
+        npm run build
+
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: data-analyzer-react/build
+        destination_dir: data-analyzer
