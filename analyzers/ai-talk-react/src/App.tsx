@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import remarkGfm from 'remark-gfm';
 import './App.css';
 
 // Types
@@ -20,13 +24,63 @@ interface ChatStats {
   status: 'Ready' | 'Thinking...' | 'Error';
 }
 
+// Custom components for markdown rendering
+const CodeBlock = ({ node, inline, className, children, ...props }: any) => {
+  const match = /language-(\w+)/.exec(className || '');
+  const language = match ? match[1] : '';
+
+  return !inline && language ? (
+    <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
+      <SyntaxHighlighter
+        style={oneDark}
+        language={language}
+        PreTag="div"
+        showLineNumbers={true}
+        wrapLines={false}
+        customStyle={{
+          margin: 0,
+          borderRadius: '8px',
+          maxWidth: '100%',
+          overflowX: 'auto',
+          fontSize: '0.9em'
+        }}
+        {...props}
+      >
+        {String(children).replace(/\n$/, '')}
+      </SyntaxHighlighter>
+    </div>
+  ) : (
+    <code className={className} style={{ wordBreak: 'break-all', overflowWrap: 'break-word' }} {...props}>
+      {children}
+    </code>
+  );
+};
+
 const App: React.FC = () => {
   // State management
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       type: 'ai',
-      content: "Hello! I'm Qwen, your AI assistant. How can I help you today? Feel free to ask me questions about programming, mathematics, creative ideas, or anything else you're curious about!",
+      content: `# Hello! 👋 I'm Qwen, your AI assistant
+
+I can help you with **programming**, **mathematics**, **creative ideas**, and much more!
+
+## What I can do:
+
+- 💻 **Code Examples**: I can write and explain code in multiple languages
+- 📊 **Data Analysis**: Help with algorithms and data structures
+- 🎨 **Creative Writing**: Generate stories, poems, and content
+- 🔧 **Problem Solving**: Debug code and solve technical issues
+- 📚 **Learning**: Explain concepts with clear examples
+
+### Try asking me:
+- "Write a Python function to calculate fibonacci numbers"
+- "Explain how React hooks work"
+- "Create a CSS animation for a loading spinner"
+- "Help me optimize this SQL query"
+
+**Just type your question below and let's get started! 🚀**`,
       timestamp: new Date()
     }
   ]);
@@ -379,7 +433,20 @@ const App: React.FC = () => {
                   <i className={`fas ${message.type === 'user' ? 'fa-user' : 'fa-robot'}`}></i>
                   {message.type === 'user' ? 'You' : 'Qwen AI'}
                 </div>
-                <div className="message-content">{message.content}</div>
+                <div className="message-content">
+                  {message.type === 'user' ? (
+                    message.content
+                  ) : (
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        code: CodeBlock,
+                      }}
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  )}
+                </div>
               </div>
             ))}
 

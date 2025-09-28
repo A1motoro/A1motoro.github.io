@@ -241,3 +241,245 @@ tr:nth-child(even) {
     padding: 1.5rem;
   }
 }
+
+/* AI Insights Section */
+.ai-insights-section {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(39, 40, 34, 0.8);
+  border: 2px solid #49483e;
+  border-radius: 15px;
+}
+
+.ai-insights-section h3 {
+  color: #a6e22e;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #49483e;
+  padding-bottom: 0.5rem;
+}
+
+.api-config-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid #49483e;
+}
+
+.api-config-section h4 {
+  color: #66d9ef;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.api-input-group {
+  margin-bottom: 1rem;
+}
+
+.api-input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f8f8f2;
+  font-weight: bold;
+}
+
+.api-input-group input {
+  width: 100%;
+  padding: 0.8rem;
+  background: #272822;
+  border: 2px solid #49483e;
+  border-radius: 8px;
+  color: #f8f8f2;
+  font-family: inherit;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.api-input-group input:focus {
+  border-color: #a6e22e;
+  outline: none;
+}
+
+.api-help {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #75715e;
+}
+
+.api-help a {
+  color: #66d9ef;
+  text-decoration: none;
+}
+
+.api-help a:hover {
+  text-decoration: underline;
+}
+
+.insights-actions {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.generate-insights-btn {
+  background: linear-gradient(45deg, #a6e22e, #66d9ef);
+  color: #272822;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(166, 226, 46, 0.3);
+}
+
+.generate-insights-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(166, 226, 46, 0.4);
+}
+
+.generate-insights-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.insights-content {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid #49483e;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Markdown Styles for AI Insights */
+.insights-content h1,
+.insights-content h2,
+.insights-content h3,
+.insights-content h4,
+.insights-content h5,
+.insights-content h6 {
+  color: #a6e22e;
+  margin: 1.5rem 0 0.5rem 0;
+  font-weight: bold;
+}
+
+.insights-content h1 { font-size: 1.5em; border-bottom: 1px solid #49483e; padding-bottom: 0.3em; }
+.insights-content h2 { font-size: 1.3em; }
+.insights-content h3 { font-size: 1.1em; }
+
+.insights-content p {
+  margin: 0.8rem 0;
+  line-height: 1.6;
+}
+
+.insights-content ul,
+.insights-content ol {
+  margin: 0.8rem 0;
+  padding-left: 2rem;
+}
+
+.insights-content li {
+  margin: 0.3rem 0;
+}
+
+.insights-content blockquote {
+  border-left: 4px solid #a6e22e;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #75715e;
+  font-style: italic;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.insights-content a {
+  color: #66d9ef;
+  text-decoration: none;
+}
+
+.insights-content a:hover {
+  text-decoration: underline;
+}
+
+.insights-content code:not(pre code) {
+  background: rgba(0, 0, 0, 0.4);
+  color: #f92672;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.insights-content pre {
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.insights-content table {
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  max-width: 100%;
+}
+
+.insights-content th,
+.insights-content td {
+  border: 1px solid #49483e;
+  padding: 0.75rem;
+  text-align: left;
+  min-width: 100px;
+}
+
+.insights-content th {
+  background: rgba(166, 226, 46, 0.1);
+  color: #a6e22e;
+  font-weight: bold;
+}
+
+.insights-content tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Syntax Highlighter Overrides */
+.insights-content pre[class*="language-"] {
+  background: #272822 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+}
+
+/* Mobile responsiveness for AI insights */
+@media (max-width: 768px) {
+  .ai-insights-section {
+    padding: 1rem;
+  }
+
+  .insights-content {
+    padding: 1rem;
+  }
+
+  .insights-content pre {
+    font-size: 0.8em;
+  }
+
+  .insights-content table {
+    font-size: 0.8em;
+  }
+
+  .insights-content th,
+  .insights-content td {
+    padding: 0.5rem;
+    min-width: 80px;
+  }
+}

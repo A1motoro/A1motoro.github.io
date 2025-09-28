@@ -146,11 +146,14 @@
 .chat-messages {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 1rem;
   margin-bottom: 1rem;
   background: #272822;
   border-radius: 10px;
   border: 1px solid #49483e;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .message {
@@ -158,6 +161,8 @@
   padding: 1rem;
   border-radius: 10px;
   max-width: 80%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .message.user {
@@ -181,7 +186,189 @@
 
 .message-content {
   line-height: 1.6;
+}
+
+/* Markdown Styles for AI Messages */
+.message-content h1,
+.message-content h2,
+.message-content h3,
+.message-content h4,
+.message-content h5,
+.message-content h6 {
+  color: #a6e22e;
+  margin: 1rem 0 0.5rem 0;
+  font-weight: bold;
+}
+
+.message-content h1 { font-size: 1.5em; border-bottom: 1px solid #49483e; padding-bottom: 0.3em; }
+.message-content h2 { font-size: 1.3em; }
+.message-content h3 { font-size: 1.1em; }
+
+.message-content p {
+  margin: 0.5rem 0;
+}
+
+.message-content ul,
+.message-content ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.message-content li {
+  margin: 0.25rem 0;
+}
+
+.message-content blockquote {
+  border-left: 4px solid #a6e22e;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #75715e;
+  font-style: italic;
+}
+
+.message-content a {
+  color: #66d9ef;
+  text-decoration: none;
+}
+
+.message-content a:hover {
+  text-decoration: underline;
+}
+
+.message-content code:not(pre code) {
+  background: rgba(0, 0, 0, 0.3);
+  color: #f92672;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.message-content pre {
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  word-wrap: break-word;
   white-space: pre-wrap;
+}
+
+.message-content pre code {
+  white-space: pre;
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.message-content table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  max-width: 100%;
+}
+
+.message-content th,
+.message-content td {
+  border: 1px solid #49483e;
+  padding: 0.5rem;
+  text-align: left;
+  min-width: 80px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.message-content th {
+  background: rgba(166, 226, 46, 0.1);
+  color: #a6e22e;
+  font-weight: bold;
+}
+
+.message-content tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Syntax Highlighter Overrides for Dark Theme */
+.message-content .syntax-highlighter-container {
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.message-content pre[class*="language-"] {
+  background: #272822 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  word-wrap: normal !important;
+  white-space: pre !important;
+}
+
+/* Responsive code blocks */
+.message-content pre[class*="language-"] code {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  white-space: pre !important;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+}
+
+/* Ensure proper spacing and readability */
+.message-content > *:first-child {
+  margin-top: 0;
+}
+
+.message-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive design for code blocks on mobile */
+@media (max-width: 768px) {
+  .message-content pre {
+    font-size: 0.8em;
+    margin: 0.5rem -0.5rem;
+  }
+
+  .message-content pre[class*="language-"] {
+    margin: 0.5rem 0 !important;
+  }
+
+  .message-content table {
+    font-size: 0.8em;
+    margin: 0.5rem -0.5rem;
+  }
+
+  .message-content th,
+  .message-content td {
+    padding: 0.3rem;
+    min-width: 60px;
+  }
+}
+
+/* Prevent horizontal overflow in chat messages */
+.message {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.message-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Handle long URLs and text */
+.message-content a {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.message-content p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .typing-indicator {
